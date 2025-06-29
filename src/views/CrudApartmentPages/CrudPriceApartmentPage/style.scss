@@ -1,0 +1,28 @@
+.crudPrice {
+  width: 500px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 600px) {
+    min-width: 100%;
+    width: 100%;
+
+    .crud_apartment_page__inner {
+      padding-left: 18px;
+      padding-right: 18px;
+
+      @media screen and (max-width: 600px) {
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+    }
+  }
+
+  .crudUsers {
+    width: 100%;
+    flex-direction: column;
+    gap: 0px;
+    > div {
+      width: 100%;
+    }
+  }
+}

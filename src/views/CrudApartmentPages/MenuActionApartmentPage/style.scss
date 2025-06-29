@@ -1,0 +1,45 @@
+.menuActionApartment {
+  > div:nth-child(3) {
+    > div:first-child {
+      width: 480px !important;
+      min-width: 480px !important;
+      max-width: 480px !important;
+      height: auto !important;
+
+      @media screen and (max-width: 500px) {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+
+  .modalActionApartment {
+    min-width: 420px;
+    padding-bottom: 20px;
+    @media screen and (max-width: 450px) {
+      min-width: 100%;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h2 {
+        text-align: left;
+        padding-left: 10px !important;
+        font-size: 18px;
+      }
+    }
+
+    .payIcon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .listIcon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.map_data {
+  .crud_apartment_page__inner {
+    padding: 0 !important;
+    @media screen and (max-width: 700px) {
+      height: calc(100vh - 180px);
+    }
+  }
+
+  > div {
+    > div:first-child {
+      @media screen and (max-width: 700px) {
+        padding: 12px 12px 12px 22px;
+      }
+
+      @media screen and (max-width: 600px) {
+        padding: 12px;
+      }
+      span {
+        @media screen and (max-width: 760px) {
+          width: 100%;
+          @media screen and (max-width: 730px) {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .buttonRoot {
+    width: 32px;
+    box-shadow: 0 1px 3px 0 rgba(38, 38, 38, 0.5);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    margin: 10px;
+  }
+
+  .button {
+    padding: 0;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    background: #fff;
+    width: 32px;
+    height: 32px;
+    color: #262626;
+    box-sizing: border-box;
+  }
+
+  .button:hover {
+    opacity: 0.7;
+  }
+
+  .button:active {
+    color: #028eff;
+  }
+
+  .createUser {
+    @media screen and (max-width: 700px) {
+      z-index: 99;
+      top: calc(100vh - 140px);
+
+      @media screen and (max-width: 500px) {
+        display: flex !important;
+        width: 90%;
+      }
+    }
+  }
+}

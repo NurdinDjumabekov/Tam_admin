@@ -1,0 +1,48 @@
+.inputSend {
+  padding: 4px 0px;
+
+  p {
+    font-size: 16px;
+    margin: 0 0 3px 0;
+  }
+
+  input,
+  textarea {
+    border: 1px solid #e1e6ed;
+    padding: 8px 8px;
+    font-size: 15px;
+    color: #6b7280;
+    border-radius: 5px;
+    width: 100%;
+
+    &::placeholder {
+      color: #6b72809e;
+    }
+
+    &:focus {
+      border: 1px solid rgba(89, 89, 89, 0.529);
+      outline: none;
+    }
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .css-hlgwow {
+    height: 37px !important;
+  }
+
+  .css-13cymwt-control {
+    border: 1px solid #e1e6ed !important;
+  }
+
+  .css-hlgwow {
+    padding: 0px 5px !important;
+  }
+
+  .css-1xc3v61-indicatorContainer,
+  .css-15lsz6c-indicatorContainer {
+    padding: 0 3px !important;
+  }
+}

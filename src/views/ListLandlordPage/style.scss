@@ -1,0 +1,141 @@
+.tableLandlords {
+  height: 100%;
+
+  > div {
+    > div:last-child {
+      padding-top: 1px !important;
+      @media screen and (max-width: 600px) {
+        padding: 0 !important;
+      }
+    }
+
+    > div:first-child {
+      @media screen and (max-width: 600px) {
+        padding: 16px;
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .createUser {
+    position: absolute;
+    right: 24px;
+    transform: translateY(-50%);
+    top: 50%;
+    background: #00ab55;
+    height: 38px;
+    padding: 2px 15px 3px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    @media screen and (max-width: 580px) {
+      padding: 8px;
+      height: auto;
+      right: 20px;
+
+      p {
+        display: none;
+      }
+    }
+  }
+
+  .imgProd {
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    height: 100px;
+    max-height: 100px;
+    min-height: 100px;
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .viewUsersPage {
+    height: calc(100% - 70px);
+    width: 100%;
+
+    .viewLandlord {
+      font-size: 12px;
+    }
+
+    table {
+      thead,
+      tbody {
+        tr {
+          > th,
+          > td {
+            padding-bottom: 6px !important;
+          }
+
+          th:first-child,
+          td:first-child {
+            min-width: 30px !important;
+            width: 30px !important;
+            max-width: 30px !important;
+
+            @media screen and (max-width: 1020px) {
+              min-width: 45px !important;
+              width: 45px !important;
+              max-width: 45px !important;
+            }
+          }
+
+          th:nth-child(2),
+          td:nth-child(2) {
+            min-width: 150px !important;
+            width: 150px !important;
+            padding-left: 10px;
+            padding-right: 5px;
+          }
+
+          th:nth-child(3),
+          td:nth-child(3) {
+            min-width: 140px !important;
+            width: 140px !important;
+            padding-left: 10px;
+            padding-right: 0px;
+          }
+
+          th:nth-child(4),
+          td:nth-child(4) {
+            min-width: 115px !important;
+            width: 115px !important;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+
+          th:nth-child(5),
+          td:nth-child(5) {
+            min-width: 125px !important;
+            width: 125px !important;
+            padding-left: 15px;
+            padding-right: 5px;
+          }
+
+          th:nth-child(6),
+          td:nth-child(6) {
+            min-width: 85px !important;
+            width: 85px !important;
+            padding-left: 15px;
+            padding-right: 5px;
+          }
+
+          th:nth-child(7),
+          td:nth-child(7) {
+            min-width: 115px !important;
+            width: 115px !important;
+            padding-left: 15px;
+            padding-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

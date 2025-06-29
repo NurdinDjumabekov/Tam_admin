@@ -1,0 +1,87 @@
+.crud_apartment_page {
+  height: 100%;
+  position: relative;
+
+  .saveApartment {
+    top: 36px;
+    @media screen and (max-width: 550px) {
+      p {
+        display: none;
+      }
+    }
+  }
+
+  > div {
+    > div:first-child {
+      @media screen and (max-width: 500px) {
+        padding: 12px 10px;
+      }
+      span {
+        @media screen and (max-width: 500px) {
+          width: 100%;
+          @media screen and (max-width: 730px) {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .saveApartmentBottom {
+    position: static !important;
+    right: 0px;
+    bottom: 0px;
+    transform: translateY(-0%);
+    margin: 20px 0 0 0;
+    width: 100%;
+    display: none;
+    @media screen and (max-width: 550px) {
+      display: flex;
+    }
+  }
+
+  &__inner {
+    height: calc(100vh - 220px);
+    overflow-y: scroll;
+    padding: 0px 16px;
+
+    form {
+      display: flex;
+      width: 100%;
+      min-width: 100%;
+      gap: 20px;
+
+      .inputSend {
+        margin: 10px 0 0 0;
+      }
+
+      > div {
+        width: calc(50% - 10px);
+        min-width: calc(50% - 10px);
+
+        .myInputs {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        display: block;
+        padding-bottom: 200px;
+
+        > div {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+    }
+
+    .selectCategs {
+      margin-bottom: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+      height: calc(100vh - 190px);
+    }
+  }
+}
