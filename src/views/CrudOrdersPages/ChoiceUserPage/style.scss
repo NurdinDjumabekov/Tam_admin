@@ -1,0 +1,30 @@
+.choiceUserPage {
+  .headerMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .select {
+      width: 240px;
+      max-width: 240px;
+    }
+    .myInputs {
+      margin: 0 !important;
+    }
+  }
+
+  > div {
+    > div:first-child {
+      padding: 14px 24px !important;
+    }
+  }
+
+  table {
+    tr {
+      th,
+      td {
+        cursor: pointer;
+      }
+    }
+  }
+}

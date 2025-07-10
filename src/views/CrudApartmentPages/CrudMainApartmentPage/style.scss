@@ -2,44 +2,6 @@
   height: 100%;
   position: relative;
 
-  .saveApartment {
-    top: 36px;
-    @media screen and (max-width: 550px) {
-      p {
-        display: none;
-      }
-    }
-  }
-
-  > div {
-    > div:first-child {
-      @media screen and (max-width: 500px) {
-        padding: 12px 10px;
-      }
-      span {
-        @media screen and (max-width: 500px) {
-          width: 100%;
-          @media screen and (max-width: 730px) {
-            font-size: 15px;
-          }
-        }
-      }
-    }
-  }
-
-  .saveApartmentBottom {
-    position: static !important;
-    right: 0px;
-    bottom: 0px;
-    transform: translateY(-0%);
-    margin: 20px 0 0 0;
-    width: 100%;
-    display: none;
-    @media screen and (max-width: 550px) {
-      display: flex;
-    }
-  }
-
   &__inner {
     height: calc(100vh - 220px);
     overflow-y: scroll;
@@ -65,6 +27,19 @@
         }
       }
 
+      @media screen and (max-width: 500px) {
+        .createUser {
+          position: static !important;
+          width: 100%;
+          margin: 30px 0 0 0;
+          height: 45px;
+
+          p {
+            display: block;
+          }
+        }
+      }
+
       @media screen and (max-width: 550px) {
         display: block;
         padding-bottom: 200px;
@@ -82,6 +57,34 @@
 
     @media screen and (max-width: 600px) {
       height: calc(100vh - 190px);
+    }
+  }
+}
+
+.mainCrudApartment {
+  > div {
+    > div:first-child {
+      > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        padding: 10px 16px 10px 22px;
+        span {
+          font-size: 16px;
+        }
+      }
     }
   }
 }

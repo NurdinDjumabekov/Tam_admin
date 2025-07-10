@@ -36,7 +36,7 @@ const CrudMainApartmentPage = () => {
   useEffect(() => {
     getData();
     return () => setCrudLandlord({});
-  }, [location.state.guid_apartment]);
+  }, [location?.state?.guid_apartment]);
 
   const crudLandLordFn = async (e) => {
     if (e?.preventDefault) e.preventDefault();
@@ -87,8 +87,8 @@ const CrudMainApartmentPage = () => {
   const getData = async () => {
     const list = await dispatch(getAllSelectsReq()).unwrap(); // get список стандартных данных для админки
 
-    if (location.state.action_type != 1) {
-      const guid_apartment = location.state.guid_apartment;
+    if (location.state?.action_type != 1) {
+      const guid_apartment = location.state?.guid_apartment;
       const res = await dispatch(getEveryApartmentsReq({ guid_apartment })).unwrap();
 
       const type_apartment_label = list?.list_type_apartment?.find((i) => i.value === res?.type_apartment);
@@ -105,8 +105,9 @@ const CrudMainApartmentPage = () => {
         type_apartment: type_apartment_label,
         categ_apartment: categ_apartment_label,
         count_room: count_room_label,
-        install_lock: listBollean.filter((i) => i.value == res?.install_lock?.toString())
+        install_lock: listBollean.find((i) => i.value == res?.install_lock?.toString())
       };
+
       setCrudLandlord(copy);
     }
   };
@@ -119,7 +120,7 @@ const CrudMainApartmentPage = () => {
 
   const objtitle = { 1: 'Создание квартиры', 2: 'Редактирование квартиры' };
   return (
-    <div className="crud_apartment_page">
+    <div className="crud_apartment_page crudData tableBottomBtn mainCrudApartment">
       <MainCard
         title={objtitle?.[location.state?.action_type]}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
@@ -278,12 +279,7 @@ const CrudMainApartmentPage = () => {
               </div>
             </div>
 
-            <button className="createUser saveApartmentBottom">
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
-
-            <button className="createUser saveApartment">
+            <button className="createUser">
               <AddBoxIcon sx={{ width: 20, height: 20 }} />
               <p>Сохранить</p>
             </button>

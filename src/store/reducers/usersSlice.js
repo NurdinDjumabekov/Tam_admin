@@ -9,15 +9,15 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const initialState = {
   preloader_user: false,
-  listLandlord: [] // храню пользователей и арендодателей
+  listLandlord: [], // храню пользователей и арендодателей
+  searchUser: '', // поиск пользователя
+  typeUsers: '' // активный тип пользователя tamkg || landlord
 };
 
 ////// getAllLandLordReq - get cписок всех арендодателей и пользователей
-export const getAllLandLordReq = createAsyncThunk('getAllLandLordReq', async function (typeUsers, { dispatch, rejectWithValue }) {
+export const getAllLandLordReq = createAsyncThunk('getAllLandLordReq', async function (data, { dispatch, rejectWithValue }) {
   const url = `${apiUrl}/users/get_users`;
-
   try {
-    const data = { typeUser: typeUsers };
     const response = await axiosInstance.post(url, data);
     if (response.status >= 200 && response.status < 300) {
       return response?.data?.list;
@@ -50,6 +50,12 @@ const usersSlice = createSlice({
   reducers: {
     listLandlordsFN: (state, action) => {
       state.listLandlord = action.payload;
+    },
+    searchUserFN: (state, action) => {
+      state.searchUser = action?.payload;
+    },
+    typeUsersFn: (state, action) => {
+      state.typeUsers = action?.payload;
     }
   },
 
@@ -82,6 +88,6 @@ const usersSlice = createSlice({
   }
 });
 
-export const { listLandlordsFN } = usersSlice.actions;
+export const { listLandlordsFN, searchUserFN, typeUsersFn } = usersSlice.actions;
 
 export default usersSlice.reducer;

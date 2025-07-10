@@ -1,0 +1,104 @@
+.crudTableOrders {
+  height: 100%;
+
+  .lowercaseTitle {
+    text-transform: lowercase;
+  }
+
+  .btnCancel {
+    .createUser {
+      width: auto !important;
+    }
+  }
+
+  .everyOrder {
+    height: calc(100vh - 200px) !important;
+  }
+
+  .apartmentBlock,
+  .paymentBlock {
+    h3 {
+      margin: 15px 0px 2px 0px;
+    }
+  }
+
+  .orderBlock {
+    margin-top: 5px;
+    h3 {
+      margin: 0px 0px 2px 0px;
+    }
+  }
+
+  .flexBlock {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  ///////////////////
+  .orderTableWrapper {
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+  .orderInfoTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    height: 100%;
+
+    th {
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid transparent !important;
+    }
+
+    td {
+      padding: 3px 5px;
+      border-bottom: 1px solid #ddd;
+      font-size: 12px !important;
+      padding-left: 15px;
+    }
+
+    tr {
+      td:nth-child(1),
+      th:nth-child(1) {
+        width: 230px;
+        border-right: 1px solid #ddd;
+        padding-left: 25px !important;
+      }
+
+      th:nth-child(2) {
+        padding-left: 14px !important;
+        border-left: 2px solid #ddd !important;
+      }
+
+      td:nth-child(3),
+      th:nth-child(3) {
+        border-left: 1px solid #ddd;
+        padding-right: 25px !important;
+        min-width: 100px !important;
+        width: 100px !important;
+        max-width: 100px !important;
+      }
+
+      .editData {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .clickDoc {
+    text-decoration: underline;
+    font-size: 11px;
+  }
+}
+
+.tableOrders {
+  height: 100%;
+}

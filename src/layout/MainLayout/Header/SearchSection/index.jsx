@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -104,9 +104,7 @@ MobileSearch.propTypes = {
 
 // ==============================|| SEARCH INPUT ||============================== //
 
-const SearchSection = () => {
-  const [value, setValue] = useState('');
-
+const SearchSection = ({ value, setValue, placeholder = 'Search', onClick }) => {
   return (
     <>
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -148,18 +146,11 @@ const SearchSection = () => {
           id="input-search-header"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Search"
-          startAdornment={
-            <InputAdornment position="start">
-              <IconSearch stroke={1.5} size="16px" />
-            </InputAdornment>
-          }
+          placeholder={placeholder}
           endAdornment={
-            <InputAdornment position="end">
-              <HeaderAvatar>
-                <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
-              </HeaderAvatar>
-            </InputAdornment>
+            <button className="btnSearch" onClick={onClick}>
+              <IconSearch stroke={1.5} size="16px" />
+            </button>
           }
           aria-describedby="search-helper-text"
           inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } }}

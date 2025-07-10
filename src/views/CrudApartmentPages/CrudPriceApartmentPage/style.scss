@@ -6,6 +6,34 @@
     min-width: 100%;
     width: 100%;
 
+    > div {
+      > div:first-child {
+        padding: 24px 12px !important;
+
+        > div {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          span {
+            display: inline-block;
+            max-width: 100%;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          padding: 12px !important;
+          span {
+            font-size: 17px !important;
+          }
+        }
+      }
+    }
+
     .crud_apartment_page__inner {
       padding-left: 18px;
       padding-right: 18px;

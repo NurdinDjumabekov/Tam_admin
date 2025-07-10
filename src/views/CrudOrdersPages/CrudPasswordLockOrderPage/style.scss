@@ -1,0 +1,38 @@
+.crudPassword {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.626);
+
+  .push {
+    margin: 15px 0 12px;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    width: 450px !important;
+    height: 480px;
+
+    .actionBtn {
+      height: 50px;
+    }
+  }
+
+  .myInputs {
+    > div {
+      height: 38px !important;
+      padding-top: 5px !important;
+    }
+  }
+
+  .ant-picker-cell-today {
+    .ant-picker-cell-inner {
+      color: inherit !important;
+      font-weight: normal !important;
+    }
+  }
+
+  .ant-picker-cell-today .ant-picker-cell-inner::before {
+    display: none !important;
+  }
+}

@@ -1,0 +1,88 @@
+.tableOrders {
+  background: transparent;
+  height: 100%;
+  min-height: 100%;
+
+  > div {
+    > div:first-child {
+      padding: 14px 24px !important;
+      > div {
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          font-size: 16px !important;
+        }
+      }
+    }
+  }
+
+  table {
+    thead,
+    tbody {
+      tr {
+        > td {
+          cursor: pointer;
+        }
+
+        // th:last-child,
+        // td:last-child {
+        //   min-width: 300px !important;
+        //   width: 300px !important;
+        //   padding-left: 15px;
+        //   padding-right: 5px;
+        // }
+      }
+    }
+  }
+
+  .actionsOrders {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .css-1jqq78o-placeholder {
+      font-size: 13px !important;
+    }
+
+    .css-13cymwt-control {
+      min-width: 200px !important;
+      width: 200px !important;
+    }
+
+    .css-1dimb5e-singleValue {
+      font-size: 13px !important;
+    }
+
+    .generatePdf {
+      background: rgba(30, 100, 30, 0.738);
+      height: 32px;
+      width: 160px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      color: #fff;
+    }
+
+    .createOrder {
+      width: 120px !important;
+    }
+
+    .updated {
+      width: 90px;
+    }
+  }
+
+  .viewUsersPage {
+    height: calc(100% - 0px) !important;
+  }
+
+  .statusOrder {
+    font-size: 12px !important;
+    line-height: 15px !important;
+  }
+
+  .textTable {
+    font-size: 13px;
+  }
+}

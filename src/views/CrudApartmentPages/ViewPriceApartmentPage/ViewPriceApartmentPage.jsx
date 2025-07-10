@@ -18,7 +18,7 @@ import { TableVirtuoso } from 'react-virtuoso';
 
 ///// helpers
 import { myAlert } from 'helpers/myAlert';
-import { getListPriceReq, listPricesFN } from 'store/reducers/otherActionApartmentSlice';
+import { crudPriceApartmentReq, getListPriceReq, listPricesFN } from 'store/reducers/otherActionApartmentSlice';
 
 ///// style
 import './style.scss';
@@ -41,14 +41,16 @@ const ViewPriceApartmentPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location, 'location');
-
   const { listPrices } = useSelector((state) => state.otherActionApartmentSlice);
 
   useEffect(() => {
-    dispatch(getListPriceReq({ guid_apartment: location?.state?.guid_apartment }));
+    getData();
     return () => dispatch(listPricesFN([]));
   }, [location?.state?.guid_apartment]);
+
+  const getData = () => {
+    dispatch(getListPriceReq({ guid_apartment: location?.state?.guid_apartment, extend: true }));
+  };
 
   const addNewPrice = ({}, action_type) => {
     const guid_apartment = location.state.guid_apartment;
@@ -57,15 +59,42 @@ const ViewPriceApartmentPage = () => {
       action_type,
       nav: 1
     };
-    console.log(guid_apartment, 'guid_apartment');
     navigate('/every/crud_apartment_price', { state: send });
   };
 
-  const onChange = (guid) => {
-    myAlert(`Тоггл по ${guid}`);
+  const onChange = async (item) => {
+    const sendData = {
+      guid: item?.guid,
+      price: item?.price?.toString(),
+      name: item?.name,
+      duration: item?.duration,
+      durationInMinutes: +item?.durationInMinutes,
+      discount: Number(parseFloat(item?.discount).toFixed(1)) || 0.0,
+      status: true,
+      type: '1',
+      action_type: 2,
+      apartmentId: location.state.guid_apartment,
+      viewFordopList: !item?.viewFordopList
+    };
+    const result = await dispatch(crudPriceApartmentReq(sendData)).unwrap();
+    if (result.res == 1) {
+      getData();
+      myAlert(result.mes);
+    } else {
+      myAlert(result.mes, 'error');
+    }
   };
 
-  const crudApartmentFN = (row, type) => {};
+  const crudApartmentFN = (row, type) => {
+    const guid_apartment = location.state.guid_apartment;
+    const send = {
+      ...row,
+      guid_apartment,
+      action_type: type,
+      nav: 1
+    };
+    navigate('/every/crud_apartment_price', { state: send });
+  };
 
   return (
     <div className="tableLandlords tableApartments price_list">
@@ -74,11 +103,6 @@ const ViewPriceApartmentPage = () => {
           <>
             {location?.state?.address}
             <button className="createUser" onClick={() => addNewPrice({}, 1)}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Добавить</p>
-            </button>
-
-            <button className="saveRules" onClick={() => addNewPrice({}, 1)}>
               <AddBoxIcon sx={{ width: 20, height: 20 }} />
               <p>Добавить</p>
             </button>
@@ -149,7 +173,7 @@ function rowContent(index, row, onChange, crudApartmentFN) {
             sx={{ padding: '4px' }}
             checked={row.viewFordopList}
             onClick={(e) => e.stopPropagation()}
-            onChange={() => onChange(row.guid)}
+            onChange={() => onChange(row)}
             inputProps={{ 'aria-label': 'Выбрать правило' }}
           />
         </TableCell>

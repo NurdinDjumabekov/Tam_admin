@@ -1,0 +1,30 @@
+.titlesModal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  max-width: 100%;
+
+  .prevBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14, 37, 85, 0.06);
+    padding: 8px;
+    border-radius: 50px;
+
+    svg {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+
+  > h5 {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}

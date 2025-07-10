@@ -7,12 +7,18 @@ import saveDataSlice from './reducers/saveDataSlice';
 import usersSlice from './reducers/usersSlice';
 import apartmentsSlice from './reducers/apartmentsSlice';
 import otherActionApartmentSlice from './reducers/otherActionApartmentSlice';
+import lockSlice from './reducers/lockSlice';
+import orderSlice from './reducers/orderSlice';
+import docsSlice from './reducers/docsSlice';
 
 const reducer = combineReducers({
   saveDataSlice,
   usersSlice,
   apartmentsSlice,
-  otherActionApartmentSlice
+  otherActionApartmentSlice,
+  lockSlice,
+  orderSlice,
+  docsSlice
 });
 
 const persistConfig = {

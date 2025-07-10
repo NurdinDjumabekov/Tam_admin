@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
@@ -55,20 +55,35 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && pr
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = ({ view_left_menu = true }) => {
+const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const [drawerOpen, setDrawerOpen] = useState(matchUpMd);
+  const location = useLocation();
 
   useEffect(() => {
     setDrawerOpen(matchUpMd);
-    // Автоматически открываем меню на больших экранах
   }, [matchUpMd]);
 
   const handleLeftDrawerToggle = () => {
     setDrawerOpen((prev) => !prev);
   };
+
+  const listMenu = location?.pathname.includes('list/');
+  const crudCheck =
+    location?.pathname.includes('/crud_') ||
+    location?.pathname.includes('/create_order_users') ||
+    location?.pathname.includes('/create_order_landlords');
+
+  if (no_auth == true) {
+    return (
+      <div className="lendingPages">
+        <Outlet />
+        <Preloader view_left_menu={view_left_menu} />
+      </div>
+    );
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -84,16 +99,33 @@ const MainLayout = ({ view_left_menu = true }) => {
           transition: false ? theme.transitions.create('width') : 'none'
         }}
       >
-        <Toolbar>
-          <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
-        </Toolbar>
+        <div className={`standartLayout ${crudCheck ? 'noneMenu' : ''} ${listMenu ? '' : 'menuMain'}`}>
+          <Toolbar>
+            <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+          </Toolbar>
+        </div>
       </AppBar>
 
       {/* меню слева*/}
       {!!view_left_menu && <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />}
 
       {/* main content */}
-      <Main theme={theme} open={drawerOpen}>
+      <Main
+        theme={theme}
+        open={drawerOpen}
+        className={crudCheck ? 'noneDataForModal' : ''}
+        sx={{
+          marginRight: view_left_menu ? 1 : 0,
+          marginTop: 0,
+          paddingTop: 11,
+          minHeight: '100vh',
+          height: '100vh',
+          '@media screen and (max-width: 900px)': {
+            paddingTop: 9,
+            marginLeft: 0
+          }
+        }}
+      >
         {/* breadcrumb */}
         <Breadcrumbs separator={IconChevronRight} icon title rightAlign />
         <Outlet />

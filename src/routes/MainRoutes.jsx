@@ -4,6 +4,7 @@ import Loadable from 'ui-component/Loadable';
 import ListLandlordPage from 'views/ListLandlordPage/ListLandlordPage';
 import ListApartmentLandlordPage from 'views/ListApartmentLandlordPage/ListApartmentLandlordPage';
 import ListUsersPage from 'views/ListUsersPage/ListUsersPage';
+import ListOrdersPage from 'views/ListOrdersPage/ListOrdersPage';
 
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
 
@@ -22,6 +23,10 @@ const MainRoutes = {
     {
       path: 'list',
       children: [{ path: 'landlords', element: <ListLandlordPage /> }]
+    },
+    {
+      path: 'list',
+      children: [{ path: 'orders', element: <ListOrdersPage /> }]
     },
     {
       path: 'list',

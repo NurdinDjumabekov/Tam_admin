@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 /////// fns
-import { getApartmentsReq, getEquipmentReq, listApartmentsFN } from 'store/reducers/apartmentsSlice';
+import { getListApartmentsReq, getEquipmentReq, listApartmentsFN } from 'store/reducers/apartmentsSlice';
 import ApartmentEquipment from 'components/ListApartmentLandlordPage/ApartmentEquipment/ApartmentEquipment';
 
 /////// icons
@@ -47,7 +47,7 @@ const ListApartmentLandlordPage = () => {
 
   const getData = (fio_landlord) => {
     const send = { fio_landlord };
-    dispatch(getApartmentsReq(send));
+    dispatch(getListApartmentsReq(send));
   };
 
   return (

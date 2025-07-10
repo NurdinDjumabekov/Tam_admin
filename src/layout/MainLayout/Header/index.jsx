@@ -1,10 +1,10 @@
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
 
 // project imports
 import LogoSection from '../LogoSection';
@@ -15,11 +15,44 @@ import ProfileSection from './ProfileSection';
 // assets
 import { IconMenu2 } from '@tabler/icons-react';
 import { IconButton } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllLandLordReq, searchUserFN } from 'store/reducers/usersSlice';
 
-// ==============================|| MAIN NAVBAR / HEADER ||============================== //
+// styles
+import './style.scss';
+import { getListApartmentsReq, searchApartmentFn } from 'store/reducers/apartmentsSlice';
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  ////////////// users
+  const { searchUser, typeUsers } = useSelector((state) => state.usersSlice);
+  const onChangeUser = (value) => {
+    dispatch(searchUserFN(value));
+
+    if (value?.length == 0) {
+      const obj = { typeUsers, searchUser: '' };
+      dispatch(getAllLandLordReq(obj));
+    }
+  };
+  const searchUsersFN = () => {
+    const obj = { typeUsers, searchUser };
+    dispatch(getAllLandLordReq(obj));
+  };
+
+  ////////////// квартиры
+  const { searchApartment } = useSelector((state) => state.apartmentsSlice);
+  const onChangeApartment = (value) => {
+    dispatch(searchApartmentFn(value));
+    if (value?.length == 0) {
+      dispatch(getListApartmentsReq({ searchApartment: '' }));
+    }
+  };
+  const searchApartmentsFN = () => {
+    dispatch(getListApartmentsReq({ searchApartment }));
+  };
 
   return (
     <>
@@ -47,8 +80,24 @@ const Header = ({ handleLeftDrawerToggle }) => {
       </Box>
 
       {/* header search */}
-      <SearchSection />
-      <Box sx={{ flexGrow: 1 }} />
+      {/* //// для поиска пользователей и арендодателей */}
+      {location?.pathname == '/order/choice_user' && (
+        <div className="searchUserForCreateOrder">
+          <SearchSection value={searchUser} setValue={onChangeUser} onClick={searchUsersFN} placeholder="Поиск по номеру телефона" />
+        </div>
+      )}
+
+      {/* //// для поиска квартиры по номеру */}
+      {location?.pathname == '/order/choice_apartment' && (
+        <div className="searchUserForCreateOrder">
+          <SearchSection
+            value={searchApartment}
+            setValue={onChangeApartment}
+            onClick={searchApartmentsFN}
+            placeholder="Поиск по номеру квартиры"
+          />
+        </div>
+      )}
       <Box sx={{ flexGrow: 1 }} />
 
       {/* notification & profile */}

@@ -1,48 +1,6 @@
 .tableLandlords {
   height: 100%;
-
-  > div {
-    > div:last-child {
-      padding-top: 1px !important;
-      @media screen and (max-width: 600px) {
-        padding: 0 !important;
-      }
-    }
-
-    > div:first-child {
-      @media screen and (max-width: 600px) {
-        padding: 16px;
-        span {
-          font-size: 16px;
-        }
-      }
-    }
-  }
-
-  .createUser {
-    position: absolute;
-    right: 24px;
-    transform: translateY(-50%);
-    top: 50%;
-    background: #00ab55;
-    height: 38px;
-    padding: 2px 15px 3px;
-    border-radius: 5px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    @media screen and (max-width: 580px) {
-      padding: 8px;
-      height: auto;
-      right: 20px;
-
-      p {
-        display: none;
-      }
-    }
-  }
+  position: relative;
 
   .imgProd {
     width: 100px;
@@ -137,5 +95,74 @@
         }
       }
     }
+  }
+}
+
+.tableTopBtn {
+  > div {
+    > div:last-child {
+      padding-top: 1px !important;
+      @media screen and (max-width: 600px) {
+        padding: 0 !important;
+      }
+    }
+
+    > div:first-child {
+      padding-right: 240px;
+      > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        padding: 16px 80px 16px 16px;
+        span {
+          font-size: 16px;
+        }
+
+        @media screen and (max-width: 500px) {
+          padding: 8px 8px 8px 16px;
+        }
+
+        .createUser {
+          top: 10px !important;
+          padding: 2px 8px 3px;
+          height: 32px !important;
+
+          p {
+            display: none;
+          }
+
+          @media screen and (max-width: 500px) {
+            top: auto !important; // сбрасываем top
+            bottom: 20px !important;
+            position: fixed !important;
+            z-index: 10;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 45px !important;
+
+            p {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    padding-bottom: 75px;
   }
 }

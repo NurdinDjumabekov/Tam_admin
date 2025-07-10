@@ -30,11 +30,10 @@ const CrudLandlordInfo = (props) => {
 
   const crudLandLordFn = async (e) => {
     if (e?.preventDefault) e.preventDefault();
-
     const result = await dispatch(crudLandLordReq({ ...crudLandlord, status: crudLandlord.status.value })).unwrap();
     if (result.res == 1) {
       setCrudLandlord({});
-      dispatch(getAllLandLordReq('landlord'));
+      dispatch(getAllLandLordReq({ typeUsers: 'landlord', searchUser: '' }));
       myAlert(result.mes);
     } else {
       myAlert(result.mes, 'error');
@@ -57,7 +56,12 @@ const CrudLandlordInfo = (props) => {
 
   return (
     <>
-      <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={[1, 2].includes(crudLandlord?.action_type)}>
+      <BootstrapDialog
+        className="parentCrudLandlords"
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={[1, 2].includes(crudLandlord?.action_type)}
+      >
         <DialogTitle sx={{ m: 0, p: 2 }} style={{ fontSize: 18 }} id="customized-dialog-title">
           {crudLandlord?.action_type == 1 ? 'Введите данные' : 'Редактирование'}
         </DialogTitle>

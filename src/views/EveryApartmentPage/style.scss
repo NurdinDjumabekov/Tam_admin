@@ -1,33 +1,6 @@
 .tableApartments {
   height: 100%;
 
-  > div {
-    > div:first-child {
-      @media screen and (max-width: 700px) {
-        padding: 12px 12px 12px 22px;
-      }
-
-      @media screen and (max-width: 600px) {
-        padding: 12px;
-      }
-      span {
-        @media screen and (max-width: 760px) {
-          width: 450px;
-          @media screen and (max-width: 730px) {
-            font-size: 15px;
-            width: 350px;
-            @media screen and (max-width: 415px) {
-              width: 290px;
-              @media screen and (max-width: 365px) {
-                width: 280px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   .viewUsersPage {
     height: calc(100% - 70px);
     width: 100%;

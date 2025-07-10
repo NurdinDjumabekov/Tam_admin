@@ -1,14 +1,19 @@
-.crudLandlords {
-  width: 360px;
-  @media screen and (max-width: 420px) {
-    min-width: 100%;
-    width: 100%;
+.parentCrudLandlords {
+  > div:nth-child(3) {
+    > div:nth-child(1) {
+      margin: 0 !important;
+    }
   }
 }
+.crudLandlords {
+  width: 360px;
+  @media screen and (max-width: 460px) {
+    min-width: 320px !important;
+    width: 320px !important;
 
-.css-pz6eh2-MuiPaper-root-MuiDialog-paper {
-  @media screen and (max-width: 420px) {
-    min-width: 100%;
-    width: 100%;
+    @media screen and (max-width: 375px) {
+      min-width: 300px !important;
+      width: 300px !important;
+    }
   }
 }

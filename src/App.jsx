@@ -1,5 +1,8 @@
-import { useSelector } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
@@ -11,8 +14,6 @@ import themes from 'themes';
 import NavigationScroll from 'layout/NavigationScroll';
 
 const App = () => {
-  // const customization = useSelector((state) => state.customization);
-
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes({})}>

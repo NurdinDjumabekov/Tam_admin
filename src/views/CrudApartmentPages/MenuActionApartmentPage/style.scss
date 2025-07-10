@@ -6,6 +6,19 @@
       max-width: 480px !important;
       height: auto !important;
 
+      > div {
+        width: 100%;
+
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
       @media screen and (max-width: 500px) {
         width: 100% !important;
         min-width: 100% !important;
@@ -25,9 +38,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-right: 10px;
       h2 {
         text-align: left;
-        padding-left: 10px !important;
+        padding-left: 17px !important;
         font-size: 18px;
       }
     }
@@ -40,6 +54,22 @@
     .listIcon {
       width: 18px;
       height: 18px;
+    }
+
+    .videoIcon {
+      width: 22px;
+      height: 22px;
+    }
+
+    > div:last-child {
+      ul {
+        > div {
+          > div:nth-child(2) {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
     }
   }
 }

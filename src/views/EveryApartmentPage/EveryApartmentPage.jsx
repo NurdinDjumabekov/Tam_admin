@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 /////// fns
-import { getApartmentslandlordReq, listApartmentsFN } from 'store/reducers/apartmentsSlice';
+import { getListApartmentsReq, listApartmentsFN } from 'store/reducers/apartmentsSlice';
 
 /////// icons
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
@@ -44,13 +44,23 @@ const EveryApartmentPage = () => {
   }, [location.state.guid]);
 
   const getData = () => {
-    dispatch(getApartmentslandlordReq({ guidLandlord: location.state.guid }));
+    dispatch(getListApartmentsReq({ guidLandlord: location.state.guid }));
   };
 
   const crudApartmentFN = (props, action_type) => {
     const { guid, longitude, latitude, address } = props;
-    console.log(props, 'props');
-    const state = { guid_apartment: guid, guid_landlord: location.state.guid, action_type, longitude, latitude, address };
+    const { lockServiceNumber, adminGuid, code_lock_standart } = props;
+    const state = {
+      guid_apartment: guid,
+      guid_landlord: location.state.guid,
+      action_type,
+      longitude,
+      latitude,
+      address,
+      lockServiceNumber,
+      adminGuid,
+      code_lock_standart
+    };
     if (action_type == 1) {
       navigate('/every/apartment_crud', { state: { ...state, nav: 1 } });
     } else if (action_type == 2) {
@@ -65,7 +75,7 @@ const EveryApartmentPage = () => {
   };
 
   return (
-    <div className="tableLandlords tableApartments">
+    <div className="tableLandlords tableApartments tableTopBtn">
       <MainCard
         title={
           <>
@@ -172,11 +182,11 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
       }
     }
 
-    if (column?.dataKey === 'code_lock_standart' || column?.dataKey === 'code_lock') {
+    if (column?.dataKey === 'code_lock_standart') {
       if (row?.installLock) {
         return (
           <TableCell sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
-            {column.render ? column.render(row) : row?.[column?.dataKey]}
+            {column.render ? column.render(row) : `${row?.[column?.dataKey]}#`}
           </TableCell>
         );
       } else {
@@ -233,7 +243,6 @@ const columns = [
   { width: '15%', label: 'Статус', dataKey: 'status' },
   { width: '15%', label: 'Зарядка замка', dataKey: 'percentage' },
   { width: '15%', label: 'Постоянный код', dataKey: 'code_lock_standart' },
-  { width: '15%', label: 'Временный код', dataKey: 'code_lock' },
   { width: '15%', label: 'Действия', dataKey: '....' }
 ];
 

@@ -1,6 +1,6 @@
 ////////// hooks
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -55,16 +55,12 @@ const CrudRulesApartmentPage = () => {
   };
 
   return (
-    <div className="crud_apartment_page">
+    <div className="crud_apartment_page crud_more_data_apartment">
       <MainCard
         title={
           <>
             Выберите необходимые параметры{' '}
             <button className="createUser" onClick={saveRules}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
-            <button className="saveRules" onClick={saveRules}>
               <AddBoxIcon sx={{ width: 20, height: 20 }} />
               <p>Сохранить</p>
             </button>
@@ -75,7 +71,7 @@ const CrudRulesApartmentPage = () => {
       >
         <div className="crud_apartment_page__inner">
           {listAllRules?.length > 0 ? (
-            listAllRules.map((rule) => (
+            listAllRules?.map((rule) => (
               <div className="rule-item" key={rule.guid} onClick={() => onChange(rule.guid)}>
                 <div className="rule-icon-check">
                   <Checkbox

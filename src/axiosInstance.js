@@ -10,27 +10,27 @@ export const propsStoreFN = (oldStore) => {
 
 const axiosInstance = axios.create({
   baseURL: apiUrl,
-  timeout: 1000
+  timeout: 15000
   // headers: {
-  //   Authorization: `Bearer ${
-  //     store?.getState()?.saveDataSlice?.dataSave?.token?.accessToken
-  //   }`,
+  //   user-guid: '2876b32f-ab42-4c73-82b4-78e10e4a7425',
   // },
 });
 
 axiosInstance.interceptors.request.use(
   (config) => {
     const state = store?.getState();
-    const user_guid = store?.getState()?.saveDataSlice?.dataSave?.guid;
-    const agent_guid = store?.getState()?.saveDataSlice?.dataSave?.guid;
-    const user_type = state?.saveDataSlice?.dataSave?.user_type;
+    const user_guid = '2876b32f-ab42-4c73-82b4-78e10e4a7425';
     const token = state?.saveDataSlice?.dataSave?.token?.accessToken;
 
     if (token) config.headers.Authorization = `Bearer ${token}`;
 
-    // Добавляем guid в тело запроса, если это POST запрос
-    if ((config.method === 'post' || config.method === 'put') && user_guid) {
-      config.data = { user_guid, user_type, agent_guid, ...config.data };
+    if (user_guid) {
+      config.headers['user-guid'] = user_guid;
+    }
+
+    if (!(config.data instanceof FormData)) {
+      config.headers['Content-Type'] = 'application/json';
+      config.data = { user_guid, ...config.data };
     }
 
     return config;

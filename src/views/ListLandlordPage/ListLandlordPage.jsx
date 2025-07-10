@@ -44,10 +44,10 @@ const ListLandlordPage = () => {
     return () => dispatch(listLandlordsFN([]));
   }, []);
 
-  const getData = () => dispatch(getAllLandLordReq('landlord'));
+  const getData = () => dispatch(getAllLandLordReq({ typeUsers: 'landlord', searchUser: '' }));
 
   return (
-    <div className="tableLandlords">
+    <div className="tableLandlords tableTopBtn">
       <MainCard
         title={
           <>

@@ -14,13 +14,13 @@ const pages = {
       icon: IconKey,
 
       children: [
-        // {
-        //   id: 'user',
-        //   title: 'Пользователи',
-        //   type: 'item',
-        //   url: '/users/info',
-        //   target: false
-        // },
+        {
+          id: 'user',
+          title: 'Пользователи',
+          type: 'item',
+          url: '/users/info',
+          target: false
+        },
         {
           id: 'login3',
           title: 'Login',

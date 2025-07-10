@@ -1,0 +1,42 @@
+.viewLockApartmentPage {
+  .crudUsers {
+    display: flex !important;
+    align-items: flex-end !important;
+    margin-top: 10px !important;
+  }
+  .createUser {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    margin: 20px 0 0 0;
+    width: 150px !important;
+    align-self: flex-end !important;
+
+    @media screen and (max-width: 500px) {
+      width: 100% !important;
+    }
+
+    p {
+      display: block !important;
+    }
+  }
+
+  > div:first-child {
+    > div:first-child {
+      > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+.applicationForAdminPage {
+  height: 100%;
+  min-height: 100vh;
+  background: #000000da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background-image: url('../../assets/images/landing/pattern.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  > div {
+    background: linear-gradient(to right, #181818e2, #0b0b0be7);
+    width: 450px;
+    min-width: 450px;
+
+    > div {
+      width: 100%;
+      > div {
+        width: 100%;
+      }
+    }
+  }
+
+  &__inner {
+    padding: 10px 25px 20px;
+  }
+
+  .actionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 20px 0 10px 0;
+
+    .btnCancel,
+    .btnSave {
+      .createUser {
+        background: #ededed !important;
+        color: #222;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .titlesModal {
+    h5 {
+      color: #e7e7e7e0 !important;
+    }
+
+    button {
+      background: #e7e7e73b;
+
+      svg {
+        color: #e7e7e7e0 !important;
+      }
+    }
+  }
+
+  .inputSend {
+    > p {
+      color: #e7e7e7e0 !important;
+    }
+
+    input {
+      background: #222222 !important;
+      border: 2px solid #222222 !important;
+      color: #e7e7e7e0 !important;
+    }
+  }
+}

@@ -41,7 +41,7 @@ const ListUsersPage = () => {
     return () => dispatch(listLandlordsFN([]));
   }, []);
 
-  const getData = () => dispatch(getAllLandLordReq('client'));
+  const getData = () => dispatch(getAllLandLordReq({ typeUsers: 'client', searchUser: '' }));
 
   return (
     <div className="tableUsers">

@@ -1,0 +1,63 @@
+.createOrdersAdmin {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.626);
+
+  .orderTableWrapper {
+    padding: 10px 25px;
+
+    .group {
+      width: calc(50% - 20px);
+    }
+  }
+
+  .myInputsMargin {
+    > div {
+      height: 38px !important;
+      padding-top: 5px !important;
+    }
+  }
+
+  .createOrder {
+    background: rgba(30, 100, 30, 0.738);
+    height: 32px;
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    color: #fff;
+  }
+
+  .textCommentAdmin {
+    margin: 7px 0 0 0;
+  }
+
+  > div {
+    width: 500px;
+    height: 600px;
+
+    > div {
+      width: 100%;
+
+      > div {
+        width: 100%;
+      }
+    }
+  }
+
+  .actionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 0px;
+
+    .btnCancel,
+    .btnSave {
+      button {
+        width: 110px !important;
+      }
+    }
+  }
+}

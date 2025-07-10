@@ -6,15 +6,15 @@ export const UserNational = {
 /////////////////////////////
 
 export const UserStatus = {
-  NewUser: { value: 'newUser', label: 'Разблокирован' },
-  Verified: { value: 'verified', label: 'Разблокирован' },
+  NewUser: { value: 'newUser', label: 'Активен' },
+  Verified: { value: 'verified', label: 'Активен' },
   Blocked: { value: 'blocked', label: 'Заблокирован' }
 };
 
 export const UserStatusText = {
   blocked: 'Заблокирован',
-  verified: 'Разблокирован',
-  newUser: 'Разблокирован'
+  verified: 'Активен',
+  newUser: 'Новый пользователь (еще не прошёл проверку админа)'
 };
 
 /////////////////////////////

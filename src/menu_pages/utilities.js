@@ -1,6 +1,8 @@
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import DomainIcon from '@mui/icons-material/Domain';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
 const utilities = {
   id: 'Главное',
@@ -16,22 +18,30 @@ const utilities = {
       breadcrumbs: false
     },
     {
+      id: 'orders',
+      title: 'Бронь',
+      type: 'item',
+      url: '/list/orders',
+      icon: MeetingRoomIcon,
+      breadcrumbs: false
+    },
+    {
       id: 'users',
       title: 'Пользователи',
       type: 'item',
       url: '/list/users',
       icon: GroupAddIcon,
       breadcrumbs: false
-    },
-
-    {
-      id: 'apartment_landlord',
-      title: 'Квартиры',
-      type: 'item',
-      url: '/list/apartment_landlord',
-      icon: DomainIcon,
-      breadcrumbs: false
     }
+
+    // {
+    //   id: 'apartment_landlord',
+    //   title: 'Квартиры',
+    //   type: 'item',
+    //   url: '/list/apartment_landlord',
+    //   icon: DomainIcon,
+    //   breadcrumbs: false
+    // },
 
     // {
     //   id: 'util-typography',

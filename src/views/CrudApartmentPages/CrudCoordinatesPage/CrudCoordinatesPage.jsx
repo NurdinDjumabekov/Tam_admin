@@ -153,7 +153,7 @@ const CrudCoordinatesPage = () => {
   };
 
   return (
-    <div className="crud_apartment_page map_data">
+    <div className="tableLandlords map_data">
       <MainCard
         title={
           <div className="header">

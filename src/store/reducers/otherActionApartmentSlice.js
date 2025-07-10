@@ -11,7 +11,12 @@ const initialState = {
   preloader_other_action: false,
   listAllRules: [], // список всех правил
   listAllConveniences: [], // список всех правил
-  listPrices: [] // список тарифов
+  listPrices: [], // список тарифов
+  listPhotosApartment: [], // список фото квартиры
+  listVideoApartment: [], // видео квартиры
+  listFaq: [], // список вопросов и овтетом
+  listInfoCompany: [], // список плюсов компании
+  dataApp: {}
 };
 
 ////// getRulesAllReq - get cписок правил
@@ -63,7 +68,7 @@ export const editRulesApartmnentReq = createAsyncThunk('editRulesApartmnentReq',
 export const editConveniencesApartmnentReq = createAsyncThunk(
   'editConveniencesApartmnentReq',
   async function (data, { dispatch, rejectWithValue }) {
-    const url = `${apiUrl}/convenience/edit_rule_apartment`;
+    const url = `${apiUrl}/convenience/edit_convenience_apartment`;
     try {
       const response = await axiosInstance.post(url, data);
       if (response.status >= 200 && response.status < 300) {
@@ -79,11 +84,161 @@ export const editConveniencesApartmnentReq = createAsyncThunk(
 
 ////// getListPriceReq - get cписок тарифов
 export const getListPriceReq = createAsyncThunk('getListPriceReq', async function (data, { dispatch, rejectWithValue }) {
-  const url = `${apiUrl}/tariffs/get_price`;
+  const url = `${apiUrl}/tariffs/get_prices`;
   try {
     const response = await axiosInstance.post(url, data);
     if (response.status >= 200 && response.status < 300) {
       return response?.data?.list;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// crudPriceApartmentReq - crud ценников каждой квартиры
+export const crudPriceApartmentReq = createAsyncThunk('crudPriceApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/tariffs/crud_tariffs_list`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// getListPhotoApartmentReq - get cписок фотографий квартиры
+export const getListPhotoApartmentReq = createAsyncThunk('getListPhotoApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/photo_apartment/get_list`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// loadPhotoApartmentReq - загрузить cписок фотографий квартиры
+export const loadPhotoApartmentReq = createAsyncThunk('loadPhotoApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/photo_apartment/upload`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// delPhotoApartmentReq - удаление фото каждой квартиры
+export const delPhotoApartmentReq = createAsyncThunk('delPhotoApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/photo_apartment/delete`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// getVideoApartmentReq - get видео квартиры
+export const getVideoApartmentReq = createAsyncThunk('getVideoApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/video_apartment/get_list`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// loadVideoApartmentReq - загрузить видео квартиры
+export const loadVideoApartmentReq = createAsyncThunk('loadVideoApartmentReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/video_apartment/upload`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// getListFaq - загрузить список вопросо и ответом
+export const getListFaq = createAsyncThunk('getListFaq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/data_app/faq`;
+  try {
+    const response = await axiosInstance.get(url);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// getListInfoCompany - загрузить список плючов tam.kg
+export const getListInfoCompany = createAsyncThunk('getListInfoCompany', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/data_app/info_company`;
+  try {
+    const response = await axiosInstance.get(url);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// getDataContacts - get контактные данные
+export const getDataContacts = createAsyncThunk('getDataContacts', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/data_app/main`;
+  try {
+    const response = await axiosInstance.get(url);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+////// createApplicationUser - создание заявки арендодателей
+export const createApplicationUser = createAsyncThunk('createApplicationUser', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/data_app/create_app_user`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
     } else {
       throw Error(`Error: ${response.status}`);
     }
@@ -110,7 +265,7 @@ const otherActionApartmentSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    ////////////// getApartmentsReq
+    ////////////// getRulesAllReq
     builder.addCase(getRulesAllReq.fulfilled, (state, action) => {
       state.preloader_other_action = false;
       state.listAllRules = action.payload;
@@ -165,7 +320,13 @@ const otherActionApartmentSlice = createSlice({
     ////////////// getListPriceReq
     builder.addCase(getListPriceReq.fulfilled, (state, action) => {
       state.preloader_other_action = false;
-      state.listPrices = action.payload;
+      state.listPrices = action.payload?.map((i) => {
+        return {
+          ...i,
+          value: i?.guid,
+          label: i?.name
+        };
+      });
     });
     builder.addCase(getListPriceReq.rejected, (state, action) => {
       state.error = action.payload;
@@ -173,6 +334,133 @@ const otherActionApartmentSlice = createSlice({
       state.preloader_other_action = false;
     });
     builder.addCase(getListPriceReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    ////////////// crudPriceApartmentReq
+    builder.addCase(crudPriceApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+    });
+    builder.addCase(crudPriceApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(crudPriceApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    ////////////////// getListPhotoApartmentReq
+    builder.addCase(getListPhotoApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+      state.listPhotosApartment = action.payload;
+    });
+    builder.addCase(getListPhotoApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.listPhotosApartment = [];
+      state.preloader_other_action = false;
+    });
+    builder.addCase(getListPhotoApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    ///////////////////// loadPhotoApartmentReq
+    builder.addCase(loadPhotoApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+    });
+    builder.addCase(loadPhotoApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(loadPhotoApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////// delPhotoApartmentReq
+    builder.addCase(delPhotoApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+    });
+    builder.addCase(delPhotoApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(delPhotoApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    /////////////////////////// getVideoApartmentReq
+    builder.addCase(getVideoApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+      state.listVideoApartment = action.payload;
+    });
+    builder.addCase(getVideoApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.listVideoApartment = [];
+      state.preloader_other_action = false;
+    });
+    builder.addCase(getVideoApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////////// loadVideoApartmentReq
+    builder.addCase(loadVideoApartmentReq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+    });
+    builder.addCase(loadVideoApartmentReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(loadVideoApartmentReq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////////// getListFaq
+    builder.addCase(getListFaq.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+      state.listFaq = action.payload;
+    });
+    builder.addCase(getListFaq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(getListFaq.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////////// getListInfoCompany
+    builder.addCase(getListInfoCompany.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+      state.listInfoCompany = action.payload;
+    });
+    builder.addCase(getListInfoCompany.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(getListInfoCompany.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////////// getDataContacts
+    builder.addCase(getDataContacts.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+      state.dataApp = action.payload;
+    });
+    builder.addCase(getDataContacts.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(getDataContacts.pending, (state, action) => {
+      state.preloader_other_action = true;
+    });
+
+    //////////////////////////// createApplicationUser
+    builder.addCase(createApplicationUser.fulfilled, (state, action) => {
+      state.preloader_other_action = false;
+    });
+    builder.addCase(createApplicationUser.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_other_action = false;
+    });
+    builder.addCase(createApplicationUser.pending, (state, action) => {
       state.preloader_other_action = true;
     });
   }

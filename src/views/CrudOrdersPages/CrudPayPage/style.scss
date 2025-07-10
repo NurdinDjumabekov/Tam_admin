@@ -1,0 +1,35 @@
+.crudPays {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.626);
+
+  > div {
+    width: 450px;
+    height: auto !important;
+
+    .info {
+      margin-top: 25px !important;
+      margin-bottom: 10px !important;
+    }
+
+    .dop {
+      margin-top: 0px !important;
+      margin-bottom: 20px !important;
+    }
+
+    .nonePush {
+      margin-top: 10px !important;
+    }
+  }
+
+  .actionBtn {
+    .btnCancel,
+    .btnSave {
+      .createUser {
+        width: 100px !important;
+      }
+    }
+  }
+}

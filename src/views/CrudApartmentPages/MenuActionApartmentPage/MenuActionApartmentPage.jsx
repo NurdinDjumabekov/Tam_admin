@@ -22,8 +22,11 @@ import EditIcon from 'assets/MyIcons/EditIcon';
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
 import MapIcon from 'assets/MyIcons/MapIcon';
 import imgPay from '../../../assets/images/icons/pay.svg';
+import imgGalery from '../../../assets/images/icons/galery.svg';
 import imgList from '../../../assets/images/icons/list.svg';
+import imgVideo from '../../../assets/images/icons/video.svg';
 import imgListConv from '../../../assets/images/icons/list_convencies.svg';
+import imgDoor from '../../../assets/images/icons/door.svg';
 
 const MenuActionApartmentPage = () => {
   const navigate = useNavigate();
@@ -62,6 +65,21 @@ const MenuActionApartmentPage = () => {
       //// редактирование цен
       navigate('/every/view_apartment_price', { state: location.state });
     }
+
+    if (action == 7) {
+      //// редактирование и отображение фото квартиры
+      navigate('/every/crud_apartment_photo', { state: location.state });
+    }
+
+    if (action == 8) {
+      //// редактирование и отображение видео квартиры
+      navigate('/every/view_apartment_video', { state: location.state });
+    }
+
+    if (action == 9) {
+      //// редактирование и отображение видео квартиры
+      navigate('/every/view_apartment_lock', { state: location.state });
+    }
   };
 
   return (
@@ -75,7 +93,7 @@ const MenuActionApartmentPage = () => {
         sx: {
           borderRadius: 3,
           minWidth: 360,
-          paddingX: 2,
+          paddingX: 1,
           paddingY: 1
         }
       }}
@@ -96,7 +114,7 @@ const MenuActionApartmentPage = () => {
               <ListItemIcon>
                 <EditIcon width="18" height="18" title={''} />
               </ListItemIcon>
-              <ListItemText primary="Адрес и типы квартиры" />
+              <ListItemText primary="Информация о квартире" />
             </ListItemButton>
 
             <ListItemButton onClick={() => handleAction(2)}>
@@ -132,6 +150,27 @@ const MenuActionApartmentPage = () => {
                 <img className="payIcon" src={imgPay} alt="*" width={16} height={16} />
               </ListItemIcon>
               <ListItemText primary="Прайс квартиры" />
+            </ListItemButton>
+
+            <ListItemButton onClick={() => handleAction(7)}>
+              <ListItemIcon>
+                <img className="payIcon" src={imgGalery} alt="*" width={19} height={19} />
+              </ListItemIcon>
+              <ListItemText primary="Фотографии квартиры" />
+            </ListItemButton>
+
+            <ListItemButton onClick={() => handleAction(8)}>
+              <ListItemIcon>
+                <img className="videoIcon" src={imgVideo} alt="*" width={19} height={19} />
+              </ListItemIcon>
+              <ListItemText primary="Видео квартиры" />
+            </ListItemButton>
+
+            <ListItemButton onClick={() => handleAction(9)}>
+              <ListItemIcon>
+                <img className="videoIcon" src={imgDoor} alt="*" width={19} height={19} />
+              </ListItemIcon>
+              <ListItemText primary="Данные замка" />
             </ListItemButton>
           </List>
         </Paper>

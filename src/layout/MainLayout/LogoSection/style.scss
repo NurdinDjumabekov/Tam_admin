@@ -2,13 +2,13 @@
   .logoIcon {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
 
     .logo {
-      width: 55px;
-      min-width: 55px;
-      height: 55px;
+      width: 35px;
+      min-width: 35px;
+      height: 35px;
 
       img {
         width: 100%;
@@ -20,7 +20,7 @@
     &__text {
       p {
         font-size: 28px;
-        color: #0049a8;
+        color: #171717;
         font-weight: 700;
         line-height: 1.167;
         font-family: 'Permanent Marker', cursive;

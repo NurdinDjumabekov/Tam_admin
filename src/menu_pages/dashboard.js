@@ -7,7 +7,7 @@ const dashboard = {
   type: 'group',
   children: [
     {
-      id: 'default',
+      id: 'dashboard',
       title: 'Графики',
       type: 'item',
       url: '/',
@@ -18,17 +18,3 @@ const dashboard = {
 };
 
 export default dashboard;
-
-// id: 'dashboard',
-// title: 'Dashboard',
-// type: 'group',
-// children: [
-//   {
-//     id: 'default',
-//     title: 'Dashboard',
-//     type: 'item',
-//     url: '/dashboard/default',
-//     icon: icons.IconDashboard,
-//     breadcrumbs: false
-//   }
-// ]

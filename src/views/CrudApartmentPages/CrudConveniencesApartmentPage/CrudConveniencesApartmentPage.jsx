@@ -57,16 +57,12 @@ const CrudConveniencesApartmentPage = () => {
   };
 
   return (
-    <div className="crud_apartment_page">
+    <div className="crud_apartment_page crud_more_data_apartment">
       <MainCard
         title={
           <>
             Выберите необходимые параметры{' '}
             <button className="createUser" onClick={saveRules}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
-            <button className="saveRules" onClick={saveRules}>
               <AddBoxIcon sx={{ width: 20, height: 20 }} />
               <p>Сохранить</p>
             </button>

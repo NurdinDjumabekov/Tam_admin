@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-/////// fns
-import { crudApartmentReq, getAllSelectsReq, getEveryApartmentsReq } from 'store/reducers/apartmentsSlice';
-
 /////// icons
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
@@ -20,8 +17,11 @@ import ConfirmModal from 'common/ConfirmModal/ConfirmModal';
 import './style.scss';
 
 ////// helpers && enums
-import { listActiveApartment, listBollean, listCountApartnment, listPrice } from 'helpers/myLocal';
+import { listBollean, listPrice } from 'helpers/myLocal';
 import { myAlert } from 'helpers/myAlert';
+
+////// fns
+import { crudPriceApartmentReq } from 'store/reducers/otherActionApartmentSlice';
 
 //// список пользователей
 const CrudPriceApartmentPage = () => {
@@ -29,47 +29,37 @@ const CrudPriceApartmentPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { dataSelects } = useSelector((state) => state.apartmentsSlice);
-
-  const [crudLandlord, setCrudLandlord] = useState({});
+  const [crudData, setCrudData] = useState({});
 
   useEffect(() => {
     getData();
-    return () => setCrudLandlord({});
+    return () => setCrudData({});
   }, [location.state.guid_apartment]);
 
   const crudLandLordFn = async (e) => {
     if (e?.preventDefault) e.preventDefault();
 
     const sendData = {
-      ...crudLandlord,
-      action_type: location.state.action_type,
-      guid: location.state.guid_apartment,
-      guid_landlord: location.state.guid_landlord,
-      position_apartment: 0,
-      name_apartment: '',
-      apartment_category: crudLandlord.categ_apartment?.value,
-      count_room: crudLandlord.count_room?.value,
-      install_lock: crudLandlord.install_lock?.value == 'true',
-      status: crudLandlord.status?.value,
-      type_apartment: crudLandlord.type_apartment?.value,
-      all_floor: Number(crudLandlord.all_floor),
-      floor: Number(crudLandlord.floor),
-      house_number: String(crudLandlord.house_number),
-      apartment_number: String(crudLandlord.apartment_number),
-      square: String(crudLandlord.square)
+      ...crudData,
+      guid: location.state?.guid,
+      price: crudData?.price?.toString(),
+      viewFordopList: crudData?.viewFordopList?.value === 'true',
+      name: crudData?.name?.label,
+      discount: Number(parseFloat(crudData?.discount).toFixed(1)) || 0.0,
+      duration: crudData?.name?.value,
+      durationInMinutes: +crudData?.name?.value * 60,
+      status: true,
+      type: '1',
+      action_type: location.state?.action_type,
+      apartmentId: location.state?.guid_apartment
     };
 
-    const result = await dispatch(crudApartmentReq(sendData)).unwrap();
-
+    const result = await dispatch(crudPriceApartmentReq(sendData)).unwrap();
     if (result.res == 1) {
-      setCrudLandlord({});
+      setCrudData({});
       myAlert(result.mes);
-      if (location.state.nav == 1) {
-        navigate(-1);
-      } else {
-        navigate(-2);
-      }
+      if (location.state.nav == 1) navigate(-1);
+      else navigate(-2);
     } else {
       myAlert(result.mes, 'error');
     }
@@ -77,43 +67,43 @@ const CrudPriceApartmentPage = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setCrudLandlord({ ...crudLandlord, [name]: value });
+    if (name === 'price' || name === 'discount') {
+      const onlyDigits = value.replace(/\D/g, '').slice(0, 6);
+      setCrudData({ ...crudData, [name]: onlyDigits });
+    } else {
+      setCrudData({ ...crudData, [name]: value });
+    }
   };
 
   const onChangeWS = (status, { name }) => {
-    setCrudLandlord({ ...crudLandlord, [name]: status });
+    setCrudData({ ...crudData, [name]: status });
   };
 
   const getData = async () => {
-    const list = await dispatch(getAllSelectsReq()).unwrap(); // get список стандартных данных для админки
+    if (location.state?.action_type == 1) {
+      setCrudData({ viewFordopList: listBollean?.[1] });
+    } else if (location.state?.action_type == 2 || location.state?.action_type == 3) {
+      const viewFordopList = listBollean?.find((i) => i.value == location.state?.viewFordopList?.toString());
+      const name_new = listPrice?.find((i) => i?.value == location.state?.duration);
 
-    if (location.state.action_type != 1) {
-      const guid_apartment = location.state.guid_apartment;
-      const res = await dispatch(getEveryApartmentsReq({ guid_apartment })).unwrap();
-
-      const type_apartment_label = list?.list_type_apartment?.find((i) => i.value === res?.type_apartment);
-
-      const categ_apartment_label = list?.list_categ_apartment?.find((i) => i.value === res?.apartment_category);
-
-      const count_room_label = listCountApartnment.find((i) => i.value === res?.count_room);
-
-      const status_label = listActiveApartment.find((i) => i.value === res?.status);
-
-      const copy = {
-        ...res,
-        status: status_label,
-        type_apartment: type_apartment_label,
-        categ_apartment: categ_apartment_label,
-        count_room: count_room_label,
-        install_lock: listBollean.filter((i) => i.value == res?.install_lock?.toString())
-      };
-      setCrudLandlord(copy);
+      setCrudData({
+        name: name_new,
+        price: +location.state?.price,
+        duration: location.state?.duration,
+        durationInMinutes: location.state?.durationInMinutes,
+        status: true,
+        discount: location.state?.discount,
+        apartmentId: location.state?.guid_apartment,
+        type: location.state?.type,
+        action_type: location.state?.action_type,
+        viewFordopList: viewFordopList
+      });
     }
   };
 
   if (location.state.action_type == 3) {
     return (
-      <ConfirmModal state={location.state.action_type == 3} title={`Удалить квартиру ?`} yesFN={crudLandLordFn} noFN={() => navigate(-1)} />
+      <ConfirmModal state={location.state.action_type == 3} title={`Удалить прайс ?`} yesFN={crudLandLordFn} noFN={() => navigate(-1)} />
     );
   }
 
@@ -128,13 +118,13 @@ const CrudPriceApartmentPage = () => {
         <div className="crud_apartment_page__inner">
           <form className="crudUsers" onSubmit={crudLandLordFn}>
             <div className="myInputs selectCategs">
-              <h5>Статус квартиры</h5>
+              <h5>Выберите тариф</h5>
               <Select
                 options={listPrice}
                 className="select"
                 onChange={onChangeWS}
                 name="name"
-                value={crudLandlord?.name}
+                value={crudData?.name}
                 menuPortalTarget={document.body}
                 styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
                 required={true}
@@ -143,15 +133,15 @@ const CrudPriceApartmentPage = () => {
 
             <SendInput
               required={true}
-              value={crudLandlord?.price}
+              value={crudData?.price}
               onChange={onChange}
-              title={'Цена за тариф в сомах'}
+              title={'Цена за тариф в сомах (например 200)'}
               name={'price'}
               type="number"
             />
 
             <SendInput
-              value={crudLandlord?.discount}
+              value={crudData?.discount}
               onChange={onChange}
               title={'Скидка (указывать цену, а не процент), можно просто оставить пустым'}
               name={'discount'}
@@ -164,20 +154,15 @@ const CrudPriceApartmentPage = () => {
                 options={listBollean}
                 className="select"
                 onChange={onChangeWS}
-                name="type_apartment"
-                value={crudLandlord?.type_apartment}
+                name="viewFordopList"
+                value={crudData?.viewFordopList}
                 menuPortalTarget={document.body}
                 styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
                 required={true}
               />
             </div>
 
-            <button className="createUser saveApartmentBottom">
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
-
-            <button className="createUser saveApartment">
+            <button className="createUser">
               <AddBoxIcon sx={{ width: 20, height: 20 }} />
               <p>Сохранить</p>
             </button>

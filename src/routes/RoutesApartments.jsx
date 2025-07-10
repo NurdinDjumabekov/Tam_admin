@@ -7,8 +7,12 @@ import CrudConveniencesApartmentPage from 'views/CrudApartmentPages/CrudConvenie
 import CrudCoordinatesPage from 'views/CrudApartmentPages/CrudCoordinatesPage/CrudCoordinatesPage';
 import CrudPriceApartmentPage from 'views/CrudApartmentPages/CrudPriceApartmentPage/CrudPriceApartmentPage';
 import ViewPriceApartmentPage from 'views/CrudApartmentPages/ViewPriceApartmentPage/ViewPriceApartmentPage';
+import CrudPhotoApartmentPage from 'views/CrudApartmentPages/CrudPhotoApartmentPage/CrudPhotoApartmentPage';
+import ViewVideoApartmentPage from 'views/CrudApartmentPages/ViewVideoApartmentPage/ViewVideoApartmentPage';
+import ViewLockApartmentPage from 'views/CrudApartmentPages/ViewLockApartmentPage/ViewLockApartmentPage';
+import ViewEveryVideoApartmentPage from 'views/CrudApartmentPages/ViewEveryVideoApartmentPage/ViewEveryVideoApartmentPage';
 
-const RoutesNoLayout = {
+const RoutesApartments = {
   path: '/every',
   element: <MainLayout view_left_menu={false} />,
   children: [
@@ -17,12 +21,16 @@ const RoutesNoLayout = {
       element: <EveryApartmentPage />
     },
     {
+      path: 'menu_action',
+      element: <MenuActionApartmentPage />
+    },
+    {
       path: 'apartment_crud',
       element: <CrudMainApartmentPage />
     },
     {
-      path: 'menu_action',
-      element: <MenuActionApartmentPage />
+      path: 'map_action',
+      element: <CrudCoordinatesPage />
     },
     {
       path: 'rules_action',
@@ -33,19 +41,30 @@ const RoutesNoLayout = {
       element: <CrudConveniencesApartmentPage />
     },
     {
-      path: 'map_action',
-      element: <CrudCoordinatesPage />
-    },
-    {
       path: 'view_apartment_price',
       element: <ViewPriceApartmentPage />
     },
-
     {
       path: 'crud_apartment_price',
       element: <CrudPriceApartmentPage />
+    },
+    {
+      path: 'crud_apartment_photo',
+      element: <CrudPhotoApartmentPage />
+    },
+    {
+      path: 'view_apartment_lock',
+      element: <ViewLockApartmentPage />
+    },
+    {
+      path: 'view_apartment_video',
+      element: <ViewVideoApartmentPage />
+    },
+    {
+      path: 'view_every_apartment_video',
+      element: <ViewEveryVideoApartmentPage />
     }
   ]
 };
 
-export default RoutesNoLayout;
+export default RoutesApartments;

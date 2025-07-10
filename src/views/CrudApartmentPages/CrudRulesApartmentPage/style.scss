@@ -1,5 +1,13 @@
-.crud_apartment_page {
+.crud_more_data_apartment {
   position: relative;
+
+  > div {
+    > div:first-child {
+      @media screen and (max-width: 600px) {
+        padding: 8px 20px;
+      }
+    }
+  }
 
   .crud_apartment_page__inner {
     @media screen and (max-width: 600px) {
@@ -59,8 +67,28 @@
   }
 
   .createUser {
+    @media screen and (max-width: 600px) {
+      top: 5px !important;
+      padding: 2px 8px 3px !important;
+      height: 32px !important;
+
+      p {
+        display: none !important;
+      }
+    }
+
     @media screen and (max-width: 500px) {
-      display: none;
+      top: auto !important;
+      position: fixed !important;
+      right: 50% !important;
+      transform: translateX(50%) !important;
+      bottom: 70px;
+      width: 85% !important;
+      height: 45px !important;
+
+      p {
+        display: block !important;
+      }
     }
   }
 }

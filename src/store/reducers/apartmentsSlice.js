@@ -12,23 +12,9 @@ const initialState = {
   listApartments: [], // список квартир
   listEquipment: [], // список оснащений каждой квартиры
   dataSelects: {}, /// все селекты
-  everyApartment: {} /// все селекты
+  everyApartment: {}, /// все селекты
+  searchApartment: '' // поиск квартиру по номеру
 };
-
-////// getApartmentsReq - get cписок всех квартир
-export const getApartmentsReq = createAsyncThunk('getApartmentsReq', async function (data, { dispatch, rejectWithValue }) {
-  const url = `${apiUrl}/user/main`;
-  try {
-    const response = await axiosInstance.post(url, data);
-    if (response.status >= 200 && response.status < 300) {
-      return response?.data;
-    } else {
-      throw Error(`Error: ${response.status}`);
-    }
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-});
 
 ////// getEveryApartmentsReq - get cписок всех квартир
 export const getEveryApartmentsReq = createAsyncThunk('getEveryApartmentsReq', async function (data, { dispatch, rejectWithValue }) {
@@ -90,12 +76,10 @@ export const crudEquipmentReq = createAsyncThunk('crudEquipmentReq', async funct
   }
 });
 
-////// getApartmentslandlordReq - get cписок квартир арендодателей
-export const getApartmentslandlordReq = createAsyncThunk('getApartmentslandlordReq', async function (props, { dispatch, rejectWithValue }) {
-  const { guidLandlord } = props;
-  const url = `${apiUrl}/apartments/list_landlord`;
+////// getListApartmentsReq - get cписок квартир
+export const getListApartmentsReq = createAsyncThunk('getListApartmentsReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/apartments/list_apartments`;
   try {
-    const data = { guidLandlord };
     const response = await axiosInstance.post(url, data);
     if (response.status >= 200 && response.status < 300) {
       return response?.data;
@@ -165,24 +149,13 @@ const apartmentsSlice = createSlice({
     },
     listEquipmentFn: (state, action) => {
       state.listEquipment = action.payload;
+    },
+    searchApartmentFn: (state, action) => {
+      state.searchApartment = action.payload;
     }
   },
 
   extraReducers: (builder) => {
-    ////////////// getApartmentsReq
-    builder.addCase(getApartmentsReq.fulfilled, (state, action) => {
-      state.preloader_apartment = false;
-      state.listApartments = action.payload;
-    });
-    builder.addCase(getApartmentsReq.rejected, (state, action) => {
-      state.error = action.payload;
-      state.listApartments = [];
-      state.preloader_apartment = false;
-    });
-    builder.addCase(getApartmentsReq.pending, (state, action) => {
-      state.preloader_apartment = true;
-    });
-
     ////////////// getEveryApartmentsReq
     builder.addCase(getEveryApartmentsReq.fulfilled, (state, action) => {
       state.preloader_apartment = false;
@@ -235,17 +208,17 @@ const apartmentsSlice = createSlice({
       state.preloader_apartment = true;
     });
 
-    ////////////// getApartmentslandlordReq
-    builder.addCase(getApartmentslandlordReq.fulfilled, (state, action) => {
+    ////////////// getListApartmentsReq
+    builder.addCase(getListApartmentsReq.fulfilled, (state, action) => {
       state.preloader_apartment = false;
-      state.listApartments = action.payload;
+      state.listApartments = action.payload?.map((i) => ({ ...i, label: i?.address, value: i?.guid }));
     });
-    builder.addCase(getApartmentslandlordReq.rejected, (state, action) => {
+    builder.addCase(getListApartmentsReq.rejected, (state, action) => {
       state.error = action.payload;
       state.preloader_apartment = false;
       state.listApartments = [];
     });
-    builder.addCase(getApartmentslandlordReq.pending, (state, action) => {
+    builder.addCase(getListApartmentsReq.pending, (state, action) => {
       state.preloader_apartment = true;
     });
 
@@ -277,6 +250,6 @@ const apartmentsSlice = createSlice({
   }
 });
 
-export const { listApartmentsFN, listEquipmentFn } = apartmentsSlice.actions;
+export const { listApartmentsFN, listEquipmentFn, searchApartmentFn } = apartmentsSlice.actions;
 
 export default apartmentsSlice.reducer;

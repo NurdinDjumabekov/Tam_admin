@@ -6,8 +6,29 @@
     }
   }
 
+  .header {
+    padding-right: 140px;
+    @media screen and (max-width: 700px) {
+      padding-right: 0px;
+    }
+  }
+
   > div {
     > div:first-child {
+      > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
       @media screen and (max-width: 700px) {
         padding: 12px 12px 12px 22px;
       }
@@ -15,6 +36,7 @@
       @media screen and (max-width: 600px) {
         padding: 12px;
       }
+
       span {
         @media screen and (max-width: 760px) {
           width: 100%;
@@ -59,12 +81,28 @@
 
   .createUser {
     @media screen and (max-width: 700px) {
+      top: auto !important;
+      position: fixed !important;
+      bottom: 40px !important;
       z-index: 99;
-      top: calc(100vh - 140px);
+      right: 60px;
+
+      @media screen and (max-width: 600px) {
+        right: 30px;
+      }
 
       @media screen and (max-width: 500px) {
-        display: flex !important;
-        width: 90%;
+        width: 80%;
+        right: 50% !important;
+        transform: translateX(50%) !important;
+        height: 45px !important;
+        @media screen and (max-width: 500px) {
+          width: 90%;
+        }
+      }
+
+      p {
+        display: block !important;
       }
     }
   }

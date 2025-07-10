@@ -1,0 +1,53 @@
+.crudCleaning {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.626);
+
+  > div {
+    height: 350px !important;
+    min-height: 350px !important;
+    width: 450px !important;
+  }
+
+  &__inner {
+    padding: 0px 15px 10px 15px;
+
+    .info {
+      margin: 15px 0 20px 0;
+    }
+
+    .createUser {
+      height: 38px !important;
+      width: 140px !important;
+      float: right;
+    }
+
+    .actionBtn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+  }
+
+  .myInputs {
+    > div {
+      height: 40px !important;
+      padding-top: 5px !important;
+    }
+  }
+
+  .ant-picker-cell-today {
+    .ant-picker-cell-inner {
+      color: inherit !important;
+      font-weight: normal !important;
+    }
+  }
+
+  .ant-picker-cell-today .ant-picker-cell-inner::before {
+    display: none !important;
+  }
+}
