@@ -3,6 +3,16 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
+
+  max-width: 100vw;
+  overscroll-behavior: none; // отключает “резиновый” скролл на Safari
+  -webkit-overflow-scrolling: auto;
+}
+
+@media (pointer: coarse) {
+  html {
+    touch-action: pan-x pan-y;
+  }
 }
 
 li {

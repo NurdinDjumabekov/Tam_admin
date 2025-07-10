@@ -14,6 +14,10 @@ import themes from 'themes';
 import NavigationScroll from 'layout/NavigationScroll';
 
 const App = () => {
+  document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+  });
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes({})}>

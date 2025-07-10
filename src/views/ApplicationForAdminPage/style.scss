@@ -10,10 +10,20 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  @media screen and (max-width: 500px) {
+    align-items: flex-start;
+  }
+
   > div {
     background: linear-gradient(to right, #181818e2, #0b0b0be7);
     width: 450px;
     min-width: 450px;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      min-width: 100%;
+      height: 100%;
+    }
 
     > div {
       width: 100%;
@@ -36,10 +46,28 @@
 
     .btnCancel,
     .btnSave {
+      @media screen and (max-width: 500px) {
+        width: 100% !important;
+      }
       .createUser {
         background: #ededed !important;
         color: #222;
         font-weight: 600;
+
+        @media screen and (max-width: 500px) {
+          width: 100% !important;
+          height: 45px !important;
+        }
+
+        p {
+          display: block !important;
+        }
+      }
+    }
+
+    .btnCancel {
+      @media screen and (max-width: 500px) {
+        display: none;
       }
     }
   }

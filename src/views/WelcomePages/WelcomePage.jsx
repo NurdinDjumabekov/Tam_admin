@@ -94,6 +94,7 @@ const WelcomePage = () => {
                       </button>
                     </div>
                   </div>
+
                   <img src={phone2} alt="" />
                 </div>
               </div>
