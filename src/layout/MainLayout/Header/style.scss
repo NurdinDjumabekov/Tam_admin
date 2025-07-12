@@ -1,15 +1,38 @@
-// .searchUserForCreateOrder {
-//   display: none;
-// }
-// .viewSearch {
-
-// }
 .btnSearch {
-  //   background: red;
   height: 46px !important;
   width: 56px !important;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.infoProfile {
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+
+  @media screen and (max-width: 550px) {
+    gap: 6px;
+  }
+
+  p {
+    display: block;
+    color: #e4e4e4e3;
+    text-align: right;
+    font-size: 15px;
+    height: 15px;
+    line-height: 13px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media screen and (max-width: 550px) {
+      font-size: 13px;
+    }
+  }
 }

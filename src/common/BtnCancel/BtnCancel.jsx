@@ -13,9 +13,9 @@ const BtnCancel = (props) => {
 
   return (
     <div className="btnCancel">
-      <button onClick={click} className="createUser">
+      <div onClick={click} className="createUser">
         <p>{text}</p>
-      </button>
+      </div>
     </div>
   );
 };

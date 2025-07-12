@@ -17,10 +17,10 @@ import { IconMenu2 } from '@tabler/icons-react';
 import { IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllLandLordReq, searchUserFN } from 'store/reducers/usersSlice';
+import { getListApartmentsReq, searchApartmentFn } from 'store/reducers/apartmentsSlice';
 
 // styles
 import './style.scss';
-import { getListApartmentsReq, searchApartmentFn } from 'store/reducers/apartmentsSlice';
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
@@ -29,6 +29,8 @@ const Header = ({ handleLeftDrawerToggle }) => {
 
   ////////////// users
   const { searchUser, typeUsers } = useSelector((state) => state.usersSlice);
+  const dataSave = useSelector((state) => state.saveDataSlice.dataSave);
+
   const onChangeUser = (value) => {
     dispatch(searchUserFN(value));
 
@@ -37,6 +39,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
       dispatch(getAllLandLordReq(obj));
     }
   };
+
   const searchUsersFN = () => {
     const obj = { typeUsers, searchUser };
     dispatch(getAllLandLordReq(obj));
@@ -75,20 +78,20 @@ const Header = ({ handleLeftDrawerToggle }) => {
           onClick={handleLeftDrawerToggle}
           sx={{ mr: 2, display: { md: 'none' } }}
         >
-          <IconMenu2 />
+          <IconMenu2 color="#fff" />
         </IconButton>
       </Box>
 
       {/* header search */}
       {/* //// для поиска пользователей и арендодателей */}
-      {location?.pathname == '/order/choice_user' && (
+      {/* {location?.pathname == '/order/choice_user' && (
         <div className="searchUserForCreateOrder">
           <SearchSection value={searchUser} setValue={onChangeUser} onClick={searchUsersFN} placeholder="Поиск по номеру телефона" />
         </div>
-      )}
+      )} */}
 
       {/* //// для поиска квартиры по номеру */}
-      {location?.pathname == '/order/choice_apartment' && (
+      {/* {location?.pathname == '/order/choice_apartment' && (
         <div className="searchUserForCreateOrder">
           <SearchSection
             value={searchApartment}
@@ -97,12 +100,16 @@ const Header = ({ handleLeftDrawerToggle }) => {
             placeholder="Поиск по номеру квартиры"
           />
         </div>
-      )}
+      )} */}
       <Box sx={{ flexGrow: 1 }} />
 
       {/* notification & profile */}
-      <NotificationSection />
-      <ProfileSection />
+      {/* <NotificationSection /> */}
+      {/* <ProfileSection /> */}
+      <div className="infoProfile">
+        <p>{dataSave?.fio}</p>
+        <p>+{dataSave?.phoneNumber}</p>
+      </div>
     </>
   );
 };

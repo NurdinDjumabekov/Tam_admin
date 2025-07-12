@@ -10,7 +10,6 @@ import { getAllLandLordReq, listLandlordsFN } from 'store/reducers/usersSlice';
 /////// icons
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
 import EditIcon from 'assets/MyIcons/EditIcon';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 
 ////// components
 import MainCard from 'ui-component/cards/MainCard';
@@ -23,6 +22,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import CrudLandlordInfo from 'components/ListLandlordPage/CrudLandlordInfo';
+import Titles from 'common/Titles/Titles';
 
 ///// enums
 import { UserStatus, UserStatusText } from 'helpers/enums';
@@ -46,24 +46,23 @@ const ListLandlordPage = () => {
 
   const getData = () => dispatch(getAllLandLordReq({ typeUsers: 'landlord', searchUser: '' }));
 
+  const addNewLanlord = () => {
+    const state = { action_type: 1, status: { value: UserStatus.Verified.value, label: UserStatus.Verified.label } };
+    navigate('/every/crud_user', { state });
+  };
+
   return (
     <div className="tableLandlords tableTopBtn">
       <MainCard
         title={
-          <>
-            Список арендодателей
-            <button
-              className="createUser"
-              onClick={() =>
-                setCrudLandlord({ action_type: 1, status: { value: UserStatus.Verified.value, label: UserStatus.Verified.label } })
-              }
-            >
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Добавить арендодателя</p>
+          <div className="actionHeader">
+            <Titles title={` Список арендодателей`} />
+            <button onClick={addNewLanlord} className="standartBtn">
+              Добавить арендодателя
             </button>
-          </>
+          </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 70px)', padding: 1 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="viewUsersPage">
@@ -100,11 +99,12 @@ function fixedHeaderContent() {
 
 function rowContent(_index, row, setCrudLandlord, navigate) {
   const pastFN = (item, action_type) => {
-    setCrudLandlord({ ...item, action_type, status: { value: item.status, label: UserStatusText?.[item.status] } });
+    const state = { ...item, action_type, status: { value: item.status, label: UserStatusText?.[item.status] } };
+    navigate('/every/crud_user', { state });
   };
 
   const viewApartment = () => {
-    navigate('/every/apartment', { state: { guid: row?.guid, fio: `${row.firstName ?? ''} ${row.name ?? ''} ${row.lastName ?? ''}` } });
+    navigate('/every/apartments', { state: { guid: row?.guid, fio: `${row.firstName ?? ''} ${row.name ?? ''} ${row.lastName ?? ''}` } });
   };
 
   return columns?.map((column) => {
@@ -141,7 +141,7 @@ function rowContent(_index, row, setCrudLandlord, navigate) {
               <EditIcon width="18" height="18" title={'Редактировать'} />
             </button>
             <button onClick={() => pastFN(row, 3)}>
-              <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title={'Удалить'} />
+              <DeleteIcon width="20" height="20" title={'Удалить'} />
             </button>
           </div>
         </TableCell>

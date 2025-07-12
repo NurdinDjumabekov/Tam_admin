@@ -1,16 +1,29 @@
 .videoApartmentPage {
   height: 100%;
   min-height: 100%;
+  background: linear-gradient(to right, #181818e2, #0b0b0be7) !important;
+  border-radius: 8px !important;
 
   > div {
+    background: transparent;
     > div:last-child {
+      background: transparent;
+
       padding: 0px 20px !important;
       @media screen and (max-width: 600px) {
         padding: 12px 5px !important;
+        border-radius: 0px !important;
       }
     }
 
+    hr {
+      border: 1px solid rgb(43, 43, 43);
+    }
+
     > div:first-child {
+      padding: 10px 24px !important;
+      background: transparent;
+
       > div {
         width: 100%;
         display: flex;
@@ -52,19 +65,35 @@
     th,
     td {
       padding: 10px;
-      border: 1px solid #ddd;
+      // border-right: 1px solid rgb(43, 43, 43) !important;
+      border-bottom: 1px solid rgb(43, 43, 43) !important;
       text-align: left;
-    }
-
-    th,
-    td {
+      color: #a0a0a0;
       border-top: none;
       border-right: none;
       border-left: none;
     }
 
+    th:last-child,
+    td:last-child {
+      border-right: 1px solid transparent !important;
+    }
+
+    th {
+      font-size: 13px !important;
+      font-weight: 500 !important;
+    }
+
+    td {
+      font-size: 13px !important;
+      font-weight: 400 !important;
+    }
+
     button {
       text-align: left;
+      color: #a0a0a0;
+      text-decoration: underline;
+      font-size: 12px !important;
     }
   }
 }

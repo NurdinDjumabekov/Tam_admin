@@ -20,6 +20,9 @@ import { IconChevronRight } from '@tabler/icons-react';
 import Preloader from 'common/Preloader/Preloader';
 import { useEffect, useState } from 'react';
 
+////// style
+import './style.scss';
+
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(({ theme, open }) => ({
   ...theme.typography.mainContent,
   borderBottomLeftRadius: 0,
@@ -74,7 +77,8 @@ const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
   const crudCheck =
     location?.pathname.includes('/crud_') ||
     location?.pathname.includes('/create_order_users') ||
-    location?.pathname.includes('/create_order_landlords');
+    location?.pathname.includes('/create_order_landlords') ||
+    location?.pathname.includes('/crud_user');
 
   if (no_auth == true) {
     return (
@@ -86,53 +90,56 @@ const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      {/* header */}
-      <AppBar
-        enableColorOnDark
-        position="fixed"
-        color="inherit"
-        elevation={0}
-        sx={{
-          bgcolor: theme.palette.background.default,
-          transition: false ? theme.transitions.create('width') : 'none'
-        }}
-      >
-        <div className={`standartLayout ${crudCheck ? 'noneMenu' : ''} ${listMenu ? '' : 'menuMain'}`}>
-          <Toolbar>
-            <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
-          </Toolbar>
-        </div>
-      </AppBar>
+    <div className="mainApp">
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        {/* header */}
+        <AppBar
+          enableColorOnDark
+          position="fixed"
+          color="inherit"
+          elevation={0}
+          sx={{
+            zIndex: matchUpMd ? 1201 : 1200,
+            bgcolor: theme.palette.background.default,
+            transition: false ? theme.transitions.create('width') : 'none',
+            background: 'transparent'
+          }}
+        >
+          <div className={`standartLayout ${crudCheck ? 'noneMenu' : ''} ${listMenu ? '' : 'menuMain'} `}>
+            <Toolbar>
+              <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+            </Toolbar>
+          </div>
+        </AppBar>
 
-      {/* меню слева*/}
-      {!!view_left_menu && <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />}
+        {/* меню слева*/}
+        {!!view_left_menu && <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />}
 
-      {/* main content */}
-      <Main
-        theme={theme}
-        open={drawerOpen}
-        className={crudCheck ? 'noneDataForModal' : ''}
-        sx={{
-          marginRight: view_left_menu ? 1 : 0,
-          marginTop: 0,
-          paddingTop: 11,
-          minHeight: '100vh',
-          height: '100vh',
-          '@media screen and (max-width: 900px)': {
-            paddingTop: 9,
-            marginLeft: 0
-          }
-        }}
-      >
-        {/* breadcrumb */}
-        <Breadcrumbs separator={IconChevronRight} icon title rightAlign />
-        <Outlet />
-      </Main>
-      <Customization />
-      <Preloader view_left_menu={view_left_menu} />
-    </Box>
+        {/* main content */}
+        <Main
+          theme={theme}
+          open={drawerOpen}
+          className={`mainHeader ${crudCheck ? 'noneDataForModal' : ''} `}
+          sx={{
+            marginRight: view_left_menu ? 1 : 0,
+            marginTop: 0,
+            paddingTop: 11,
+            minHeight: '100vh',
+            height: '100vh',
+            '@media screen and (max-width: 900px)': {
+              paddingTop: 9,
+              marginLeft: 0
+            }
+          }}
+        >
+          <Breadcrumbs separator={IconChevronRight} icon title rightAlign />
+          <Outlet />
+        </Main>
+        <Customization />
+        <Preloader view_left_menu={view_left_menu} />
+      </Box>
+    </div>
   );
 };
 

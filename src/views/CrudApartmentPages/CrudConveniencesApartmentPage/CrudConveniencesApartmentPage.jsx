@@ -21,6 +21,7 @@ import { myAlert } from 'helpers/myAlert';
 
 //// список пользователей
 import Checkbox from '@mui/material/Checkbox';
+import Titles from 'common/Titles/Titles';
 
 const CrudConveniencesApartmentPage = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const CrudConveniencesApartmentPage = () => {
     const result = await dispatch(editConveniencesApartmnentReq(send)).unwrap();
     if (result.res == 1) {
       myAlert(result.mes);
-      navigate(-2);
+      navigate(-1);
     } else {
       myAlert(result.mes, 'error');
     }
@@ -60,13 +61,12 @@ const CrudConveniencesApartmentPage = () => {
     <div className="crud_apartment_page crud_more_data_apartment">
       <MainCard
         title={
-          <>
-            Выберите необходимые параметры{' '}
-            <button className="createUser" onClick={saveRules}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
+          <div className="headerActions">
+            <Titles title={'Выберите необходимые параметры'} />
+            <button onClick={saveRules} className="standartBtn">
+              Сохранить
             </button>
-          </>
+          </div>
         }
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
         contentSX={{ padding: 0 }}

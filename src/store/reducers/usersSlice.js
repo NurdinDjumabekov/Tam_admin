@@ -44,6 +44,21 @@ export const crudLandLordReq = createAsyncThunk('crudLandLordReq', async functio
   }
 });
 
+////// loginReq - логин пользователей
+export const loginReq = createAsyncThunk('loginReq', async function (data, { dispatch, rejectWithValue }) {
+  const url = `${apiUrl}/users/login`;
+  try {
+    const response = await axiosInstance.post(url, data);
+    if (response.status >= 200 && response.status < 300) {
+      return response?.data;
+    } else {
+      throw Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
 const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
@@ -83,6 +98,18 @@ const usersSlice = createSlice({
       state.preloader_user = false;
     });
     builder.addCase(crudLandLordReq.pending, (state, action) => {
+      state.preloader_user = true;
+    });
+
+    ////////////// crudLandLordReq
+    builder.addCase(loginReq.fulfilled, (state, action) => {
+      state.preloader_user = false;
+    });
+    builder.addCase(loginReq.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader_user = false;
+    });
+    builder.addCase(loginReq.pending, (state, action) => {
       state.preloader_user = true;
     });
   }

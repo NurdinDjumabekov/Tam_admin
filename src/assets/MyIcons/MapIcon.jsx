@@ -1,7 +1,14 @@
 import { Tooltip } from '@mui/material';
 import React from 'react';
 
-const MapIcon = ({ title = '', backgroundColor = 'transparent', color = '#222', width = '20', height = '20', ...props }) => {
+const MapIcon = ({
+  title = '',
+  backgroundColor = 'transparent',
+  color = 'rgba(215, 215, 215, 0.786)',
+  width = '20',
+  height = '20',
+  ...props
+}) => {
   return (
     <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
       <Tooltip title={title} disableInteractive>

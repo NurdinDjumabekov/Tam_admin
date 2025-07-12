@@ -1,6 +1,11 @@
 .crudTableOrders {
   height: 100%;
 
+  @media screen and (max-width: 1140px) {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
   .lowercaseTitle {
     text-transform: lowercase;
   }
@@ -49,16 +54,16 @@
 
     th {
       text-align: left;
-      padding: 8px 10px;
+      padding: 9px 10px 10px !important;
       font-weight: bold;
       font-size: 12px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #ffffff1a;
       border-right: 1px solid transparent !important;
     }
 
     td {
       padding: 3px 5px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #ffffff1a;
       font-size: 12px !important;
       padding-left: 15px;
     }
@@ -67,18 +72,18 @@
       td:nth-child(1),
       th:nth-child(1) {
         width: 230px;
-        border-right: 1px solid #ddd;
+        border-right: 1px solid #ffffff1a;
         padding-left: 25px !important;
       }
 
       th:nth-child(2) {
         padding-left: 14px !important;
-        border-left: 2px solid #ddd !important;
+        border-left: 2px solid #ffffff1a !important;
       }
 
       td:nth-child(3),
       th:nth-child(3) {
-        border-left: 1px solid #ddd;
+        border-left: 1px solid #ffffff1a;
         padding-right: 25px !important;
         min-width: 100px !important;
         width: 100px !important;
@@ -89,6 +94,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      button {
+        color: #d7d7d795;
       }
     }
   }
@@ -101,4 +110,86 @@
 
 .tableOrders {
   height: 100%;
+}
+
+.crudInfoOrder {
+  > div {
+    > div:nth-child(1) {
+      padding-top: 10px !important;
+    }
+
+    .orderTableWrapper {
+      table {
+        min-width: 100% !important;
+
+        @media screen and (max-width: 650px) {
+          thead,
+          tbody {
+            tr {
+              width: 100%;
+              th,
+              td {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+              }
+
+              .video {
+                > p {
+                  display: none;
+                }
+              }
+
+              @media screen and (max-width: 550px) {
+                th:nth-child(1),
+                td:nth-child(1) {
+                  padding-left: 15px !important;
+                  width: 130px !important;
+                  min-width: 130px !important;
+                  max-width: 130px !important;
+                }
+
+                th:nth-child(3),
+                td:nth-child(3),
+                .titleAction {
+                  width: 40px !important;
+                  min-width: 40px !important;
+                  max-width: 40px !important;
+                  padding-right: 10px !important;
+                  padding-left: 5px !important;
+
+                  button {
+                    display: block;
+                    margin: 0 auto;
+                  }
+                }
+              }
+
+              // @media screen and (max-width: 440px) {
+              //   th:nth-child(1),
+              //   td:nth-child(1) {
+              //     width: 20% !important;
+              //     min-width: 20% !important;
+              //     max-width: 20% !important;
+              //   }
+              //   th:nth-child(2),
+              //   td:nth-child(2) {
+              //     width: 70% !important;
+              //     min-width: 70% !important;
+              //     max-width: 70% !important;
+              //   }
+              //   th:nth-child(3),
+              //   td:nth-child(3) {
+              //     width: 10% !important;
+              //     min-width: 10% !important;
+              //     max-width: 10% !important;
+              //     // display: none;
+              //   }
+              // }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -17,6 +17,7 @@ import Slider from 'react-slick';
 import './style.scss';
 import { myAlert } from 'helpers/myAlert';
 import { delPhotoApartmentReq, getListPhotoApartmentReq, loadPhotoApartmentReq } from 'store/reducers/otherActionApartmentSlice';
+import Titles from 'common/Titles/Titles';
 
 const CrudPhotoApartmentPage = () => {
   const dispatch = useDispatch();
@@ -84,10 +85,12 @@ const CrudPhotoApartmentPage = () => {
   useEffect(() => {
     if (sliderOpen && sliderRef.current) {
       setTimeout(() => {
-        sliderRef.current.slickGoTo(activeIndex, true);
-      }, 100);
+        sliderRef.current?.slickGoTo(activeIndex, true);
+        sliderRef.current?.slickPlay(); // иногда помогает
+        sliderRef.current?.innerSlider?.onWindowResized(); // перерисовка
+      }, 100); // время важно, лучше 100–200мс
     }
-  }, [sliderOpen, activeIndex]);
+  }, [sliderOpen]);
 
   const CustomPrevArrow = (props) => {
     const { onClick, closeModal } = props;
@@ -124,15 +127,16 @@ const CrudPhotoApartmentPage = () => {
       <MainCard
         title={
           <>
-            Фотографии квартиры{' '}
-            <button className="createUser" onClick={handleAddPhotosClick} type="button">
-              <AddBoxIcon sx={{ width: 18, height: 18 }} />
-              <p>Добавить</p>
-            </button>
-            <input type="file" accept="image/*" multiple style={{ display: 'none' }} ref={fileInputRef} onChange={handleFilesChange} />
+            <div className="headerActionsStandart">
+              <Titles title={'Фотографии квартиры'} />
+              <button onClick={handleAddPhotosClick} className="standartBtn">
+                Добавить
+              </button>
+              <input type="file" accept="image/*" multiple style={{ display: 'none' }} ref={fileInputRef} onChange={handleFilesChange} />
+            </div>
           </>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 1 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="crud_apartment_page__inner">
@@ -153,7 +157,7 @@ const CrudPhotoApartmentPage = () => {
         </div>
       </MainCard>
 
-      <Modal open={sliderOpen} onClose={() => setSliderOpen(false)}>
+      {/* <Modal open={sliderOpen} onClose={() => setSliderOpen(false)}>
         <div className="slider-modal-photo-apartment">
           <button className="closeSlider" onClick={() => setSliderOpen(false)}>
             <CloseIcon />
@@ -163,6 +167,7 @@ const CrudPhotoApartmentPage = () => {
             infinite={false}
             dots={true}
             arrows={true}
+            initialSlide={activeIndex}
             prevArrow={<CustomPrevArrow closeModal={() => setSliderOpen(false)} />}
             nextArrow={<CustomNextArrow closeModal={() => setSliderOpen(false)} />}
           >
@@ -173,7 +178,7 @@ const CrudPhotoApartmentPage = () => {
             ))}
           </Slider>
         </div>
-      </Modal>
+      </Modal> */}
 
       <ConfirmModal state={!!del?.guid} title={`Удалить изображение ?`} yesFN={() => delPhotoFn(del)} noFN={() => setDel({})} />
     </div>

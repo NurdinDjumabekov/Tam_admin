@@ -1,0 +1,103 @@
+.crud_apartment_page {
+  height: 100%;
+  position: relative;
+
+  &__inner {
+    height: calc(100vh - 220px);
+    overflow-y: scroll;
+    padding: 0px 16px;
+
+    form {
+      display: flex;
+      width: 100%;
+      min-width: 100%;
+      gap: 20px;
+
+      .inputSend {
+        margin: 10px 0 0 0;
+      }
+
+      > div {
+        width: calc(50% - 10px);
+        min-width: calc(50% - 10px);
+
+        .myInputs {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        .createUser {
+          position: static !important;
+          width: 100%;
+          margin: 30px 0 0 0;
+          height: 45px;
+
+          p {
+            display: block;
+          }
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        display: block;
+        padding-bottom: 200px;
+
+        > div {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+    }
+
+    .selectCategs {
+      margin-bottom: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+      height: calc(100vh - 190px);
+    }
+  }
+
+  .actionBtn {
+    margin: 40px 0 0 0;
+  }
+}
+
+.mainCrudApartment {
+  > div {
+    > div:first-child {
+      > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          max-width: 100%;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        padding: 10px 16px 10px 22px;
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.crudLanlordsPage {
+  background: red;
+  .moreText {
+    font-size: 14px;
+    color: #fff;
+    margin: 10px 0 0 0;
+  }
+}

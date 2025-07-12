@@ -11,14 +11,19 @@ import CrudPhotoApartmentPage from 'views/CrudApartmentPages/CrudPhotoApartmentP
 import ViewVideoApartmentPage from 'views/CrudApartmentPages/ViewVideoApartmentPage/ViewVideoApartmentPage';
 import ViewLockApartmentPage from 'views/CrudApartmentPages/ViewLockApartmentPage/ViewLockApartmentPage';
 import ViewEveryVideoApartmentPage from 'views/CrudApartmentPages/ViewEveryVideoApartmentPage/ViewEveryVideoApartmentPage';
+import CrudLandlordsPage from 'views/CrudApartmentPages/CrudLandlordsPage/CrudLandlordsPage';
 
 const RoutesApartments = {
   path: '/every',
   element: <MainLayout view_left_menu={false} />,
   children: [
     {
-      path: 'apartment',
+      path: 'apartments',
       element: <EveryApartmentPage />
+    },
+    {
+      path: 'crud_user',
+      element: <CrudLandlordsPage />
     },
     {
       path: 'menu_action',

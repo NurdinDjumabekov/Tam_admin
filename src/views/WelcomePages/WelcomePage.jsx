@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 /////// fns
 import { getDataContacts, getListFaq, getListInfoCompany } from 'store/reducers/otherActionApartmentSlice';
+import { clearDataSave } from 'store/reducers/saveDataSlice';
 
 ////// components
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
@@ -35,6 +36,7 @@ const WelcomePage = () => {
     dispatch(getListInfoCompany());
     dispatch(getListFaq());
     dispatch(getDataContacts());
+    dispatch(clearDataSave());
   }, []);
 
   const scrollToId = (id) => {
@@ -44,10 +46,10 @@ const WelcomePage = () => {
     }
   };
 
-  const applicationForAdmin = () => {
-    /// переход на страницу заяки
-    navigate('/application');
-  };
+  /// переход на страницу заяки
+  const applicationForAdmin = () => navigate('/application');
+
+  const nextLogin = () => navigate('/main');
 
   return (
     <>
@@ -67,7 +69,9 @@ const WelcomePage = () => {
                   <li onClick={() => scrollToId('video')}>Видео инструкция</li>
                   <li onClick={() => scrollToId('faq')}>Вопрос и ответы</li>
                 </ul>
-                <button className="callMe">Войти</button>
+                <button className="callMe" onClick={nextLogin}>
+                  Войти
+                </button>
               </div>
             </div>
           </div>

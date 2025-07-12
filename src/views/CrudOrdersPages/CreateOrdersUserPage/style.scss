@@ -1,9 +1,17 @@
 .createOrdersAdmin {
   height: 100%;
+  min-height: 100vh;
+  background: #000000da;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.626);
+  background-image: url('../../../assets/images/landing/pattern.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  > div {
+    background: linear-gradient(to right, #181818e2, #0b0b0be7);
+  }
 
   .orderTableWrapper {
     padding: 10px 25px;

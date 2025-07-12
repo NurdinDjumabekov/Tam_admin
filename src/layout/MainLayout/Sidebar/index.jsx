@@ -30,12 +30,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
         sx={{
           '& .MuiDrawer-paper': {
             width: drawerWidth,
-            background: theme.palette.background.default,
             color: theme.palette.text.primary,
-            borderRight: 'none',
-            [theme.breakpoints.up('md')]: {
-              top: '88px'
-            }
+            top: matchUpMd ? '69px' : '0px',
+            background: 'rgba(0, 0, 0, 0.907)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            borderRight: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '2px 0 10px rgba(0, 0, 0, 0.3)'
           }
         }}
         ModalProps={{ keepMounted: true }}
@@ -46,13 +47,15 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             <LogoSection />
           </Box>
         </Box>
+
         <BrowserView>
           <PerfectScrollbar
             component="div"
             style={{
-              height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
+              height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 72px)',
               paddingLeft: '16px',
               paddingRight: '16px'
+              // background: '#000000e9'
             }}
           >
             <MenuList drawerToggle={matchUpMd ? () => {} : drawerToggle} />

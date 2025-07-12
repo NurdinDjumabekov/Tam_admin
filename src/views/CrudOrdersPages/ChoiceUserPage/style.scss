@@ -1,8 +1,37 @@
 .choiceUserPage {
+  border-radius: 10px;
+  background: linear-gradient(to right, rgba(24, 24, 24, 0.8862745098), rgba(11, 11, 11, 0.9058823529)) !important;
+
+  @media screen and (max-width: 1140px) {
+    padding: 0 !important;
+  }
+
+  > div {
+    background: transparent;
+
+    > div {
+      background: transparent;
+    }
+
+    .viewUsersPage {
+      background: transparent;
+      padding-top: 0px !important;
+
+      > div {
+        background: transparent;
+      }
+    }
+  }
+
+  > div div:last-child {
+    padding-top: 0px !important;
+  }
+
   .headerMain {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 
     .select {
       width: 240px;
@@ -19,11 +48,193 @@
     }
   }
 
+  > div {
+    background: transparent;
+
+    > div {
+      background: transparent;
+    }
+
+    > div:first-child {
+      padding: 14px 24px !important;
+
+      > div {
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          font-size: 16px !important;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        padding: 4px 0px 12px !important;
+
+        .titlesAction {
+          padding: 8px 10px !important;
+        }
+
+        .actionsOrders {
+          padding-left: 18px;
+          padding-top: 5px;
+        }
+
+        hr {
+          width: 100%;
+          height: 1px;
+          background: #6c6c6c1b;
+        }
+
+        @media screen and (max-width: 500px) {
+          .titlesAction {
+            padding-left: 15px;
+          }
+
+          .actionsOrders {
+            padding-left: 15px;
+          }
+        }
+
+        > div {
+          span {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 5px;
+          }
+        }
+      }
+    }
+
+    hr {
+      border: 1px solid #6c6c6c1b;
+    }
+  }
+  .viewUsersPage {
+    table {
+      background: transparent !important;
+      min-width: 950px;
+      padding-bottom: 100px;
+
+      thead,
+      tbody {
+        tr {
+          > td {
+            cursor: pointer;
+            color: rgba(215, 215, 215, 0.586);
+            border-bottom: 1px solid #ffffff1a;
+            font-size: 12px !important;
+            font-weight: 300 !important;
+            padding-bottom: 0px !important;
+            padding-top: 0px !important;
+
+            p,
+            span {
+              color: rgba(215, 215, 215, 0.586);
+            }
+          }
+          th {
+            background: transparent !important;
+            color: rgba(215, 215, 215, 0.586);
+            border-bottom: 1px solid #ffffff1a;
+            background: #141414 !important;
+            // padding: 12px !important;
+            font-size: 13px;
+          }
+
+          th:first-child,
+          td:first-child {
+            padding-left: 30px !important;
+
+            @media screen and (max-width: 600px) {
+              padding-left: 22px !important;
+            }
+          }
+
+          th:last-child,
+          td:last-child {
+            width: 200px !important;
+            min-width: 200px !important;
+          }
+
+          th:nth-child(7),
+          td:nth-child(7) {
+            width: 140px !important;
+            min-width: 140px !important;
+          }
+        }
+      }
+    }
+  }
+
   table {
     tr {
       th,
       td {
         cursor: pointer;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.createBookingUser {
+  @media screen and (max-width: 750px) {
+    > div {
+      > div:first-child {
+        padding: 0 !important;
+      }
+    }
+
+    .headerMain {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 8px;
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      background: #6c6c6c1b;
+    }
+  }
+
+  .viewUsersPage {
+    > div {
+      table {
+        thead,
+        tbody {
+          tr {
+            th:nth-child(2),
+            td:nth-child(2) {
+              width: 50px !important;
+              min-width: 50px !important;
+              max-width: 50px !important;
+            }
+
+            th:nth-child(3),
+            td:nth-child(3) {
+              width: 50px !important;
+              min-width: 50px !important;
+              max-width: 50px !important;
+            }
+
+            th:nth-child(4),
+            td:nth-child(4) {
+              width: 50px !important;
+              min-width: 50px !important;
+              max-width: 50px !important;
+            }
+
+            th:last-child,
+            td:last-child {
+              width: 50px !important;
+              min-width: 50px !important;
+              max-width: 50px !important;
+            }
+          }
+        }
       }
     }
   }

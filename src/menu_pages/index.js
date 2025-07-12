@@ -2,10 +2,10 @@ import dashboard from './dashboard';
 import pages from './pages';
 import utilities from './utilities';
 import other from './other';
-import welcome from './welcome';
+import logout from './logout';
 
 const menuItems = {
-  items: [welcome, dashboard, utilities, pages]
+  items: [dashboard, utilities, logout]
 };
 
 export default menuItems;

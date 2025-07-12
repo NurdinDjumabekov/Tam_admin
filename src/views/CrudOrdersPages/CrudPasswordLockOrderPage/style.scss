@@ -1,6 +1,6 @@
 .crudPassword {
   height: 100%;
-  background: rgba(0, 0, 0, 0.626);
+  background-image: url('../../../assets/images/landing/pattern.png') !important;
 
   .push {
     margin: 15px 0 12px;
@@ -9,9 +9,18 @@
   align-items: center;
   justify-content: center;
 
+  @media screen and (max-width: 550px) {
+    align-items: flex-start;
+  }
+
   > div {
     width: 450px !important;
-    height: 480px;
+    height: auto !important;
+    background-color: #000000da !important;
+
+    @media screen and (max-width: 550px) {
+      width: 100% !important;
+    }
 
     .actionBtn {
       height: 50px;
@@ -34,5 +43,13 @@
 
   .ant-picker-cell-today .ant-picker-cell-inner::before {
     display: none !important;
+  }
+
+  .actionBtn {
+    @media screen and (max-width: 580px) {
+      p {
+        display: block !important;
+      }
+    }
   }
 }

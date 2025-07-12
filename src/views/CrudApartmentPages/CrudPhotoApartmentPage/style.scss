@@ -1,4 +1,7 @@
 .viewPhoto {
+  height: 100vh;
+  background: linear-gradient(to right, #181818e2, #0b0b0be7) !important;
+
   .createUser {
     top: 10px !important;
 
@@ -10,6 +13,7 @@
   }
 
   > div {
+    background: transparent;
     > div:first-child {
       padding: 16px 20px !important;
 
@@ -35,6 +39,10 @@
           padding: 12px 18px !important;
         }
       }
+    }
+
+    hr {
+      border: 1px solid #434343c6;
     }
 
     > div:last-child {
@@ -116,6 +124,21 @@
     .slick-prev,
     .slick-next {
       z-index: 1000;
+    }
+  }
+
+  .crud_apartment_page__inner {
+    height: 100%;
+    @media screen and (max-width: 550px) {
+      height: calc(100% - 70px);
+    }
+  }
+
+  .headerActionsStandart {
+    .standartBtn {
+      @media screen and (max-width: 550px) {
+        width: 93%;
+      }
     }
   }
 }

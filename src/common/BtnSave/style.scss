@@ -1,8 +1,20 @@
 .btnCancel {
   display: block;
+  cursor: pointer;
+
   .createUser {
     width: 120px !important;
-    background: #ec1313d4 !important;
     position: static !important;
+
+    background: #ededed !important;
+    color: #222;
+    font-weight: 600;
+    font-size: 14px !important;
+
+    p {
+      color: #222;
+      font-weight: 600;
+      font-size: 14px !important;
+    }
   }
 }

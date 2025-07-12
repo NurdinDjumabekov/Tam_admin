@@ -93,7 +93,7 @@ const CrudStartEndOrder = () => {
                   format="DD.MM.YYYY HH:mm"
                   value={crudData.dateStart}
                   onChange={(value) => setCrudData({ ...crudData, dateStart: value })}
-                  style={{ width: '100%' }}
+                  style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ const CrudStartEndOrder = () => {
                   format="DD.MM.YYYY HH:mm"
                   value={crudData.dateEnd}
                   onChange={(value) => setCrudData({ ...crudData, dateEnd: value })}
-                  style={{ width: '100%' }}
+                  style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
                 />
               </div>
             </div>

@@ -24,6 +24,7 @@ import { crudLandLordReq, getAllLandLordReq } from 'store/reducers/usersSlice';
 import { listActive } from 'helpers/myLocal';
 import { myAlert } from 'helpers/myAlert';
 
+//// delete
 const CrudLandlordInfo = (props) => {
   const { crudLandlord, setCrudLandlord } = props;
   const dispatch = useDispatch();

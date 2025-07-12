@@ -9,6 +9,7 @@ import ChoiceUserPage from 'views/CrudOrdersPages/ChoiceUserPage/ChoiceUserPage'
 import CreateOrdersUserPage from 'views/CrudOrdersPages/CreateOrdersUserPage/CreateOrdersUserPage';
 import ChoiceApartmentPage from 'views/CrudOrdersPages/ChoiceApartmentPage/ChoiceApartmentPage';
 import CreateOrdersLandlordPage from 'views/CrudOrdersPages/CreateOrdersLandlordPage/CreateOrdersLandlordPage';
+import LogOutPage from 'components/LogOut/LogOutPage/LogOutPage';
 
 const RoutesOrders = {
   path: '/order',
@@ -56,6 +57,10 @@ const RoutesOrders = {
     {
       path: 'crud_status_order',
       element: <CrudStatusOrder />
+    },
+    {
+      path: 'crud_logout',
+      element: <LogOutPage />
     }
   ]
 };

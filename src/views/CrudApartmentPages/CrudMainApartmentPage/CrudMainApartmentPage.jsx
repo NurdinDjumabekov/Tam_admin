@@ -15,6 +15,10 @@ import MainCard from 'ui-component/cards/MainCard';
 import Select from 'react-select';
 import SendInput from 'common/SendInput/SendInput';
 import ConfirmModal from 'common/ConfirmModal/ConfirmModal';
+import TitlesModal from 'common/TitlesModal/TitlesModal';
+import BtnCancel from 'common/BtnCancel/BtnCancel';
+import BtnSave from 'common/BtnSave/BtnSave';
+import Titles from 'common/Titles/Titles';
 
 ////// style
 import './style.scss';
@@ -22,6 +26,7 @@ import './style.scss';
 ////// helpers && enums
 import { listActiveApartment, listBollean, listCountApartnment } from 'helpers/myLocal';
 import { myAlert } from 'helpers/myAlert';
+import DelAlert from 'common/DelAlert/DelAlert';
 
 //// список пользователей
 const CrudMainApartmentPage = () => {
@@ -65,11 +70,12 @@ const CrudMainApartmentPage = () => {
     if (result.res == 1) {
       setCrudLandlord({});
       myAlert(result.mes);
-      if (location.state.nav == 1) {
-        navigate(-1);
-      } else {
-        navigate(-2);
-      }
+      navigate(-1);
+      // if (location.state.nav == 1) {
+      //   navigate(-1);
+      // } else {
+      //   navigate(-2);
+      // }
     } else {
       myAlert(result.mes, 'error');
     }
@@ -112,9 +118,15 @@ const CrudMainApartmentPage = () => {
     }
   };
 
-  if (location.state.action_type == 3) {
+  if (location?.state?.action_type == 3) {
     return (
-      <ConfirmModal state={location.state.action_type == 3} title={`Удалить квартиру ?`} yesFN={crudLandLordFn} noFN={() => navigate(-1)} />
+      <DelAlert
+        title={'Удаление квартиры'}
+        text={'Вы действительно хотите удалить данные квартиры? Этот процесс не обратим и одноразовый !'}
+        yesText={'Удалить'}
+        noText={'Отмена'}
+        click={crudLandLordFn}
+      />
     );
   }
 
@@ -122,7 +134,7 @@ const CrudMainApartmentPage = () => {
   return (
     <div className="crud_apartment_page crudData tableBottomBtn mainCrudApartment">
       <MainCard
-        title={objtitle?.[location.state?.action_type]}
+        title={<Titles title={objtitle?.[location.state?.action_type]} />}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
         contentSX={{ padding: 0 }}
       >
@@ -138,7 +150,28 @@ const CrudMainApartmentPage = () => {
                   name="status"
                   value={crudLandlord?.status}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>
@@ -151,7 +184,28 @@ const CrudMainApartmentPage = () => {
                   name="type_apartment"
                   value={crudLandlord?.type_apartment}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>
@@ -201,7 +255,28 @@ const CrudMainApartmentPage = () => {
                   name="count_room"
                   value={crudLandlord?.count_room}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>
@@ -215,7 +290,28 @@ const CrudMainApartmentPage = () => {
                   name="categ_apartment"
                   value={crudLandlord?.categ_apartment}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>
@@ -273,7 +369,28 @@ const CrudMainApartmentPage = () => {
                   name="install_lock"
                   value={crudLandlord?.install_lock}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>

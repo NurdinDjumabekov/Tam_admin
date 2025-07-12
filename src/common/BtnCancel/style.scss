@@ -1,9 +1,14 @@
 .btnSave {
   display: block;
+  cursor: pointer;
 
   .createUser {
     width: 120px !important;
-    background: #00ab55 !important;
     position: static !important;
+    cursor: pointer;
+    background: #ededed !important;
+    color: #222;
+    font-weight: 600;
+    font-size: 14px !important;
   }
 }

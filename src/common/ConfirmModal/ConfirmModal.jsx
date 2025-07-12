@@ -8,6 +8,12 @@ import { useTheme } from '@mui/material/styles';
 ////// style
 import './style.scss';
 
+///// compnents
+import MainCard from 'ui-component/cards/MainCard';
+import TitlesModal from 'common/TitlesModal/TitlesModal';
+import BtnCancel from 'common/BtnCancel/BtnCancel';
+import BtnSave from 'common/BtnSave/BtnSave';
+
 const ConfirmModal = ({ state, yesFN, noFN, title }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -16,47 +22,24 @@ const ConfirmModal = ({ state, yesFN, noFN, title }) => {
     <div className="confirmModal">
       <Dialog fullScreen={fullScreen} open={state} onClose={noFN} aria-labelledby="responsive-dialog-title" disableEscapeKeyDown={false}>
         <div className="confirmModal__inner">
-          <div className="confirmModal__block">
-            <DialogTitle id="responsive-dialog-title" sx={{ textAlign: 'center', fontSize: 18 }}>
-              {title}
-            </DialogTitle>
-            <DialogActions
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '20px 60px'
-              }}
-            >
-              <button
-                onClick={() => yesFN()}
-                className="send"
-                style={{
-                  backgroundColor: 'green',
-                  color: 'white',
-                  padding: '5px 7px',
-                  borderRadius: 3,
-                  width: 80,
-                  height: 35
-                }}
+          <div className="delAlert">
+            <div className="delAlert__inner">
+              <MainCard
+                title={<TitlesModal title={title} />}
+                sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
+                contentSX={{ padding: 0 }}
               >
-                Да
-              </button>
-              <button
-                onClick={() => noFN()}
-                className="end"
-                style={{
-                  backgroundColor: 'red',
-                  color: 'white',
-                  padding: '5px 7px',
-                  borderRadius: 3,
-                  width: 80,
-                  height: 35
-                }}
-              >
-                Нет
-              </button>
-            </DialogActions>
+                <div className="applicationForAdminPage__inner">
+                  <div className="textCommentAdmin">
+                    <p className="moreText">{'Вы действительно хотите это сделать ? Этот процесс не обратим и одноразовый !'}</p>
+                    <div className="actionBtn">
+                      <BtnCancel click={noFN} text={'Нет'} />
+                      <BtnSave click={yesFN} text={'Да'} />
+                    </div>
+                  </div>
+                </div>
+              </MainCard>
+            </div>
           </div>
         </div>
       </Dialog>

@@ -16,7 +16,7 @@ const initialState = {
   searchApartment: '' // поиск квартиру по номеру
 };
 
-////// getEveryApartmentsReq - get cписок всех квартир
+////// getEveryApartmentsReq - get каждую квартиру
 export const getEveryApartmentsReq = createAsyncThunk('getEveryApartmentsReq', async function (data, { dispatch, rejectWithValue }) {
   const url = `${apiUrl}/apartments/detailed_admin`;
   try {

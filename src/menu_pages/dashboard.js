@@ -8,9 +8,9 @@ const dashboard = {
   children: [
     {
       id: 'dashboard',
-      title: 'Графики',
+      title: 'Отчёты',
       type: 'item',
-      url: '/',
+      url: '/main',
       icon: AssessmentOutlinedIcon,
       breadcrumbs: false
     }

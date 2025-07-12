@@ -16,6 +16,7 @@ import './style.scss';
 
 ////// fns
 import { editCoordinatesApartmnentReq } from 'store/reducers/apartmentsSlice';
+import Titles from 'common/Titles/Titles';
 
 const CrudCoordinatesPage = () => {
   const dispatch = useDispatch();
@@ -139,11 +140,7 @@ const CrudCoordinatesPage = () => {
       const result = await dispatch(editCoordinatesApartmnentReq(send)).unwrap();
       if (result.res == 1) {
         myAlert(result.mes);
-        if (location.state.nav == 1) {
-          navigate(-1);
-        } else {
-          navigate(-2);
-        }
+        navigate(-1);
       } else {
         myAlert(result.mes, 'error');
       }
@@ -156,15 +153,14 @@ const CrudCoordinatesPage = () => {
     <div className="tableLandlords map_data">
       <MainCard
         title={
-          <div className="header">
-            {location?.state?.address}{' '}
-            <button className="createUser" onClick={saveCoordinates}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
+          <div className="headerActionsStandart">
+            <Titles title={location?.state?.address} />
+            <button onClick={saveCoordinates} className="standartBtn">
+              Сохранить
             </button>
           </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 1 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="crud_apartment_page__inner">

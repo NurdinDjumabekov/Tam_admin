@@ -24,15 +24,15 @@ const utilities = {
       url: '/list/orders',
       icon: MeetingRoomIcon,
       breadcrumbs: false
-    },
-    {
-      id: 'users',
-      title: 'Пользователи',
-      type: 'item',
-      url: '/list/users',
-      icon: GroupAddIcon,
-      breadcrumbs: false
     }
+    // {
+    //   id: 'users',
+    //   title: 'Пользователи',
+    //   type: 'item',
+    //   url: '/list/users',
+    //   icon: GroupAddIcon,
+    //   breadcrumbs: false
+    // }
 
     // {
     //   id: 'apartment_landlord',

@@ -36,8 +36,6 @@ const ChoiceUserPage = () => {
 
   const { listLandlord, searchUser, typeUsers } = useSelector((state) => state.usersSlice);
 
-  console.log(typeUsers, 'typeUsers');
-
   useEffect(() => {
     getData();
     setCrudData({ ...crudData, typeCreateOrder: listTypesOrder?.[0] });
@@ -55,11 +53,13 @@ const ChoiceUserPage = () => {
   };
 
   return (
-    <div className="tableUsers container choiceUserPage">
+    <div className="tableUsers container choiceUserPage createBookingUser">
       <MainCard
         title={
           <div className="headerMain">
             <Titles title={`Выберите пользователя для которого хотите создать бронь`} />
+            <hr />
+
             <div className="myInputs selectCategs">
               <Select
                 options={listTypesOrder}
@@ -79,7 +79,10 @@ const ChoiceUserPage = () => {
                     ...base,
                     minHeight: 32,
                     height: 32,
-                    padding: 0
+                    padding: 0,
+                    backgroundColor: '#1e1e1e',
+                    borderColor: '#ffffff24',
+                    color: '#ffffff24'
                   }),
                   valueContainer: (base) => ({
                     ...base,
@@ -92,14 +95,33 @@ const ChoiceUserPage = () => {
                     ...base,
                     height: 32
                   }),
-                  menuPortal: (base) => ({ ...base, zIndex: 9999 })
+                  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                  option: (base, state) => ({
+                    ...base,
+                    backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                    color: state.isSelected ? '#e0e0e0' : '#e0e0e0',
+                    cursor: 'pointer'
+                  }),
+
+                  singleValue: (base) => ({
+                    ...base,
+                    color: '#9e9e9e',
+                    fontSize: '12px',
+                    lineHeight: '16px'
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: '#333333',
+                    borderRadius: 8,
+                    overflow: 'hidden'
+                  })
                 }}
                 required={true}
               />
             </div>
           </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="viewUsersPage">
@@ -196,7 +218,7 @@ function rowContent(_index, row, navigate, crudData) {
         <TableCell onClick={choiceUser} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
           <Checkbox
             checked={false}
-            onClick={(e) => e.stopPropagation()}
+            // onClick={(e) => e.stopPropagation()}
             onChange={() => {}}
             inputProps={{ 'aria-label': 'Выбрать правило' }}
           />

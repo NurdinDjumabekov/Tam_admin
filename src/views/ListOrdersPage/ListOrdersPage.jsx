@@ -21,12 +21,16 @@ import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
+import Titles from 'common/Titles/Titles';
 
 ///// enums
 import { listTypeUsers, objRole, orderStatus } from 'helpers/myLocal';
 
 ////// style
 import './style.scss';
+
+////// icons
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 //// список арендодателей
 const ListOrdersPage = () => {
@@ -67,10 +71,12 @@ const ListOrdersPage = () => {
       <MainCard
         title={
           <>
-            Список заказов ({listOrders?.length})
+            <Titles title={`Список заказов (${listOrders?.length})`} />
+            <hr />
             <div className="actionsOrders">
               <button className="generatePdf updated" onClick={getData}>
                 Обновить
+                <RestartAltIcon />
               </button>
 
               <Select
@@ -90,7 +96,10 @@ const ListOrdersPage = () => {
                     ...base,
                     minHeight: 32,
                     height: 32,
-                    padding: 0
+                    padding: 0,
+                    backgroundColor: '#1e1e1e',
+                    borderColor: '#ffffff24',
+                    color: '#ffffff24'
                   }),
                   valueContainer: (base) => ({
                     ...base,
@@ -103,7 +112,26 @@ const ListOrdersPage = () => {
                     ...base,
                     height: 32
                   }),
-                  menuPortal: (base) => ({ ...base, zIndex: 9999 })
+                  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                  option: (base, state) => ({
+                    ...base,
+                    backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                    color: state.isSelected ? '#e0e0e0' : '#e0e0e0',
+                    cursor: 'pointer'
+                  }),
+
+                  singleValue: (base) => ({
+                    ...base,
+                    color: '#9e9e9e',
+                    fontSize: '12px',
+                    lineHeight: '16px'
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: '#333333',
+                    borderRadius: 8,
+                    overflow: 'hidden'
+                  })
                 }}
               />
               <div className="datePicker">
@@ -117,16 +145,22 @@ const ListOrdersPage = () => {
                   dateFormat="dd.MM.yyyy"
                   locale={ru}
                   maxDate={new Date()}
+                  calendarClassName="dark-calendar"
+                  className="dark-input"
+                  dayClassName={(date) => {
+                    return date > new Date() ? 'future-date-disabled' : undefined;
+                  }}
                 />
               </div>
-              <button className="generatePdf">Сгенерировать отчёт</button>
+              {/* <button className="generatePdf">Сгенерировать отчёт</button> */}
               <button className="generatePdf createOrder" onClick={createOrder}>
-                Создать заказ
+                <p>Создать заказ</p>
+                <p>+</p>
               </button>
             </div>
           </>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 50px)', padding: 1 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 78px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="viewUsersPage">
@@ -163,7 +197,6 @@ function fixedHeaderContent() {
 function rowContent(_index, row, navigate) {
   const viewApartment = () => {
     navigate('/order/every', { state: row });
-    console.log(row);
   };
 
   return columns?.map((column) => {
@@ -211,7 +244,13 @@ function rowContent(_index, row, navigate) {
     }
     if (column?.dataKey == 'isCheckExtend') {
       return (
-        <TableCell key={column?.dataKey} align="left" onClick={viewApartment} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+        <TableCell
+          key={column?.dataKey}
+          align="left"
+          onClick={viewApartment}
+          className="isCheckExtend"
+          sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}
+        >
           {row?.isCheckExtend ? <p className="textTable">Да</p> : <p className="textTable">Нет</p>}
         </TableCell>
       );

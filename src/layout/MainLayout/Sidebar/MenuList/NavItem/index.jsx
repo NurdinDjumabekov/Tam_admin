@@ -50,20 +50,41 @@ const NavItem = ({ item, level }) => {
     <ListItemButton
       {...listItemProps}
       disabled={item.disabled}
+      selected={item?.url === pathname}
+      onClick={() => navigate(`${item?.url}`)}
       sx={{
         borderRadius: `${config.borderRadius}px`,
         mb: 0.5,
         alignItems: 'flex-start',
         py: level > 1 ? 1 : 1.25,
-        pl: `${level * 24}px`
+        pl: `${level * 24}px`,
+        '&.Mui-selected': {
+          backgroundColor: '#5d5d5d6b !important',
+          color: '#ffffff'
+        },
+        '&.Mui-selected:hover': {
+          backgroundColor: '#5d5d5d6b !important'
+        },
+        '&:hover': {
+          backgroundColor: '#1a1a1a'
+        }
       }}
-      selected={item?.url == pathname}
-      onClick={() => navigate(`${item?.url}`)}
     >
-      <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
+      <ListItemIcon
+        sx={{
+          my: 'auto',
+          minWidth: !item?.icon ? 18 : 36,
+          color: item?.url === pathname ? '#2172ef !important' : '#939393',
+          '.MuiListItemButton-root:hover &': {
+            color: item?.url === pathname ? '#2172ef !important' : '#939393'
+          }
+        }}
+      >
+        {itemIcon}
+      </ListItemIcon>
       <ListItemText
         primary={
-          <Typography variant={item?.url == pathname ? 'h5' : 'body1'} color="inherit">
+          <Typography variant={item?.url == pathname ? 'h5' : 'body1'} color={item?.url === pathname ? '#2172ef' : '#939393'} fontSize={12}>
             {item.title}
           </Typography>
         }

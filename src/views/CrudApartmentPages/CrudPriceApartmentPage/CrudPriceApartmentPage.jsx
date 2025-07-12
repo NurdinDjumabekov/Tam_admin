@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 /////// icons
-import AddBoxIcon from '@mui/icons-material/AddBox';
 
 ////// components
 import MainCard from 'ui-component/cards/MainCard';
 import Select from 'react-select';
 import SendInput from 'common/SendInput/SendInput';
-import ConfirmModal from 'common/ConfirmModal/ConfirmModal';
+import Titles from 'common/Titles/Titles';
+import BtnCancel from 'common/BtnCancel/BtnCancel';
+import BtnSave from 'common/BtnSave/BtnSave';
+import DelAlert from 'common/DelAlert/DelAlert';
 
 ////// style
 import './style.scss';
@@ -38,6 +40,14 @@ const CrudPriceApartmentPage = () => {
 
   const crudLandLordFn = async (e) => {
     if (e?.preventDefault) e.preventDefault();
+
+    if (!crudData?.name?.label) {
+      return myAlert('Выберите название тарифа', 'error');
+    }
+
+    if (!crudData?.price) {
+      return myAlert('Заполните цену тарифа', 'error');
+    }
 
     const sendData = {
       ...crudData,
@@ -100,75 +110,126 @@ const CrudPriceApartmentPage = () => {
       });
     }
   };
-
   if (location.state.action_type == 3) {
     return (
-      <ConfirmModal state={location.state.action_type == 3} title={`Удалить прайс ?`} yesFN={crudLandLordFn} noFN={() => navigate(-1)} />
+      <div className="noMenuDel">
+        <DelAlert
+          title={'Удаление прайса'}
+          text={'Вы действительно хотите удалить прайс ? Этот процесс не обратим и одноразовый !'}
+          yesText={'Удалить'}
+          noText={'Отмена'}
+          click={crudLandLordFn}
+        />
+      </div>
     );
   }
 
   const objtitle = { 1: 'Создание нового прайса', 2: 'Редактирование прайса' };
   return (
     <div className="crud_apartment_page crudPrice">
-      <MainCard
-        title={objtitle?.[location.state?.action_type]}
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
-        contentSX={{ padding: 0 }}
-      >
-        <div className="crud_apartment_page__inner">
-          <form className="crudUsers" onSubmit={crudLandLordFn}>
-            <div className="myInputs selectCategs">
-              <h5>Выберите тариф</h5>
-              <Select
-                options={listPrice}
-                className="select"
-                onChange={onChangeWS}
-                name="name"
-                value={crudData?.name}
-                menuPortalTarget={document.body}
-                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+      <div className="crudPrice__inner">
+        <MainCard
+          title={<Titles title={objtitle?.[location.state?.action_type]} />}
+          sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 1 } }}
+          contentSX={{ padding: 0 }}
+        >
+          <div className="crud_apartment_page__inner">
+            <form className="crudUsers">
+              <div className="myInputs selectCategs">
+                <h5>Выберите тариф</h5>
+                <Select
+                  options={listPrice}
+                  className="select"
+                  onChange={onChangeWS}
+                  name="name"
+                  value={crudData?.name}
+                  menuPortalTarget={document.body}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
+                  required={true}
+                />
+              </div>
+
+              <SendInput
                 required={true}
+                value={crudData?.price}
+                onChange={onChange}
+                title={'Цена за тариф в сомах (например 200)'}
+                name={'price'}
+                type="number"
               />
-            </div>
 
-            <SendInput
-              required={true}
-              value={crudData?.price}
-              onChange={onChange}
-              title={'Цена за тариф в сомах (например 200)'}
-              name={'price'}
-              type="number"
-            />
-
-            <SendInput
-              value={crudData?.discount}
-              onChange={onChange}
-              title={'Скидка (указывать цену, а не процент), можно просто оставить пустым'}
-              name={'discount'}
-              type="number"
-            />
-
-            <div className="myInputs selectCategs">
-              <h5>Отображать только при продлении? (в основном списке его не будет)</h5>
-              <Select
-                options={listBollean}
-                className="select"
-                onChange={onChangeWS}
-                name="viewFordopList"
-                value={crudData?.viewFordopList}
-                menuPortalTarget={document.body}
-                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
-                required={true}
+              <SendInput
+                value={crudData?.discount}
+                onChange={onChange}
+                title={'Скидка (указывать цену, а не процент), можно просто оставить пустым'}
+                name={'discount'}
+                type="number"
               />
-            </div>
 
-            <button className="createUser">
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
-          </form>
-        </div>
-      </MainCard>
+              <div className="myInputs selectCategs">
+                <h5>Отображать только при продлении? (в основном списке его не будет)</h5>
+                <Select
+                  options={listBollean}
+                  className="select"
+                  onChange={onChangeWS}
+                  name="viewFordopList"
+                  value={crudData?.viewFordopList}
+                  menuPortalTarget={document.body}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
+                  required={true}
+                />
+              </div>
+
+              <div className="actionBtn">
+                <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
+                <BtnSave click={crudLandLordFn} text={'Сохранить'} />
+              </div>
+            </form>
+          </div>
+        </MainCard>
+      </div>
     </div>
   );
 };

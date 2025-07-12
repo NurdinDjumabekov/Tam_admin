@@ -40,16 +40,16 @@ export const listPrice = [
 ];
 
 export const orderStatus = {
-  reserved: { color: '#222222', text: 'Пустой заказ' },
-  in_process_pay: { color: '#222222', text: 'Бронь оплачивается (аренда еще не началась)' },
-  prepaid: { color: 'orange', text: 'Оплачено 15% (аренда еще не началась)' },
-  paid: { color: '#222222', text: 'Оплатили 100%, в процессе выполнения' },
-  cancelled: { color: 'red', text: 'Отменён (досрочное завершение, надо вернуть 100% пользователю)' },
-  refunded: { color: 'red', text: 'Отменён (досрочное завершение, надо вернуть 85% пользователю)' },
+  reserved: { color: '#d7d7d795', text: 'Пустой заказ' },
+  in_process_pay: { color: '#d7d7d795', text: 'Бронь оплачивается (аренда еще не началась)' },
+  prepaid: { color: 'rgba(255, 0, 0, 0.493)', text: 'Оплачено 15% (аренда еще не началась)' },
+  paid: { color: '#d7d7d795', text: 'Оплатили 100%, в процессе выполнения' },
+  cancelled: { color: 'rgba(255, 0, 0, 0.493)', text: 'Отменён (досрочное завершение, надо вернуть 100% пользователю)' },
+  refunded: { color: 'rgba(255, 0, 0, 0.493)', text: 'Отменён (досрочное завершение, надо вернуть 85% пользователю)' },
   success: { color: 'green', text: 'Успешно (аренда сама завершилась)' },
   success_user: { color: 'green', text: 'Успешно  (аренду завершил пользователь)' },
-  cuccess_no_full_pay: { color: '#222222', text: 'Аренда закончилась (досроное завершение из-за полной неуплаты)' },
-  early_completion: { color: '#222222', text: 'Досрочное завершение без возврата' }
+  cuccess_no_full_pay: { color: '#d7d7d795', text: 'Аренда закончилась (досроное завершение из-за полной неуплаты)' },
+  early_completion: { color: '#d7d7d795', text: 'Досрочное завершение без возврата' }
 };
 
 export const listTypeUsers = [

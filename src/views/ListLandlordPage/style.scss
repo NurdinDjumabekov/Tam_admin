@@ -1,6 +1,55 @@
 .tableLandlords {
   height: 100%;
   position: relative;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: #00000042;
+  backdrop-filter: blur(102px); // размытие фона (на поддерживаемых браузерах)
+  -webkit-backdrop-filter: blur(12px); // для Safari
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); // тонкая белая граница снизу
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); // лёгкая тень вниз
+  z-index: 99;
+
+  @media screen and (max-width: 550px) {
+    height: calc(100% - 100px) !important;
+  }
+
+  div {
+    background: transparent;
+    border-radius: 5px;
+  }
+
+  > div {
+    border-radius: 5px;
+
+    > div:first-child {
+      border-radius: 5px 5px 0 0;
+      padding: 12px 15px !important;
+
+      .standartBtn {
+        @media screen and (max-width: 550px) {
+          position: fixed;
+          bottom: 20px;
+          z-index: 99;
+          width: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 85%;
+          padding: 16px 15px !important;
+        }
+      }
+    }
+
+    hr {
+      border: 1px solid #6c6c6c1b;
+    }
+
+    > div:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+  }
 
   .imgProd {
     width: 100px;
@@ -16,20 +65,40 @@
   }
 
   .viewUsersPage {
-    height: calc(100% - 70px);
+    height: calc(100% - 0px);
     width: 100%;
 
     .viewLandlord {
-      font-size: 12px;
+      font-size: 11px;
+      color: rgba(215, 215, 215, 0.786);
     }
 
     table {
       thead,
       tbody {
         tr {
+          cursor: pointer;
+
           > th,
           > td {
-            padding-bottom: 6px !important;
+            padding-bottom: 4px !important;
+            padding-top: 2px !important;
+            background: transparent;
+            color: rgba(215, 215, 215, 0.586);
+          }
+
+          th {
+            padding-bottom: 8px !important;
+            padding-top: 8px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+          }
+
+          td {
+            padding-bottom: 8px !important;
+            padding-top: 8px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
           }
 
           th:first-child,
@@ -92,6 +161,12 @@
             padding-left: 15px;
             padding-right: 5px;
           }
+        }
+      }
+
+      thead {
+        tr {
+          background: #1a1a1a;
         }
       }
     }
@@ -160,9 +235,5 @@
         }
       }
     }
-  }
-
-  @media screen and (max-width: 500px) {
-    padding-bottom: 75px;
   }
 }

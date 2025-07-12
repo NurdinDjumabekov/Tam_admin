@@ -1,5 +1,35 @@
 .crud_more_data_apartment {
   position: relative;
+  border-radius: 10px;
+
+  @media screen and (max-width: 600px) {
+    border-radius: 0px;
+  }
+
+  > div {
+    > div:first-child {
+      padding: 15px 24px !important;
+    }
+  }
+
+  .headerActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    .standartBtn {
+      @media screen and (max-width: 550px) {
+        width: 85%;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+    }
+  }
 
   > div {
     > div:first-child {
@@ -18,7 +48,7 @@
       display: flex;
       align-items: flex-start;
       padding: 10px 10px 10px 0px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #6363634f;
       gap: 15px;
       cursor: pointer;
     }
@@ -52,43 +82,18 @@
     .rule-name {
       font-weight: 600;
       margin-bottom: 4px;
+      color: #cacacac7;
     }
 
     .rule-desc {
       font-size: 14px;
-      color: #555;
+      color: #878787;
     }
 
     .empty_list {
       padding: 20px;
       text-align: center;
       color: gray;
-    }
-  }
-
-  .createUser {
-    @media screen and (max-width: 600px) {
-      top: 5px !important;
-      padding: 2px 8px 3px !important;
-      height: 32px !important;
-
-      p {
-        display: none !important;
-      }
-    }
-
-    @media screen and (max-width: 500px) {
-      top: auto !important;
-      position: fixed !important;
-      right: 50% !important;
-      transform: translateX(50%) !important;
-      bottom: 70px;
-      width: 85% !important;
-      height: 45px !important;
-
-      p {
-        display: block !important;
-      }
     }
   }
 }

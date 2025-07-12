@@ -8,6 +8,8 @@
   p {
     font-size: 16px;
     margin: 0 0 3px 0;
+    color: #e7e7e7e0 !important;
+    font-size: 16px;
 
     @media screen and (max-width: 550px) {
       margin: 0 0 6px 0;
@@ -23,8 +25,12 @@
     border-radius: 5px;
     width: 100%;
 
+    background: #222222 !important;
+    border: 2px solid #222222 !important;
+    color: rgba(231, 231, 231, 0.8784313725) !important;
+
     &::placeholder {
-      color: #6b72809e;
+      color: #a5a7aacd;
     }
 
     &:focus {

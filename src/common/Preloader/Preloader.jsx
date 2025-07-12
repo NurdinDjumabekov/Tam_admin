@@ -9,6 +9,7 @@ const Preloader = ({ view_left_menu }) => {
   const { preloader_order } = useSelector((state) => state.orderSlice);
   const { preloader_docs } = useSelector((state) => state.docsSlice);
 
+  // if (true) {
   if (preloader_docs || preloader_user || preloader_apartment || preloader_other_action || preloader_lock || preloader_order) {
     return (
       <div className={`preloader ${!!view_left_menu ? 'full_display' : 'mini_display'}`}>

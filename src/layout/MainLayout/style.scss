@@ -1,0 +1,51 @@
+.mainApp {
+  min-width: 100vw;
+  min-height: 100vh;
+  //   background-image: linear-gradient(to right, #212225, #2f3032), url('/images/landing/pattern.png');
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+
+  .mainHeader {
+    // background: transparent;
+    background-image: linear-gradient(to right, #232323, #232323), url('../../assets/images/landing/pattern.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 0px !important;
+  }
+}
+
+// .standartLayout {
+//   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+//   background: #a0a0a080;
+//   z-index: 99;
+
+//   > div {
+//     padding-top: 12px !important;
+//     padding-bottom: 12px !important;
+//   }
+// }
+
+.standartLayout {
+  background: rgba(0, 0, 0, 0.907);
+  backdrop-filter: blur(102px); // размытие фона (на поддерживаемых браузерах)
+  -webkit-backdrop-filter: blur(12px); // для Safari
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); // тонкая белая граница снизу
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); // лёгкая тень вниз
+  z-index: 99;
+
+  > div {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+}
+
+.layoutContainer {
+  > div {
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

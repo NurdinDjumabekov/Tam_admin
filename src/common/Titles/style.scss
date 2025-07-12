@@ -11,14 +11,20 @@
     padding: 8px;
     border-radius: 50px;
 
+    @media screen and (max-width: 500px) {
+      padding: 0 !important;
+    }
+
     svg {
       width: 15px !important;
       height: 15px !important;
+      color: rgb(215, 215, 215);
     }
   }
 
   > h5 {
     font-size: 15px;
     font-weight: 500 !important;
+    color: rgb(215, 215, 215);
   }
 }

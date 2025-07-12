@@ -134,7 +134,28 @@ const CreateOrdersLandlordPage = () => {
               name="status"
               value={crudData?.status}
               menuPortalTarget={document.body}
-              styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              styles={{
+                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                  color: state.isSelected ? '#fff' : '#e0e0e0',
+                  cursor: 'pointer'
+                }),
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: '#111',
+                  borderColor: '#2172ef',
+                  color: '#fff'
+                }),
+                singleValue: (base) => ({ ...base, color: '#fff' }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: '#333333',
+                  borderRadius: 8,
+                  overflow: 'hidden'
+                })
+              }}
               required={true}
             />
           </div>
@@ -148,7 +169,28 @@ const CreateOrdersLandlordPage = () => {
               name="guidApartment"
               value={crudData?.guidApartment}
               menuPortalTarget={document.body}
-              styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              styles={{
+                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                  color: state.isSelected ? '#fff' : '#e0e0e0',
+                  cursor: 'pointer'
+                }),
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: '#111',
+                  borderColor: '#2172ef',
+                  color: '#fff'
+                }),
+                singleValue: (base) => ({ ...base, color: '#fff' }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: '#333333',
+                  borderRadius: 8,
+                  overflow: 'hidden'
+                })
+              }}
               required={true}
             />
           </div>
@@ -162,7 +204,7 @@ const CreateOrdersLandlordPage = () => {
                 placeholder=""
                 value={crudData?.dateStart}
                 onChange={(e) => setCrudData({ ...crudData, dateStart: e })}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>
@@ -176,7 +218,7 @@ const CreateOrdersLandlordPage = () => {
                 placeholder=""
                 value={crudData?.cleaningEndTime}
                 onChange={(e) => setCrudData({ ...crudData, cleaningEndTime: e })}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>

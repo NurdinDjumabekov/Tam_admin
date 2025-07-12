@@ -10,7 +10,6 @@ import { getListApartmentsReq, listApartmentsFN } from 'store/reducers/apartment
 /////// icons
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
 import EditIcon from 'assets/MyIcons/EditIcon';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import MapIcon from 'assets/MyIcons/MapIcon';
 
 ///// enums
@@ -29,6 +28,7 @@ import { TableVirtuoso } from 'react-virtuoso';
 
 ////// style
 import './style.scss';
+import Titles from 'common/Titles/Titles';
 
 //// список пользователей
 const EveryApartmentPage = () => {
@@ -79,11 +79,12 @@ const EveryApartmentPage = () => {
       <MainCard
         title={
           <>
-            Квартиры ({location.state.fio})
-            <button className="createUser" onClick={() => crudApartmentFN({ guid: '' }, 1)}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Добавить квартиру</p>
-            </button>
+            <div className="actionHeader">
+              <Titles title={`Квартиры ${location.state.fio}`} />
+              <button onClick={() => crudApartmentFN({ guid: '' }, 1)} className="standartBtn">
+                Добавить квартиру
+              </button>
+            </div>
           </>
         }
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
@@ -128,14 +129,19 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
   return columns?.map((column) => {
     if (column?.dataKey == 'codeid') {
       return (
-        <TableCell key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 0 }}>
+        <TableCell onClick={() => crudApartmentFN(row, 2)} key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 0 }}>
           {_index + 1}
         </TableCell>
       );
     }
     if (column?.dataKey == 'apartmentsType') {
       return (
-        <TableCell key={column?.dataKey} align="left" sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+        <TableCell
+          onClick={() => crudApartmentFN(row, 2)}
+          key={column?.dataKey}
+          align="left"
+          sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}
+        >
           {row?.apartmentsType}
         </TableCell>
       );
@@ -143,29 +149,18 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
 
     if (column?.dataKey == 'status') {
       return (
-        <TableCell key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+        <TableCell onClick={() => crudApartmentFN(row, 2)} key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
           <p className={row?.[column?.dataKey] == 'active' ? 'everyOneActive' : 'everyOneNoActive'}>
             {ApartmentStatusesText?.[row?.[column?.dataKey]]}
           </p>
         </TableCell>
       );
     }
-    if (column?.dataKey == '...') {
-      const viewApartment = () => {
-        navigate('/every/apartment', { state: { guid: row?.guid, fio: `${row.firstName ?? ''} ${row.name ?? ''} ${row.lastName ?? ''}` } });
-      };
-      return (
-        <TableCell key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
-          <button className="viewLandlord" onClick={viewApartment}>
-            Посмотреть
-          </button>
-        </TableCell>
-      );
-    }
+
     if (column?.dataKey == 'percentage') {
       if (row?.installLock) {
         return (
-          <TableCell key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+          <TableCell onClick={() => crudApartmentFN(row, 2)} key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
             {row?.[column?.dataKey] === '-' ? (
               <p className="everyOneNoActiveBlink">Ошибка!!!</p>
             ) : (
@@ -175,7 +170,7 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
         );
       } else {
         return (
-          <TableCell sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
+          <TableCell onClick={() => crudApartmentFN(row, 2)} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
             ---
           </TableCell>
         );
@@ -185,13 +180,13 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
     if (column?.dataKey === 'code_lock_standart') {
       if (row?.installLock) {
         return (
-          <TableCell sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
+          <TableCell onClick={() => crudApartmentFN(row, 2)} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
             {column.render ? column.render(row) : `${row?.[column?.dataKey]}#`}
           </TableCell>
         );
       } else {
         return (
-          <TableCell sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
+          <TableCell onClick={() => crudApartmentFN(row, 2)} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
             Замок отсутствует
           </TableCell>
         );
@@ -218,7 +213,7 @@ function rowContent(_index, row, crudApartmentFN, navigate) {
     }
 
     return (
-      <TableCell sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
+      <TableCell onClick={() => crudApartmentFN(row, 2)} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }} key={column?.dataKey}>
         {column.render ? column.render(row) : row?.[column?.dataKey]}
       </TableCell>
     );

@@ -26,6 +26,7 @@ import './style.scss';
 ///// imgs
 import EditIcon from 'assets/MyIcons/EditIcon';
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
+import Titles from 'common/Titles/Titles';
 
 const columns = [
   { width: '10%', label: '№', dataKey: 'index' },
@@ -101,11 +102,12 @@ const ViewPriceApartmentPage = () => {
       <MainCard
         title={
           <>
-            {location?.state?.address}
-            <button className="createUser" onClick={() => addNewPrice({}, 1)}>
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Добавить</p>
-            </button>
+            <div className="headerActionsStandart">
+              <Titles title={location?.state?.address} />
+              <button onClick={() => addNewPrice({}, 1)} className="standartBtn">
+                Добавить
+              </button>
+            </div>
           </>
         }
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}

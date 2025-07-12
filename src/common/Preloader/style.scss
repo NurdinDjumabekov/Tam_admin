@@ -7,7 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9fafd;
+  // background: #f9fafd;
+  background: linear-gradient(to right, #2f3032, #000102);
 
   .lds-roller {
     display: inline-block;
@@ -26,7 +27,7 @@
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #000;
+    background: #e7e7e7;
     margin: -4px 0 0 -4px;
   }
   .lds-roller div:nth-child(1) {

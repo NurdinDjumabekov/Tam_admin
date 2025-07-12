@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import SaveAsIcon from '@mui/icons-material/SaveAs';
 import MainCard from 'ui-component/cards/MainCard';
 import './style.scss';
 import { getEveryOrdersReq } from 'store/reducers/orderSlice';
@@ -16,7 +15,6 @@ import EditIcon from 'assets/MyIcons/EditIcon';
 import Titles from 'common/Titles/Titles';
 import AddIcon from 'assets/MyIcons/AddIcon';
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
-import BtnCancel from 'common/BtnCancel/BtnCancel';
 
 const CrudOrdersPage = () => {
   const dispatch = useDispatch();
@@ -85,13 +83,9 @@ const CrudOrdersPage = () => {
   };
 
   return (
-    <div className="container tableOrders crudTableOrders">
+    <div className="container tableOrders crudTableOrders crudInfoOrder">
       <MainCard
-        title={
-          <>
-            <Titles title={`Информация о заказе №${everyOrder?.orderNumber}`} />
-          </>
-        }
+        title={<Titles title={`Информация о заказе №${everyOrder?.orderNumber}`} />}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >
@@ -167,7 +161,7 @@ const CrudOrdersPage = () => {
               </tr>
               <tr>
                 <th colSpan={2}>Оплата и тарифы</th>
-                <th>
+                <th className="titleAction">
                   <button className="editData" onClick={() => crudPayOrder(everyOrder)}>
                     <AddIcon width="18" height="18" title={'Продление аренды'} />
                   </button>
@@ -230,7 +224,7 @@ const CrudOrdersPage = () => {
               </tr>
               <tr>
                 <td>Видео входа в квартиру</td>
-                <td>
+                <td className="video">
                   <p>{everyOrder?.apartment?.videoOfTheEntrance}</p>
                   <button onClick={() => viewVideo(everyOrder?.apartment?.videoOfTheEntrance)} className="clickDoc">
                     Посмотреть видео
@@ -240,7 +234,7 @@ const CrudOrdersPage = () => {
               </tr>
               <tr>
                 <td>Видео квартиры</td>
-                <td>
+                <td className="video">
                   <p>{everyOrder?.apartment?.video}</p>
                   <button onClick={() => viewVideo(everyOrder?.apartment?.video)} className="clickDoc">
                     Посмотреть видео
@@ -273,7 +267,7 @@ const CrudOrdersPage = () => {
 
               <tr>
                 <th colSpan={2}>Документы</th>
-                <th></th>
+                <th className="titleAction"></th>
               </tr>
               {everyOrder?.listGuidsDocs?.map((doc, idx) => (
                 <tr key={idx}>
@@ -299,16 +293,6 @@ const CrudOrdersPage = () => {
                   </tr>
                 </>
               )}
-
-              <tr>
-                <th colSpan={3}></th>
-              </tr>
-              <tr>
-                <th colSpan={3}></th>
-              </tr>
-              <tr>
-                <th colSpan={3}></th>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -318,3 +302,95 @@ const CrudOrdersPage = () => {
 };
 
 export default CrudOrdersPage;
+
+// <Dialog
+//   fullScreen={fullScreen}
+//   open
+//   onClose={close}
+//   aria-labelledby="dialog-title"
+//   className="menuActionApartment"
+//   PaperProps={{
+//     sx: {
+//       borderRadius: 3,
+//       minWidth: 360,
+//       paddingX: 1,
+//       paddingY: 1
+//     }
+//   }}
+// >
+//   <div className="modalActionApartment">
+//     <div className="header">
+//       <DialogTitle id="dialog-title">Выберите действие</DialogTitle>
+//       <IconButton onClick={close}>
+//         <CloseIcon />
+//       </IconButton>
+//     </div>
+
+//     <Paper elevation={0}>
+//       <List disablePadding>
+//         <ListItemButton onClick={() => handleAction(1)}>
+//           <ListItemIcon>
+//             <EditIcon width="18" height="18" title={''} />
+//           </ListItemIcon>
+//           <ListItemText primary="Информация о квартире" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(2)}>
+//           <ListItemIcon>
+//             <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title={''} />
+//           </ListItemIcon>
+//           <ListItemText primary="Удалить квартиру" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(3)}>
+//           <ListItemIcon>
+//             <img className="listIcon" src={imgList} alt="*" width={16} height={16} />
+//           </ListItemIcon>
+//           <ListItemText primary="Правила квартиры" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(4)}>
+//           <ListItemIcon>
+//             <img className="listIcon" src={imgListConv} alt="*" width={16} height={16} />
+//           </ListItemIcon>
+//           <ListItemText primary="Удобства квартиры" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(5)}>
+//           <ListItemIcon>
+//             <MapIcon width="18" height="18" title={''} />
+//           </ListItemIcon>
+//           <ListItemText primary="Посмотреть на карте" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(6)}>
+//           <ListItemIcon>
+//             <img className="payIcon" src={imgPay} alt="*" width={16} height={16} />
+//           </ListItemIcon>
+//           <ListItemText primary="Прайс квартиры" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(7)}>
+//           <ListItemIcon>
+//             <img className="payIcon" src={imgGalery} alt="*" width={19} height={19} />
+//           </ListItemIcon>
+//           <ListItemText primary="Фотографии квартиры" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(8)}>
+//           <ListItemIcon>
+//             <img className="videoIcon" src={imgVideo} alt="*" width={19} height={19} />
+//           </ListItemIcon>
+//           <ListItemText primary="Видео квартиры" />
+//         </ListItemButton>
+
+//         <ListItemButton onClick={() => handleAction(9)}>
+//           <ListItemIcon>
+//             <img className="videoIcon" src={imgDoor} alt="*" width={19} height={19} />
+//           </ListItemIcon>
+//           <ListItemText primary="Данные замка" />
+//         </ListItemButton>
+//       </List>
+//     </Paper>
+//   </div>
+// </Dialog>

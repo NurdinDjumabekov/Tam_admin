@@ -5,6 +5,7 @@ import ListLandlordPage from 'views/ListLandlordPage/ListLandlordPage';
 import ListApartmentLandlordPage from 'views/ListApartmentLandlordPage/ListApartmentLandlordPage';
 import ListUsersPage from 'views/ListUsersPage/ListUsersPage';
 import ListOrdersPage from 'views/ListOrdersPage/ListOrdersPage';
+import { Navigate } from 'react-router-dom';
 
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
 
@@ -13,16 +14,20 @@ const MainRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: '/',
+      index: true,
+      element: <Navigate to="/main" replace />
+    },
+    {
+      path: '/main',
       element: <DashboardDefault />
     },
     {
       path: 'list',
-      children: [{ path: 'users', element: <ListUsersPage /> }]
+      children: [{ path: 'landlords', element: <ListLandlordPage /> }]
     },
     {
       path: 'list',
-      children: [{ path: 'landlords', element: <ListLandlordPage /> }]
+      children: [{ path: 'users', element: <ListUsersPage /> }]
     },
     {
       path: 'list',
@@ -36,3 +41,28 @@ const MainRoutes = {
 };
 
 export default MainRoutes;
+
+// ////////// hooks
+// import * as React from 'react';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+
+// /////// fns
+
+// ////// components
+
+// ////// style
+// import './style.scss';
+
+// ////// icons
+
+// //// страница входа
+// const WelcomePage = () => {
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+
+//   return <div></div>;
+// };
+
+// export default WelcomePage;

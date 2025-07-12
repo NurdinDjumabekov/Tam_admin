@@ -1,7 +1,14 @@
 import { Tooltip } from '@mui/material';
 import React from 'react';
 
-const DeleteIcon = ({ title = '', backgroundColor = 'transparent', color = '#222', width = '20', height = '20', ...props }) => {
+const DeleteIcon = ({
+  title = '',
+  backgroundColor = 'transparent',
+  color = 'rgba(255, 0, 0, 0.3)',
+  width = '20',
+  height = '20',
+  ...props
+}) => {
   return (
     <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
       <Tooltip title={title} disableInteractive>

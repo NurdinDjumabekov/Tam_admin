@@ -16,6 +16,7 @@ import './style.scss';
 
 /////// helpers
 import { myAlert } from 'helpers/myAlert';
+import Titles from 'common/Titles/Titles';
 
 const ViewVideoApartmentPage = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const ViewVideoApartmentPage = () => {
 
   return (
     <div className="videoApartmentPage">
-      <MainCard title="Список видео квартиры" sx={{ height: '100%' }}>
+      <MainCard title={<Titles title={`Список видео квартиры`} />} sx={{ height: '100%' }}>
         <table className="video-table">
           <thead>
             <tr>
@@ -94,7 +95,15 @@ const ViewVideoApartmentPage = () => {
                     ref={(el) => (fileInputRefs.current[index] = el)}
                     onChange={(e) => handleUpload(e, item, index)}
                   />
-                  <button onClick={() => fileInputRefs.current[index]?.click()}>
+                  <button
+                    onClick={() => {
+                      const input = fileInputRefs.current[index];
+                      if (input) {
+                        input.value = '';
+                        input.click();
+                      }
+                    }}
+                  >
                     {item?.video === '' ? 'Загрузить видео' : 'Загрузить новое видео'}
                   </button>
                 </td>

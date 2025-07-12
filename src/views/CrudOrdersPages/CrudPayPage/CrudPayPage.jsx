@@ -30,8 +30,6 @@ const CrudPayPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(location, 'location');
-
   const [crudData, setCrudData] = useState({});
   const [listSelect, setListSelect] = useState([]);
 
@@ -65,7 +63,6 @@ const CrudPayPage = () => {
       payGuid: location?.state?.pay?.guid,
       orderGuid: location?.state?.order.guid
     };
-    console.log(send, 'send');
     const result = await dispatch(delTarifOrderReq(send)).unwrap();
     if (result?.res == 1) {
       myAlert(result?.mes);
@@ -98,7 +95,28 @@ const CrudPayPage = () => {
                   name="tariff"
                   value={crudData?.tariff}
                   menuPortalTarget={document.body}
-                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                  styles={{
+                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                      color: state.isSelected ? '#fff' : '#e0e0e0',
+                      cursor: 'pointer'
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      backgroundColor: '#111',
+                      borderColor: '#2172ef',
+                      color: '#fff'
+                    }),
+                    singleValue: (base) => ({ ...base, color: '#fff' }),
+                    menu: (base) => ({
+                      ...base,
+                      backgroundColor: '#333333',
+                      borderRadius: 8,
+                      overflow: 'hidden'
+                    })
+                  }}
                   required={true}
                 />
               </div>

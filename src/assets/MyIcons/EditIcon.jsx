@@ -1,7 +1,14 @@
 import { Tooltip } from '@mui/material';
 import React from 'react';
 
-const EditIcon = ({ title = '', backgroundColor = 'transparent', color = '#222', width = '18', height = '18', ...props }) => {
+const EditIcon = ({
+  title = '',
+  backgroundColor = 'transparent',
+  color = 'rgba(215, 215, 215, 0.786)',
+  width = '18',
+  height = '18',
+  ...props
+}) => {
   return (
     <div style={{ display: 'inline-flex', cursor: 'pointer' }}>
       <Tooltip title={title} disableInteractive>

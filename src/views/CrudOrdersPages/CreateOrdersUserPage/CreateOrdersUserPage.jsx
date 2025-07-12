@@ -130,14 +130,12 @@ const CreateOrdersUserPage = () => {
   };
 
   return (
-    <div className=" tableOrders crudTableOrders createOrdersAdmin">
+    <div className="tableOrders crudTableOrders createOrdersAdmin">
       <MainCard
         title={
-          <>
-            <Titles
-              title={`Создание бронирования (${location?.state?.typeCreateOrder?.label}: ${location?.state?.label}) квартира №${location?.state?.id}`}
-            />
-          </>
+          <Titles
+            title={`Создание бронирования (${location?.state?.typeCreateOrder?.label}: ${location?.state?.label}) квартира №${location?.state?.id}`}
+          />
         }
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
@@ -152,7 +150,54 @@ const CreateOrdersUserPage = () => {
               name="tariff"
               value={crudData?.tariff}
               menuPortalTarget={document.body}
-              styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              styles={{
+                container: (base) => ({
+                  ...base,
+                  width: 170,
+                  minHeight: 32,
+                  height: 32
+                }),
+                control: (base) => ({
+                  ...base,
+                  minHeight: 32,
+                  height: 32,
+                  padding: 0,
+                  backgroundColor: '#1e1e1e',
+                  borderColor: '#ffffff24',
+                  color: '#ffffff24'
+                }),
+                valueContainer: (base) => ({
+                  ...base,
+                  height: 32,
+                  padding: '0 8px 8px 8px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }),
+                indicatorsContainer: (base) => ({
+                  ...base,
+                  height: 32
+                }),
+                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                  color: state.isSelected ? '#e0e0e0' : '#e0e0e0',
+                  cursor: 'pointer'
+                }),
+
+                singleValue: (base) => ({
+                  ...base,
+                  color: '#9e9e9e',
+                  fontSize: '12px',
+                  lineHeight: '16px'
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: '#333333',
+                  borderRadius: 8,
+                  overflow: 'hidden'
+                })
+              }}
               required={true}
             />
           </div>
@@ -166,7 +211,54 @@ const CreateOrdersUserPage = () => {
               name="status"
               value={crudData?.status}
               menuPortalTarget={document.body}
-              styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              styles={{
+                container: (base) => ({
+                  ...base,
+                  width: 170,
+                  minHeight: 32,
+                  height: 32
+                }),
+                control: (base) => ({
+                  ...base,
+                  minHeight: 32,
+                  height: 32,
+                  padding: 0,
+                  backgroundColor: '#1e1e1e',
+                  borderColor: '#ffffff24',
+                  color: '#ffffff24'
+                }),
+                valueContainer: (base) => ({
+                  ...base,
+                  height: 32,
+                  padding: '0 8px 8px 8px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }),
+                indicatorsContainer: (base) => ({
+                  ...base,
+                  height: 32
+                }),
+                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                  color: state.isSelected ? '#e0e0e0' : '#e0e0e0',
+                  cursor: 'pointer'
+                }),
+
+                singleValue: (base) => ({
+                  ...base,
+                  color: '#9e9e9e',
+                  fontSize: '12px',
+                  lineHeight: '16px'
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: '#333333',
+                  borderRadius: 8,
+                  overflow: 'hidden'
+                })
+              }}
               required={true}
             />
           </div>
@@ -207,7 +299,7 @@ const CreateOrdersUserPage = () => {
                     cleaningEndTime: cleaningEnd
                   });
                 }}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>
@@ -221,7 +313,7 @@ const CreateOrdersUserPage = () => {
                 placeholder=""
                 value={crudData?.dateEnd}
                 onChange={(value) => setCrudData({ ...crudData, dateEnd: value })}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>
@@ -235,7 +327,7 @@ const CreateOrdersUserPage = () => {
                 placeholder=""
                 value={crudData?.cleaningStartTime}
                 onChange={(value) => setCrudData({ ...crudData, cleaningStartTime: value })}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>
@@ -249,7 +341,7 @@ const CreateOrdersUserPage = () => {
                 placeholder=""
                 value={crudData?.cleaningEndTime}
                 onChange={(value) => setCrudData({ ...crudData, cleaningEndTime: value })}
-                style={{ width: '100%' }}
+                style={{ color: '#e7e7e7e0', width: '100%', background: '#222222 ', border: 'none' }}
               />
             </div>
           </div>

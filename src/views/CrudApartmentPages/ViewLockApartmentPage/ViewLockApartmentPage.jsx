@@ -19,6 +19,7 @@ import './style.scss';
 
 /////// helpers
 import { myAlert } from 'helpers/myAlert';
+import Titles from 'common/Titles/Titles';
 
 const ViewLockApartmentPage = () => {
   const dispatch = useDispatch();
@@ -85,12 +86,12 @@ const ViewLockApartmentPage = () => {
   return (
     <div className="crud_apartment_page crudPrice viewLockApartmentPage">
       <MainCard
-        title={`Замок (${location?.state?.address})`}
+        title={<Titles title={`Замок (${location?.state?.address})`} />}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="crud_apartment_page__inner">
-          <form className="crudUsers" onSubmit={saveDataLock}>
+          <form className="crudUsers">
             <div className="myInputs selectCategs">
               <h5>Выберите аккаунт привязанный к замку</h5>
               <Select
@@ -100,7 +101,54 @@ const ViewLockApartmentPage = () => {
                 name="account_admin"
                 value={crudData?.account_admin}
                 menuPortalTarget={document.body}
-                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+                styles={{
+                  container: (base) => ({
+                    ...base,
+                    width: 170,
+                    minHeight: 32,
+                    height: 32
+                  }),
+                  control: (base) => ({
+                    ...base,
+                    minHeight: 32,
+                    height: 32,
+                    padding: 0,
+                    backgroundColor: '#1e1e1e',
+                    borderColor: '#ffffff24',
+                    color: '#ffffff24'
+                  }),
+                  valueContainer: (base) => ({
+                    ...base,
+                    height: 32,
+                    padding: '0 8px 8px 8px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }),
+                  indicatorsContainer: (base) => ({
+                    ...base,
+                    height: 32
+                  }),
+                  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                  option: (base, state) => ({
+                    ...base,
+                    backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
+                    color: state.isSelected ? '#e0e0e0' : '#e0e0e0',
+                    cursor: 'pointer'
+                  }),
+
+                  singleValue: (base) => ({
+                    ...base,
+                    color: '#9e9e9e',
+                    fontSize: '12px',
+                    lineHeight: '16px'
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: '#333333',
+                    borderRadius: 8,
+                    overflow: 'hidden'
+                  })
+                }}
                 required={true}
               />
             </div>
@@ -113,9 +161,8 @@ const ViewLockApartmentPage = () => {
               name={'lockCodeStandart'}
               type={'number'}
             />
-            <button className="createUser">
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
+            <button onClick={saveDataLock} className="standartBtn">
+              Сохранить
             </button>
           </form>
         </div>

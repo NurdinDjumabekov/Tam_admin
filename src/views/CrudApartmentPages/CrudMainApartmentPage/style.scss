@@ -1,10 +1,18 @@
 .crud_apartment_page {
   height: 100%;
   position: relative;
+  background: linear-gradient(to right, #181818e2, #0b0b0be7);
+
+  > div {
+    background: transparent;
+
+    hr {
+      border: 1px solid #d7d7d71f;
+    }
+  }
 
   &__inner {
     height: calc(100vh - 220px);
-    overflow-y: scroll;
     padding: 0px 16px;
 
     form {
@@ -12,10 +20,6 @@
       width: 100%;
       min-width: 100%;
       gap: 20px;
-
-      .inputSend {
-        margin: 10px 0 0 0;
-      }
 
       > div {
         width: calc(50% - 10px);
@@ -51,10 +55,6 @@
       }
     }
 
-    .selectCategs {
-      margin-bottom: 14px;
-    }
-
     @media screen and (max-width: 600px) {
       height: calc(100vh - 190px);
     }
@@ -62,6 +62,15 @@
 }
 
 .mainCrudApartment {
+  width: 1280px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1330px) {
+    width: 100%;
+    max-width: 100%;
+  }
+
   > div {
     > div:first-child {
       > div {
@@ -86,5 +95,22 @@
         }
       }
     }
+  }
+
+  .selectCategs {
+    padding: 14px 0 0 0;
+  }
+}
+
+.mainCrudApartmentDel {
+  position: fixed;
+  left: 0px !important;
+  bottom: 0px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin: 69px 0 0 0 !important;
+
+  > div {
+    height: 220px;
   }
 }
