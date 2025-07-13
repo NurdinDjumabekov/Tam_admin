@@ -7,13 +7,10 @@ import './style.scss';
 
 const BtnCancel = (props) => {
   const { text, click } = props;
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
 
   return (
-    <div className="btnCancel">
-      <div onClick={click} className="createUser">
+    <div className="btnCancels">
+      <div onClick={click}>
         <p>{text}</p>
       </div>
     </div>

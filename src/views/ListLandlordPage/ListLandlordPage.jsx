@@ -52,7 +52,7 @@ const ListLandlordPage = () => {
   };
 
   return (
-    <div className="tableLandlords tableTopBtn">
+    <div className="my_tables list_landlord">
       <MainCard
         title={
           <div className="actionHeader">
@@ -62,10 +62,8 @@ const ListLandlordPage = () => {
             </button>
           </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 70px)', padding: 1 } }}
-        contentSX={{ padding: 0 }}
       >
-        <div className="viewUsersPage">
+        <div className="my_tables__inner">
           <TableVirtuoso
             data={listLandlord}
             components={VirtuosoTableComponents}
@@ -150,7 +148,7 @@ function rowContent(_index, row, setCrudLandlord, navigate) {
     if (column?.dataKey == '...') {
       return (
         <TableCell key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
-          <button className="viewLandlord" onClick={viewApartment}>
+          <button className="viewClick" onClick={viewApartment}>
             Посмотреть
           </button>
         </TableCell>

@@ -22,7 +22,7 @@ const MainRoutes = {
       element: <DashboardDefault />
     },
     {
-      path: 'list',
+      path: 'list', ////////++++++++++++
       children: [{ path: 'landlords', element: <ListLandlordPage /> }]
     },
     {

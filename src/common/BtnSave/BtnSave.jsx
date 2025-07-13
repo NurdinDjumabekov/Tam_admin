@@ -12,8 +12,8 @@ const BtnSave = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="btnSave">
-      <button onClick={click} className="createUser">
+    <div className="btnSaves">
+      <button onClick={click}>
         <p>{text}</p>
       </button>
     </div>

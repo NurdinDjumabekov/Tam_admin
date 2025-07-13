@@ -389,30 +389,12 @@ button {
   }
 }
 
-.menuMain {
-  // width: 1280px;
-  // max-width: 1280px;
-  // margin: 0 auto;
-  // padding: 0 !important;
-}
-
 .noneDataForModal {
   padding: 0 !important;
 }
 
 .noneMenu {
   display: none !important;
-}
-
-.standartBtn {
-  // background: #000000e3 !important;
-  background: #2172ef;
-  border-radius: 4px;
-  padding: 10px 15px 12px;
-  line-height: 10px;
-  font-size: 13px;
-  font-weight: 400;
-  color: #fff;
 }
 
 .actionHeader {
@@ -478,4 +460,144 @@ button {
       padding-bottom: 18px;
     }
   }
+}
+///////////////////////////
+.my_tables {
+  height: 100%;
+  position: relative;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #00000042;
+  backdrop-filter: blur(102px); // размытие фона (на поддерживаемых браузерах)
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); // тонкая белая граница снизу
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); // лёгкая тень вниз
+  z-index: 99;
+
+  > div {
+    background: transparent;
+    height: 100%;
+
+    &:nth-of-type(2) {
+      height: calc(100% - 70px);
+      padding: 0px !important;
+      overflow: hidden;
+    }
+
+    > div {
+      background: transparent;
+    }
+
+    > div:first-child {
+      padding: 10px 15px !important;
+    }
+
+    hr {
+      border: 1px solid #6c6c6c1b !important;
+    }
+
+    > div:last-child {
+      height: 100%;
+      padding: 0px !important;
+
+      > div {
+        height: 100%;
+      }
+
+      > div:nth-child(2) {
+        height: 100%;
+      }
+    }
+  }
+
+  .my_tables__inner {
+    height: calc(100% - 0px);
+    width: 100%;
+
+    > div:first-child {
+      background: transparent !important;
+      height: calc(100% - 55px) !important;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3); // цвет ползунка
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    table {
+      thead,
+      tbody {
+        tr {
+          cursor: pointer;
+
+          > th,
+          > td {
+            background: transparent;
+            color: rgba(215, 215, 215, 0.586);
+          }
+
+          th {
+            background: #1a1a1a;
+            padding-bottom: 8px !important;
+            padding-top: 8px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+          }
+
+          td {
+            padding-bottom: 8px !important;
+            padding-top: 8px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+          }
+
+          th:first-child,
+          td:first-child {
+            min-width: 55px !important;
+            width: 55px !important;
+            max-width: 55px !important;
+            padding-left: 25px !important;
+          }
+
+          th:last-child,
+          td:last-child {
+            padding-right: 25px !important;
+          }
+
+          .viewClick {
+            font-size: 11px;
+            color: rgba(215, 215, 215, 0.786);
+            text-decoration: underline;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.standartBtn {
+  background: #134591;
+  border-radius: 4px;
+  padding: 10px 15px 12px;
+  line-height: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
 }

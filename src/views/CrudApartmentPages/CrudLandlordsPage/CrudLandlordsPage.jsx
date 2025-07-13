@@ -21,6 +21,8 @@ import './style.scss';
 ////// helpers
 import { myAlert } from 'helpers/myAlert';
 import { listActive } from 'helpers/myLocal';
+import DelAlert from 'common/DelAlert/DelAlert';
+import MySelect from 'common/MySelect/MySelect';
 
 //// crud пользователя
 const CrudLandlordsPage = () => {
@@ -88,87 +90,40 @@ const CrudLandlordsPage = () => {
 
   if (location?.state?.action_type == 3) {
     return (
-      <div className="applicationForAdminPage loginPage crudLanlordsPage">
-        <MainCard
-          title={<TitlesModal title={'Удаление арендодателя'} />}
-          sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
-          contentSX={{ padding: 0 }}
-        >
-          <div className="applicationForAdminPage__inner">
-            <div className="textCommentAdmin">
-              <p className="moreText">Вы действительно хотите удалить арендодателя ?</p>
-              <div className="actionBtn">
-                <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
-                <BtnSave click={crudLandLordFn} text={'Удалить'} />
-              </div>
-            </div>
-          </div>
-        </MainCard>
-      </div>
+      <DelAlert
+        title={'Удаление арендодателя'}
+        text={
+          'Вы действительно хотите удалить арендодателя ? Этот процесс не обратим, если вы удалеите арендодателя, то данные восстановить не получится!'
+        }
+        click={crudLandLordFn}
+        yesText={'Удалить'}
+        noText={'Отмена'}
+      />
     );
   }
 
+  const titleModal = crudLandlord?.action_type == 1 ? 'Введите данные' : 'Редактирование';
+
   return (
-    <div className="applicationForAdminPage loginPage">
-      <MainCard
-        title={
-          <>
-            <TitlesModal title={crudLandlord?.action_type == 1 ? 'Введите данные' : 'Редактирование'} />
-          </>
-        }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
-        contentSX={{ padding: 0 }}
-      >
-        <div className="applicationForAdminPage__inner">
-          <div className="textCommentAdmin">
-            <SendInput value={crudLandlord?.firstName} onChange={onChange} title={'Фамилие'} name={'firstName'} />
-            <SendInput value={crudLandlord?.name} onChange={onChange} title={'Имя'} name={'name'} />
-            <SendInput value={crudLandlord?.lastName} onChange={onChange} title={'Отчетсво'} name={'lastName'} />
-            <SendInput value={crudLandlord?.password} onChange={onChange} title={'Пароль'} name={'password'} />
-            <SendInput
-              value={crudLandlord?.phoneNumber}
-              onChange={onChange}
-              title={'Номер (WhatsApp)'}
-              name={'phoneNumber'}
-              placeholder={'996*********'}
-              type="number"
-            />
-            <div className="myInputs">
-              <h5>Статус</h5>
-              <Select
-                options={listActive}
-                className="select"
-                onChange={onChangeWS}
-                value={crudLandlord?.status}
-                menuPortalTarget={document.body}
-                styles={{
-                  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                  option: (base, state) => ({
-                    ...base,
-                    backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                    color: state.isSelected ? '#fff' : '#e0e0e0',
-                    cursor: 'pointer'
-                  }),
-                  control: (base) => ({
-                    ...base,
-                    backgroundColor: '#111',
-                    borderColor: '#2172ef',
-                    color: '#fff'
-                  }),
-                  singleValue: (base) => ({ ...base, color: '#fff' }),
-                  menu: (base) => ({
-                    ...base,
-                    backgroundColor: '#333333',
-                    borderRadius: 8,
-                    overflow: 'hidden'
-                  })
-                }}
-              />
-            </div>
-            <div className="actionBtn">
-              <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
-              <BtnSave click={crudLandLordFn} text={'Сохранить'} />
-            </div>
+    <div className="crud_data">
+      <MainCard title={<TitlesModal title={titleModal} />}>
+        <div className="crud_data__inner">
+          <MySelect value={crudLandlord?.status} onChangeWS={onChangeWS} list={listActive} title={'Статус'} />
+          <SendInput value={crudLandlord?.firstName} onChange={onChange} title={'Фамилие'} name={'firstName'} />
+          <SendInput value={crudLandlord?.name} onChange={onChange} title={'Имя'} name={'name'} />
+          <SendInput value={crudLandlord?.lastName} onChange={onChange} title={'Отчетсво'} name={'lastName'} />
+          <SendInput value={crudLandlord?.password} onChange={onChange} title={'Пароль'} name={'password'} />
+          <SendInput
+            value={crudLandlord?.phoneNumber}
+            onChange={onChange}
+            title={'Номер (WhatsApp)'}
+            name={'phoneNumber'}
+            placeholder={'996*********'}
+            type="number"
+          />
+          <div className="actionCrudBtn">
+            <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
+            <BtnSave click={crudLandLordFn} text={'Сохранить'} />
           </div>
         </div>
       </MainCard>
