@@ -1,7 +1,6 @@
 .mainApp {
   min-width: 100vw;
   min-height: 100vh;
-  //   background-image: linear-gradient(to right, #212225, #2f3032), url('/images/landing/pattern.png');
   background: #fff;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,24 +8,17 @@
   background-blend-mode: overlay;
 
   .mainHeader {
-    // background: transparent;
     background-image: linear-gradient(to right, #232323, #232323), url('../../assets/images/landing/pattern.png');
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 100%;
     margin-right: 0px !important;
+
+    @media screen and (max-width: 550px) {
+      padding-top: 68px;
+    }
   }
 }
-
-// .standartLayout {
-//   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-//   background: #a0a0a080;
-//   z-index: 99;
-
-//   > div {
-//     padding-top: 12px !important;
-//     padding-bottom: 12px !important;
-//   }
-// }
 
 .standartLayout {
   background: rgba(0, 0, 0, 0.907);

@@ -16,6 +16,9 @@ import { drawerWidth } from 'store/constant';
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+  const isSmall = useMediaQuery('(max-width:500px)');
+
+  console.log(isSmall, 'isSmall');
 
   const container = window !== undefined ? () => window.document.body : undefined;
 
@@ -52,10 +55,9 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           <PerfectScrollbar
             component="div"
             style={{
-              height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 72px)',
+              height: !matchUpMd ? 'calc(100vh - 56px)' : isSmall ? 'calc(100vh - 18px) !important' : 'calc(100vh - 72px)',
               paddingLeft: '16px',
               paddingRight: '16px'
-              // background: '#000000e9'
             }}
           >
             <MenuList drawerToggle={matchUpMd ? () => {} : drawerToggle} />

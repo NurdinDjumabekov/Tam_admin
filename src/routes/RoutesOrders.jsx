@@ -26,7 +26,7 @@ const RoutesOrders = {
     },
     {
       path: 'choice_user',
-      element: <ChoiceUserPage />
+      element: <ChoiceUserPage /> ////////++++++++++++
     },
     {
       path: 'choice_apartment',

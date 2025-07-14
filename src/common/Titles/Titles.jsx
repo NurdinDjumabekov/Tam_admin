@@ -7,7 +7,7 @@ import './style.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Titles = (props) => {
-  const { title } = props;
+  const { title, viewPrev = true } = props;
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,9 +16,11 @@ const Titles = (props) => {
 
   return (
     <div className="titlesAction">
-      <button onClick={preFN} className="prevBtn">
-        <ArrowBackIcon fontSize="13" />
-      </button>
+      {viewPrev && (
+        <button onClick={preFN} className="prevBtn">
+          <ArrowBackIcon fontSize="13" />
+        </button>
+      )}
       <h5>{title}</h5>
     </div>
   );
