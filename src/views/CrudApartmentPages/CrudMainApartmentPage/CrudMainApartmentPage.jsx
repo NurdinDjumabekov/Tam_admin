@@ -3,22 +3,20 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from '@mui/system';
 
 /////// fns
 import { crudApartmentReq, getAllSelectsReq, getEveryApartmentsReq } from 'store/reducers/apartmentsSlice';
 
 /////// icons
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddIcon from '@mui/icons-material/Add';
 
 ////// components
 import MainCard from 'ui-component/cards/MainCard';
-import Select from 'react-select';
 import SendInput from 'common/SendInput/SendInput';
-import ConfirmModal from 'common/ConfirmModal/ConfirmModal';
-import TitlesModal from 'common/TitlesModal/TitlesModal';
-import BtnCancel from 'common/BtnCancel/BtnCancel';
-import BtnSave from 'common/BtnSave/BtnSave';
 import Titles from 'common/Titles/Titles';
+import DelAlert from 'common/DelAlert/DelAlert';
+import MySelect from 'common/MySelect/MySelect';
 
 ////// style
 import './style.scss';
@@ -26,13 +24,14 @@ import './style.scss';
 ////// helpers && enums
 import { listActiveApartment, listBollean, listCountApartnment } from 'helpers/myLocal';
 import { myAlert } from 'helpers/myAlert';
-import DelAlert from 'common/DelAlert/DelAlert';
 
 //// список пользователей
 const CrudMainApartmentPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const isSmall = useMediaQuery('(max-width:550px)');
+  const isSmall650 = useMediaQuery('(max-width:650px)');
 
   const { dataSelects } = useSelector((state) => state.apartmentsSlice);
 
@@ -46,23 +45,83 @@ const CrudMainApartmentPage = () => {
   const crudLandLordFn = async (e) => {
     if (e?.preventDefault) e.preventDefault();
 
+    if (!crudLandlord?.status) {
+      return myAlert('Выберите статус квартиры', 'error');
+    }
+
+    if (!crudLandlord?.type_apartment) {
+      return myAlert('Выберите вид недвижимости', 'error');
+    }
+
+    if (crudLandlord?.city == '' || !crudLandlord?.city) {
+      return myAlert('Заполните город', 'error');
+    }
+
+    if (crudLandlord?.district == '' || !crudLandlord?.district) {
+      return myAlert('Заполните район', 'error');
+    }
+
+    if (crudLandlord?.address_name == '' || !crudLandlord?.address_name) {
+      return myAlert('Заполните улицу', 'error');
+    }
+
+    if (crudLandlord?.description == '' || !crudLandlord?.description) {
+      return myAlert('Заполните описание', 'error');
+    }
+
+    if (crudLandlord?.more_info == '' || !crudLandlord?.more_info) {
+      return myAlert('Заполните доп информацию', 'error');
+    }
+
+    if (!crudLandlord?.count_room) {
+      return myAlert('Выберите количество комнат', 'error');
+    }
+
+    if (!crudLandlord?.categ_apartment) {
+      return myAlert('Выберите категорию квартиры', 'error');
+    }
+
+    if (crudLandlord?.square == '' || !crudLandlord?.square) {
+      return myAlert('Заполните квадратуру (м²)', 'error');
+    }
+
+    if (crudLandlord?.house_number == '' || !crudLandlord?.house_number) {
+      return myAlert('Заполните номер квартиры', 'error');
+    }
+
+    if (crudLandlord?.all_floor == '' || !crudLandlord?.all_floor) {
+      return myAlert('Заполните общее кол-во этажей в квартире', 'error');
+    }
+
+    if (crudLandlord?.floor == '' || !crudLandlord?.floor) {
+      return myAlert('Заполните поле на котором указывается на каком этаже находится квартира', 'error');
+    }
+
+    if (crudLandlord?.apartment_number == '' || !crudLandlord?.apartment_number) {
+      return myAlert('Заполните номер здания', 'error');
+    }
+
+    if (!crudLandlord?.install_lock) {
+      return myAlert("Выберите поле 'Устанавливается ли замок ?'", 'error');
+    }
+
     const sendData = {
       ...crudLandlord,
-      action_type: location.state.action_type,
-      guid: location.state.guid_apartment,
-      guid_landlord: location.state.guid_landlord,
+      action_type: location?.state?.action_type,
+      guid: location?.state?.guid_apartment,
+      guid_landlord: location?.state?.guid_landlord,
       position_apartment: 0,
       name_apartment: '',
-      apartment_category: crudLandlord.categ_apartment?.value,
-      count_room: crudLandlord.count_room?.value,
-      install_lock: crudLandlord.install_lock?.value == 'true',
-      status: crudLandlord.status?.value,
-      type_apartment: crudLandlord.type_apartment?.value,
-      all_floor: Number(crudLandlord.all_floor),
-      floor: Number(crudLandlord.floor),
-      house_number: String(crudLandlord.house_number),
-      apartment_number: String(crudLandlord.apartment_number),
-      square: String(crudLandlord.square)
+      apartment_category: crudLandlord?.categ_apartment?.value,
+      count_room: crudLandlord?.count_room?.value,
+      install_lock: crudLandlord?.install_lock?.value == 'true',
+      status: crudLandlord?.status?.value,
+      type_apartment: crudLandlord?.type_apartment?.value,
+      all_floor: Number(crudLandlord?.all_floor),
+      floor: Number(crudLandlord?.floor),
+      house_number: String(crudLandlord?.house_number),
+      apartment_number: String(crudLandlord?.apartment_number),
+      square: String(crudLandlord?.square)
     };
 
     const result = await dispatch(crudApartmentReq(sendData)).unwrap();
@@ -71,11 +130,6 @@ const CrudMainApartmentPage = () => {
       setCrudLandlord({});
       myAlert(result.mes);
       navigate(-1);
-      // if (location.state.nav == 1) {
-      //   navigate(-1);
-      // } else {
-      //   navigate(-2);
-      // }
     } else {
       myAlert(result.mes, 'error');
     }
@@ -131,84 +185,40 @@ const CrudMainApartmentPage = () => {
   }
 
   const objtitle = { 1: 'Создание квартиры', 2: 'Редактирование квартиры' };
+  const objBtns = { 1: 'Добавить квартиру', 2: 'Сохранить квартиру' };
   return (
-    <div className="crud_apartment_page crudData tableBottomBtn mainCrudApartment">
+    <div className="crud_apartment_page">
       <MainCard
-        title={<Titles title={objtitle?.[location.state?.action_type]} />}
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
-        contentSX={{ padding: 0 }}
+        title={
+          <div className="actionHeader">
+            <Titles title={objtitle?.[location.state?.action_type]} />
+            {!isSmall && (
+              <button onClick={crudLandLordFn} className="standartBtn">
+                {isSmall650 ? <AddIcon sx={{ width: 19, height: 19 }} /> : objBtns?.[location.state?.action_type]}
+              </button>
+            )}
+          </div>
+        }
       >
         <div className="crud_apartment_page__inner">
-          <form className="crudUsers" onSubmit={crudLandLordFn}>
+          <form className="crudUsers">
             <div>
-              <div className="myInputs selectCategs">
-                <h5>Статус квартиры</h5>
-                <Select
-                  options={listActiveApartment}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="status"
-                  value={crudLandlord?.status}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
-              <div className="myInputs selectCategs">
-                <h5>Вид недвижимости</h5>
-                <Select
-                  options={dataSelects?.list_type_apartment}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="type_apartment"
-                  value={crudLandlord?.type_apartment}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+              <MySelect
+                value={crudLandlord?.status}
+                onChangeWS={onChangeWS}
+                list={listActiveApartment}
+                title={'Статус квартиры'}
+                name={'status'}
+              />
+
+              <MySelect
+                value={crudLandlord?.type_apartment}
+                onChangeWS={onChangeWS}
+                list={dataSelects?.list_type_apartment}
+                title={'Вид недвижимости'}
+                name={'type_apartment'}
+              />
+
               <SendInput required={true} value={crudLandlord?.city} onChange={onChange} title={'Город'} name={'city'} />
 
               <SendInput
@@ -246,75 +256,21 @@ const CrudMainApartmentPage = () => {
               />
             </div>
             <div>
-              <div className="myInputs selectCategs">
-                <h5>Количество комнат</h5>
-                <Select
-                  options={listCountApartnment}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="count_room"
-                  value={crudLandlord?.count_room}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+              <MySelect
+                value={crudLandlord?.count_room}
+                onChangeWS={onChangeWS}
+                list={listCountApartnment}
+                title={'Количество комнат'}
+                name={'count_room'}
+              />
 
-              <div className="myInputs selectCategs">
-                <h5>Категория квартиры</h5>
-                <Select
-                  options={dataSelects?.list_categ_apartment}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="categ_apartment"
-                  value={crudLandlord?.categ_apartment}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+              <MySelect
+                value={crudLandlord?.categ_apartment}
+                onChangeWS={onChangeWS}
+                list={dataSelects?.list_categ_apartment}
+                title={'Категория квартиры'}
+                name={'categ_apartment'}
+              />
 
               <SendInput
                 required={true}
@@ -360,46 +316,21 @@ const CrudMainApartmentPage = () => {
                 name={'apartment_number'}
               />
 
-              <div className="myInputs selectCategs">
-                <h5>Устанавливается ли замок ?</h5>
-                <Select
-                  options={listBollean}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="install_lock"
-                  value={crudLandlord?.install_lock}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+              <MySelect
+                value={crudLandlord?.install_lock}
+                onChangeWS={onChangeWS}
+                list={listBollean}
+                title={'Устанавливается ли замок ?'}
+                name={'install_lock'}
+              />
             </div>
 
-            <button className="createUser">
-              <AddBoxIcon sx={{ width: 20, height: 20 }} />
-              <p>Сохранить</p>
-            </button>
+            {isSmall && (
+              <button onClick={crudLandLordFn} className="standartBtn saveBottom">
+                <AddIcon sx={{ width: 19, height: 19 }} />
+                <p>{objBtns?.[location.state?.action_type]}</p>
+              </button>
+            )}
           </form>
         </div>
       </MainCard>

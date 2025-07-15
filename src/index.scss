@@ -114,19 +114,6 @@ button {
   }
 }
 
-.everyOneActive {
-  color: #00ab557a !important;
-}
-
-.everyOneNoActive {
-  color: rgba(255, 0, 0, 0.568) !important;
-}
-
-.everyOneNoActiveBlink {
-  color: rgba(255, 0, 0, 0.568) !important;
-  animation: blink 3s infinite;
-}
-
 .mapIcon {
   padding: 3px 0px 2px 0px;
 }
@@ -160,14 +147,6 @@ button {
 
 .css-k78yb4-MuiPaper-root-MuiDialog-paper {
   background: transparent !important;
-}
-
-.empty_list {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .saveRules {
@@ -218,10 +197,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.errorData {
-  color: rgba(255, 0, 0, 0.793);
 }
 
 .datePicker {
@@ -403,32 +378,6 @@ button {
   gap: 20px;
 }
 
-.myInputs {
-  margin: 7px 0 0 0 !important;
-  h5 {
-    color: rgba(231, 231, 231, 0.8784313725) !important;
-
-    font-size: 16px;
-    margin: 0 0 5px 0;
-
-    @media screen and (max-width: 550px) {
-      margin: 0 0 8px 0;
-    }
-  }
-
-  .select {
-    > div {
-      background: #222222 !important;
-      border: 2px solid #222222 !important;
-      color: rgba(231, 231, 231, 0.8784313725) !important;
-
-      div {
-        color: rgba(231, 231, 231, 0.8784313725) !important;
-      }
-    }
-  }
-}
-
 .headerActionsStandart {
   display: flex;
   align-items: center;
@@ -521,7 +470,7 @@ button {
 
     > div:first-child {
       background: transparent !important;
-      height: calc(100% - 55px) !important;
+      height: calc(100% - 0px) !important;
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -639,10 +588,10 @@ button {
     }
 
     > div:first-child {
-      padding: 10px 25px !important;
+      padding: 10px 25px;
 
       @media screen and (max-width: 550px) {
-        padding: 30px 25px 10px !important;
+        padding: 30px 25px 10px;
       }
     }
 
@@ -689,6 +638,61 @@ button {
             height: 45px;
           }
         }
+      }
+    }
+  }
+}
+
+.empty_list {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d8d4d4;
+}
+
+.errorData {
+  color: rgba(255, 0, 0, 0.568) !important;
+}
+
+.everyOneNoActive {
+  color: rgba(255, 0, 0, 0.568) !important;
+}
+
+.everyOneActive {
+  color: #00e07ab5 !important;
+}
+
+.everyOneNoActiveBlink {
+  color: rgba(255, 0, 0, 0.568) !important;
+  animation: blink 3s infinite;
+}
+
+.myInputs {
+  margin: 12px 0 0 0 !important;
+  h5 {
+    color: rgba(231, 231, 231, 0.8784313725) !important;
+    font-size: 16px;
+    margin: 0 0 3px 0;
+
+    @media screen and (max-width: 550px) {
+      margin: 0 0 8px 0;
+    }
+  }
+
+  .select {
+    > div {
+      background: #222222 !important;
+      border: 2px solid #222222 !important;
+      color: rgba(231, 231, 231, 0.8784313725) !important;
+
+      @media screen and (max-width: 550px) {
+        height: 43px;
+      }
+
+      div {
+        color: rgba(231, 231, 231, 0.8784313725) !important;
       }
     }
   }

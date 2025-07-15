@@ -21,6 +21,7 @@ import { listUnit } from 'helpers/myLocal';
 import { crudEquipmentReq, getEquipmentReq } from 'store/reducers/apartmentsSlice';
 import PreloaderMini from 'common/PreloaderMini/PreloaderMini';
 import ConfirmModal from 'common/ConfirmModal/ConfirmModal';
+import MySelect from 'common/MySelect/MySelect';
 
 /////// fns
 
@@ -74,19 +75,7 @@ const CrudEquipment = (props) => {
               title={'Количетсво'}
               name={'count'}
             />
-            <div className="myInputs">
-              <h5>Ед. измерения</h5>
-              <Select
-                options={listUnit}
-                className="select"
-                onChange={onChangeWS}
-                value={crudEquipment?.unit}
-                menuPortalTarget={document.body}
-                styles={{
-                  menuPortal: (base) => ({ ...base, zIndex: 9999 })
-                }}
-              />
-            </div>
+            <MySelect value={crudEquipment?.unit} onChangeWS={onChangeWS} list={listUnit} title={'Ед. измерения'} name={'unit'} />
             <button className="saveData" type="submit">
               <SaveAsIcon sx={{ width: 19, height: 19 }} />
               <p>Сохранить</p>

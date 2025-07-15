@@ -1,92 +1,215 @@
-.tableApartments {
-  height: 100%;
-
-  .viewUsersPage {
-    height: calc(100% - 70px);
-    width: 100%;
-
-    .viewLandlord {
-      font-size: 12px;
+.everyApartment {
+  .actionHeader {
+    @media screen and (max-width: 550px) {
+      padding: 0px 15px 0 3px;
+      align-items: center;
     }
 
+    @media screen and (max-width: 500px) {
+      padding: 0px 10px 0 3px;
+    }
+
+    .standartBtn {
+      @media screen and (max-width: 650px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px !important;
+        height: 32px;
+        width: 40px;
+        min-width: 40px;
+        max-width: 40px;
+      }
+    }
+  }
+
+  .my_tables__inner {
     table {
+      padding: 5px 0px 300px;
       thead,
       tbody {
         tr {
-          > th,
-          > td {
-            padding-bottom: 6px !important;
-          }
-
-          th:nth-child(1),
-          td:nth-child(1) {
-            padding-left: 15px;
-            padding-right: 0px;
-          }
-
           th:nth-child(2),
           td:nth-child(2) {
-            min-width: 170px !important;
-            width: 170px !important;
-            padding-left: 10px;
-            padding-right: 15px;
+            width: 160px !important;
+            max-width: 160px !important;
+            min-width: 160px !important;
           }
 
           th:nth-child(3),
           td:nth-child(3) {
-            min-width: 90px !important;
-            width: 90px !important;
-            padding-left: 10px;
-            padding-right: 10px;
+            width: 80px !important;
+            max-width: 80px !important;
+            min-width: 80px !important;
           }
 
           th:nth-child(4),
           td:nth-child(4) {
-            min-width: 85px !important;
-            width: 85px !important;
-            padding-left: 5px;
-            padding-right: 5px;
+            width: 60px !important;
+            max-width: 60px !important;
+            min-width: 60px !important;
+
+            @media screen and (max-width: 1000px) {
+              width: 100px !important;
+              max-width: 100px !important;
+              min-width: 100px !important;
+            }
           }
 
           th:nth-child(5),
           td:nth-child(5) {
-            min-width: 105px !important;
-            width: 105px !important;
-            padding-left: 15px;
-            padding-right: 5px;
+            width: 70px !important;
+            max-width: 70px !important;
+            min-width: 70px !important;
+
+            @media screen and (max-width: 1000px) {
+              width: 110px !important;
+              max-width: 110px !important;
+              min-width: 110px !important;
+            }
           }
 
           th:nth-child(6),
           td:nth-child(6) {
-            min-width: 85px !important;
-            width: 85px !important;
-            padding-left: 15px;
-            padding-right: 5px;
+            width: 70px !important;
+            max-width: 70px !important;
+            min-width: 70px !important;
+
+            @media screen and (max-width: 1000px) {
+              width: 100px !important;
+              max-width: 100px !important;
+              min-width: 100px !important;
+            }
           }
 
           th:nth-child(7),
           td:nth-child(7) {
-            min-width: 115px !important;
-            width: 115px !important;
-            padding-left: 15px;
-            padding-right: 5px;
+            width: 70px !important;
+            max-width: 70px !important;
+            min-width: 70px !important;
+
+            @media screen and (max-width: 1000px) {
+              width: 110px !important;
+              max-width: 110px !important;
+              min-width: 110px !important;
+            }
           }
 
           th:nth-child(8),
           td:nth-child(8) {
-            min-width: 115px !important;
-            width: 115px !important;
-            padding-left: 15px;
-            padding-right: 5px;
+            width: 70px !important;
+            max-width: 70px !important;
+            min-width: 70px !important;
+
+            @media screen and (max-width: 1000px) {
+              width: 110px !important;
+              max-width: 110px !important;
+              min-width: 110px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /////////////////////////// mobile
+  .mobileListLandlord {
+    width: 100%;
+    padding: 10px 25px 0px !important;
+    border: none !important;
+
+    @media screen and (max-width: 500px) {
+      padding: 10px 20px 0px !important;
+    }
+
+    .everyLandlordCard {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 0 2px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .status {
+        font-size: 10px;
+        border-radius: 8px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        &.active {
+          color: #00e07ab5;
+        }
+
+        &.blocked {
+          color: #ff4d4d;
+        }
+      }
+
+      .landlordHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 0 15px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        .name {
+          font-size: 14px;
+          font-weight: 600;
+          color: #f0f0f0;
+        }
+      }
+
+      .landlordBody {
+        padding: 12px 15px 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        > div {
+          display: flex;
+          justify-content: flex-start;
+          justify-content: space-between;
+          gap: 6px;
+          align-items: center;
+          margin-bottom: 5px;
+
+          p {
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0;
           }
 
-          th:nth-child(9),
-          td:nth-child(9) {
-            min-width: 115px !important;
-            width: 115px !important;
-            padding-left: 15px;
-            padding-right: 5px;
+          span {
+            font-weight: 400;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.827);
           }
+        }
+      }
+
+      .actions_landlord {
+        padding: 12px 15px 10px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        button {
+          background: #ededed !important;
+          color: #222;
+          font-weight: 500;
+          font-size: 11px;
+          padding: 8px 15px 9px;
+          border-radius: 7px;
         }
       }
     }

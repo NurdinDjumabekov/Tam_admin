@@ -21,7 +21,7 @@ const NotFoundPage = () => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      dispatch(clearDataSave());
+      // dispatch(clearDataSave());
       navigate('/');
     }, 3000);
   }, []);

@@ -150,7 +150,7 @@ const CrudCoordinatesPage = () => {
   };
 
   return (
-    <div className="tableLandlords map_data">
+    <div className="map_data">
       <MainCard
         title={
           <div className="headerActionsStandart">

@@ -14,12 +14,8 @@ import './style.scss';
 import EditIcon from 'assets/MyIcons/EditIcon';
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
 import MapIcon from 'assets/MyIcons/MapIcon';
-import imgPay from '../../../assets/images/icons/pay.svg';
-import imgGalery from '../../../assets/images/icons/galery.svg';
 import imgList from '../../../assets/images/icons/list.svg';
-import imgVideo from '../../../assets/images/icons/video.svg';
 import imgListConv from '../../../assets/images/icons/list_convencies.svg';
-import imgDoor from '../../../assets/images/icons/door.svg';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined';
 import PhotoSizeSelectActualOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActualOutlined';
@@ -35,8 +31,6 @@ const MenuActionApartmentPage = () => {
   const navigate = useNavigate();
 
   const { everyApartment } = useSelector((state) => state.apartmentsSlice);
-
-  console.log(everyApartment, 'everyApartment');
 
   useEffect(() => {
     getData();
@@ -69,7 +63,9 @@ const MenuActionApartmentPage = () => {
 
     if (action == 5) {
       //// редактирование координат
-      navigate('/every/map_action', { state: { ...location.state, nav: 2 } });
+      navigate('/every/map_action', {
+        state: { ...location.state, latitude: everyApartment?.latitude, longitude: everyApartment?.longitude, nav: 2 }
+      });
     }
 
     if (action == 6) {
@@ -79,7 +75,7 @@ const MenuActionApartmentPage = () => {
 
     if (action == 7) {
       //// редактирование и отображение фото квартиры
-      navigate('/every/crud_apartment_photo', { state: location.state });
+      navigate('/every/view_apartment_photo', { state: location.state });
     }
 
     if (action == 8) {
@@ -89,19 +85,19 @@ const MenuActionApartmentPage = () => {
 
     if (action == 9) {
       //// редактирование и отображение видео квартиры
-      navigate('/every/view_apartment_lock', { state: location.state });
+      navigate('/every/crud_apartment_lock', { state: location.state });
     }
   };
 
   return (
-    <div className="container  tableMenuActions">
+    <div className="tableMenuActions">
       <MainCard
         title={<Titles title={`${location?.state?.address}`} />}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >
         <div className="tableMenuActions__inner">
-          <div className="orderTableWrapper">
+          <div className="tableMenuActions__left_menu">
             <button onClick={() => handleAction(1)}>
               <EditIcon width="18" height="18" title={''} />
               <p>Редактирование квартиры</p>

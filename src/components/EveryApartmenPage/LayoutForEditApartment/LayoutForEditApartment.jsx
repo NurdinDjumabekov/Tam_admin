@@ -59,7 +59,7 @@ const MenuActionApartmentPage = () => {
 
     if (action == 7) {
       //// редактирование и отображение фото квартиры
-      navigate('/every/crud_apartment_photo', { state: location.state });
+      navigate('/every/view_apartment_photo', { state: location.state });
     }
 
     if (action == 8) {
@@ -69,7 +69,7 @@ const MenuActionApartmentPage = () => {
 
     if (action == 9) {
       //// редактирование и отображение видео квартиры
-      navigate('/every/view_apartment_lock', { state: location.state });
+      navigate('/every/crud_apartment_lock', { state: location.state });
     }
   };
 

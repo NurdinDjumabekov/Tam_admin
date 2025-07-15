@@ -16,7 +16,7 @@ import Select from 'react-select';
 import './style.scss';
 
 const MySelect = (props) => {
-  const { value, onChangeWS, list, title } = props;
+  const { value, onChangeWS, list, title, name } = props;
 
   return (
     <div className="myInputs mySelectDark">
@@ -24,6 +24,7 @@ const MySelect = (props) => {
       <Select
         options={list}
         className="select"
+        name={name}
         onChange={onChangeWS}
         value={value}
         menuPortalTarget={document.body}

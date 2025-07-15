@@ -24,6 +24,7 @@ import { myAlert } from 'helpers/myAlert';
 
 ////// fns
 import { crudPriceApartmentReq } from 'store/reducers/otherActionApartmentSlice';
+import MySelect from 'common/MySelect/MySelect';
 
 //// список пользователей
 const CrudPriceApartmentPage = () => {
@@ -112,124 +113,56 @@ const CrudPriceApartmentPage = () => {
   };
   if (location.state.action_type == 3) {
     return (
-      <div className="noMenuDel">
-        <DelAlert
-          title={'Удаление прайса'}
-          text={'Вы действительно хотите удалить прайс ? Этот процесс не обратим и одноразовый !'}
-          yesText={'Удалить'}
-          noText={'Отмена'}
-          click={crudLandLordFn}
-        />
-      </div>
+      <DelAlert
+        title={'Удаление прайса'}
+        text={'Вы действительно хотите удалить прайс ? Этот процесс не обратим и одноразовый !'}
+        yesText={'Удалить'}
+        noText={'Отмена'}
+        click={crudLandLordFn}
+      />
     );
   }
 
   const objtitle = { 1: 'Создание нового прайса', 2: 'Редактирование прайса' };
   return (
-    <div className="crud_apartment_page crudPrice">
-      <div className="crudPrice__inner">
-        <MainCard
-          title={<Titles title={objtitle?.[location.state?.action_type]} />}
-          sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 1 } }}
-          contentSX={{ padding: 0 }}
-        >
-          <div className="crud_apartment_page__inner">
-            <form className="crudUsers">
-              <div className="myInputs selectCategs">
-                <h5>Выберите тариф</h5>
-                <Select
-                  options={listPrice}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="name"
-                  value={crudData?.name}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+    <div className="crud_data crudPrice">
+      <MainCard title={<Titles title={objtitle?.[location.state?.action_type]} />}>
+        <div className="crud_data__inner">
+          <form className="crudUsers">
+            <MySelect value={crudData?.name} onChangeWS={onChangeWS} list={listPrice} title={'Выберите тариф'} name={'name'} />
 
-              <SendInput
-                required={true}
-                value={crudData?.price}
-                onChange={onChange}
-                title={'Цена за тариф в сомах (например 200)'}
-                name={'price'}
-                type="number"
-              />
+            <SendInput
+              required={true}
+              value={crudData?.price}
+              onChange={onChange}
+              title={'Цена за тариф в сомах (например 200)'}
+              name={'price'}
+              type="number"
+            />
 
-              <SendInput
-                value={crudData?.discount}
-                onChange={onChange}
-                title={'Скидка (указывать цену, а не процент), можно просто оставить пустым'}
-                name={'discount'}
-                type="number"
-              />
+            <SendInput
+              value={crudData?.discount}
+              onChange={onChange}
+              title={'Скидка (указывать цену, а не процент), можно просто оставить пустым'}
+              name={'discount'}
+              type="number"
+            />
 
-              <div className="myInputs selectCategs">
-                <h5>Отображать только при продлении? (в основном списке его не будет)</h5>
-                <Select
-                  options={listBollean}
-                  className="select"
-                  onChange={onChangeWS}
-                  name="viewFordopList"
-                  value={crudData?.viewFordopList}
-                  menuPortalTarget={document.body}
-                  styles={{
-                    menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                    option: (base, state) => ({
-                      ...base,
-                      backgroundColor: state.isSelected ? '#2172ef' : state.isFocused ? '#2a2a2a' : 'transparent',
-                      color: state.isSelected ? '#fff' : '#e0e0e0',
-                      cursor: 'pointer'
-                    }),
-                    control: (base) => ({
-                      ...base,
-                      backgroundColor: '#111',
-                      borderColor: '#2172ef',
-                      color: '#fff'
-                    }),
-                    singleValue: (base) => ({ ...base, color: '#fff' }),
-                    menu: (base) => ({
-                      ...base,
-                      backgroundColor: '#333333',
-                      borderRadius: 8,
-                      overflow: 'hidden'
-                    })
-                  }}
-                  required={true}
-                />
-              </div>
+            <MySelect
+              value={crudData?.viewFordopList}
+              onChangeWS={onChangeWS}
+              list={listBollean}
+              title={`Отображать только при продлении? (в основном списке его не будет)`}
+              name={'viewFordopList'}
+            />
 
-              <div className="actionBtn">
-                <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
-                <BtnSave click={crudLandLordFn} text={'Сохранить'} />
-              </div>
-            </form>
-          </div>
-        </MainCard>
-      </div>
+            <div className="actionBtn">
+              <BtnCancel click={() => navigate(-1)} text={'Отмена'} />
+              <BtnSave click={crudLandLordFn} text={'Сохранить'} />
+            </div>
+          </form>
+        </div>
+      </MainCard>
     </div>
   );
 };

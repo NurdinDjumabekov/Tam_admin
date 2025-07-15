@@ -59,7 +59,6 @@ const ChoiceUserPage = () => {
           <div className="headerMain">
             <Titles title={`Выберите пользователя для которого хотите создать бронь`} />
             <hr />
-
             <div className="myInputs selectCategs">
               <Select
                 options={listTypesOrder}

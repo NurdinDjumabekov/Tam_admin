@@ -2,115 +2,113 @@
   height: 100%;
   position: relative;
   background: linear-gradient(to right, #181818e2, #0b0b0be7);
+  border-radius: 8px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  .actionHeader {
+    padding-right: 18px;
+    @media screen and (max-width: 550px) {
+      padding: 0px 15px 0 3px;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 500px) {
+      padding: 0px 10px 0 3px;
+    }
+
+    .standartBtn {
+      @media screen and (max-width: 650px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px !important;
+        height: 32px;
+        width: 40px;
+        min-width: 40px;
+        max-width: 40px;
+      }
+    }
+  }
 
   > div {
     background: transparent;
+    height: 100%;
+
+    &:nth-of-type(2) {
+      height: calc(100% - 70px);
+      padding: 0px !important;
+      overflow: hidden;
+      padding-bottom: 200px;
+    }
+
+    > div:first-child {
+      padding: 10px 18px !important;
+    }
 
     hr {
       border: 1px solid #d7d7d71f;
     }
-  }
 
-  &__inner {
-    height: calc(100vh - 220px);
-    padding: 0px 16px;
-
-    form {
-      display: flex;
-      width: 100%;
-      min-width: 100%;
-      gap: 20px;
+    > div:last-child {
+      padding: 0 !important;
+      height: 100%;
 
       > div {
-        width: calc(50% - 10px);
-        min-width: calc(50% - 10px);
-
-        .myInputs {
-          width: 100%;
-          min-width: 100%;
-        }
+        height: 100%;
       }
 
-      @media screen and (max-width: 500px) {
-        .createUser {
-          position: static !important;
-          width: 100%;
-          margin: 30px 0 0 0;
-          height: 45px;
+      .crudUsers {
+        overflow-y: scroll;
+        height: 100%;
+        padding: 5px 25px 200px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
 
-          p {
-            display: block;
+        @media screen and (max-width: 550px) {
+          flex-direction: column;
+          gap: 1px;
+        }
+        @media screen and (max-width: 500px) {
+          padding: 5px 20px 200px;
+        }
+        > div {
+          width: 50%;
+          @media screen and (max-width: 550px) {
+            width: 100%;
           }
         }
-      }
 
-      @media screen and (max-width: 550px) {
-        display: block;
-        padding-bottom: 200px;
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
 
-        > div {
-          width: 100%;
-          min-width: 100%;
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.3); // цвет ползунка
+          border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.5);
         }
       }
     }
-
-    @media screen and (max-width: 600px) {
-      height: calc(100vh - 190px);
-    }
   }
-}
 
-.mainCrudApartment {
-  width: 1280px;
-  max-width: 1280px;
-  margin: 0 auto;
-
-  @media screen and (max-width: 1330px) {
+  .saveBottom {
     width: 100%;
-    max-width: 100%;
-  }
-
-  > div {
-    > div:first-child {
-      > div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-
-        span {
-          display: inline-block;
-          max-width: 100%;
-          width: 100%;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-
-      @media screen and (max-width: 500px) {
-        padding: 10px 16px 10px 22px;
-        span {
-          font-size: 16px;
-        }
-      }
-    }
-  }
-
-  .selectCategs {
-    padding: 14px 0 0 0;
-  }
-}
-
-.mainCrudApartmentDel {
-  position: fixed;
-  left: 0px !important;
-  bottom: 0px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  margin: 69px 0 0 0 !important;
-
-  > div {
-    height: 220px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin: 30px 0 0 0;
+    height: 45px;
+    min-height: 45px;
+    max-height: 45px;
   }
 }

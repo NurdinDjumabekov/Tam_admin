@@ -59,7 +59,7 @@ const RoutesOrders = {
       element: <CrudStatusOrder />
     },
     {
-      path: 'crud_logout',
+      path: 'crud_logout', ////////++++++++++++
       element: <LogOutPage />
     }
   ]

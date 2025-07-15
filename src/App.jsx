@@ -2,8 +2,6 @@
 import { useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -17,6 +15,7 @@ import RoutesApartments from 'routes/RoutesApartments';
 import RoutesOrders from 'routes/RoutesOrders';
 import WelcomeRoutes from 'routes/WelcomeRoutes';
 import NotFoundPage from 'views/AuthPages/NotFoundPage/NotFoundPage';
+import { useEffect } from 'react';
 
 const App = () => {
   const dataSave = useSelector((state) => state.saveDataSlice.dataSave);
@@ -34,6 +33,15 @@ const App = () => {
       basename: import.meta.env.VITE_APP_BASE_NAME
     }
   );
+
+  useEffect(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.userAgent.includes('Macintosh') && 'ontouchend' in document);
+    if (isIOS) {
+      document.body.classList.add('ios');
+    } else {
+      document.body.classList.remove('ios');
+    }
+  }, []);
 
   return (
     <StyledEngineProvider injectFirst>

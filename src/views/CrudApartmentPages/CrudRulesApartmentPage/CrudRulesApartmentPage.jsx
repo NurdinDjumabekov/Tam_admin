@@ -66,8 +66,6 @@ const CrudRulesApartmentPage = () => {
             </button>
           </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
-        contentSX={{ padding: 0 }}
       >
         <div className="crud_apartment_page__inner">
           {listAllRules?.length > 0 ? (

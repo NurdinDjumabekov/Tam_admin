@@ -73,17 +73,6 @@ const ListLandlordPage = () => {
         <div className="my_tables__inner">
           <TableVirtuoso
             data={listLandlord}
-            // data={[
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord,
-            //   ...listLandlord
-            // ]}
             components={VirtuosoTableComponents}
             fixedHeaderContent={() => fixedHeaderContent(isSmall)}
             itemContent={(index, row) => rowContent(index, row, navigate, isSmall)}
@@ -129,7 +118,6 @@ function rowContent(_index, row, navigate, isSmall) {
   const columnsMobile = [{ width: '100%', label: '№', dataKey: 'codeid' }];
 
   if (isSmall) {
-    console.log(row, 'row');
     return columnsMobile?.map((column, index) => {
       return (
         <TableCell className="mobileListLandlord" key={column?.dataKey}>
@@ -143,7 +131,7 @@ function rowContent(_index, row, navigate, isSmall) {
 
             <div className="landlordBody">
               <div>
-                <p>№ 100</p>
+                <p>№ {row?.codeid}</p>
                 <span></span>
               </div>
 
@@ -261,5 +249,3 @@ const columns = [
   { width: '15%', label: 'Действия', dataKey: '....' },
   { width: '15%', label: 'Квартиры', dataKey: '...' }
 ];
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };

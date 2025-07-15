@@ -17,6 +17,7 @@
   }
 
   .my_tables__inner {
+    height: calc(100% - 55px) !important;
     table {
       padding: 5px 0px 300px;
       thead,
@@ -75,17 +76,16 @@
             }
 
             .everyLandlordCard {
-              background: rgba(255, 255, 255, 0.06); // ❄️ светлая прозрачность
-              //   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-              backdrop-filter: blur(20px); // мягкое стеклянное размытие
-              -webkit-backdrop-filter: blur(20px); // поддержка Safari
-              border: 1px solid rgba(255, 255, 255, 0.1); // светлая тонкая рамка
+              background: rgba(255, 255, 255, 0.06);
+              backdrop-filter: blur(20px);
+              -webkit-backdrop-filter: blur(20px);
+              border: 1px solid rgba(255, 255, 255, 0.1);
               border-radius: 12px;
               padding: 12px 0 2px;
               display: flex;
               flex-direction: column;
               transition: all 0.2s ease;
-              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // лёгкая тень вниз
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
               &:hover {
                 border-color: rgba(255, 255, 255, 0.12);
@@ -94,18 +94,15 @@
 
               .status {
                 font-size: 10px;
-                // padding: 4px 10px;
                 border-radius: 8px;
                 font-weight: 500;
                 text-transform: uppercase;
 
                 &.active {
-                  //   background-color: rgba(0, 255, 128, 0.15);
                   color: #00e07a;
                 }
 
                 &.blocked {
-                  //   background-color: rgba(255, 0, 0, 0.15);
                   color: #ff4d4d;
                 }
               }
@@ -162,9 +159,9 @@
                 button {
                   background: #ededed !important;
                   color: #222;
-                  font-weight: 600;
-                  font-size: 12px;
-                  padding: 8px 15px 10px;
+                  font-weight: 500;
+                  font-size: 11px;
+                  padding: 8px 15px 9px;
                   border-radius: 7px;
                 }
               }

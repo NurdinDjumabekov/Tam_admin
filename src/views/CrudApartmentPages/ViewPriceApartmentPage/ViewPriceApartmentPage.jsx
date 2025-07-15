@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from '@mui/system';
 
 ///// components
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import MainCard from 'ui-component/cards/MainCard';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -27,6 +27,8 @@ import './style.scss';
 import EditIcon from 'assets/MyIcons/EditIcon';
 import DeleteIcon from 'assets/MyIcons/DeleteIcon';
 import Titles from 'common/Titles/Titles';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 const columns = [
   { width: '10%', label: '№', dataKey: 'index' },
@@ -41,6 +43,7 @@ const ViewPriceApartmentPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const isSmall = useMediaQuery('(max-width:550px)');
 
   const { listPrices } = useSelector((state) => state.otherActionApartmentSlice);
 
@@ -98,28 +101,24 @@ const ViewPriceApartmentPage = () => {
   };
 
   return (
-    <div className="tableLandlords tableApartments price_list">
+    <div className="my_tables list_landlord viewPrice">
       <MainCard
         title={
-          <>
-            <div className="headerActionsStandart">
-              <Titles title={location?.state?.address} />
-              <button onClick={() => addNewPrice({}, 1)} className="standartBtn">
-                Добавить
-              </button>
-            </div>
-          </>
+          <div className="headerActionsStandart">
+            <Titles title={location?.state?.address} />
+            <button onClick={() => addNewPrice({}, 1)} className="standartBtn">
+              Добавить
+            </button>
+          </div>
         }
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 1 } }}
-        contentSX={{ padding: 0 }}
       >
-        <div className="viewUsersPage">
+        <div className="my_tables__inner">
           {listPrices?.length ? (
             <TableVirtuoso
               data={listPrices}
               components={VirtuosoTableComponents}
-              fixedHeaderContent={fixedHeaderContent}
-              itemContent={(index, row) => rowContent(index, row, onChange, crudApartmentFN)}
+              fixedHeaderContent={() => fixedHeaderContent(isSmall)}
+              itemContent={(index, row) => rowContent(index, row, onChange, crudApartmentFN, isSmall)}
             />
           ) : (
             <p className="empty_list">Пустой список</p>
@@ -140,67 +139,146 @@ const VirtuosoTableComponents = {
   TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />)
 };
 
-function fixedHeaderContent() {
-  return (
-    <TableRow>
-      {columns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          variant="head"
-          align="left"
-          style={{ width: column.width, paddingTop: 7, paddingBottom: 12 }}
-          sx={{ backgroundColor: 'background.paper' }}
-        >
-          {column.label}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
+function fixedHeaderContent(isSmall) {
+  if (isSmall) return <></>;
+  else {
+    return (
+      <TableRow>
+        {columns.map((column) => (
+          <TableCell
+            key={column.dataKey}
+            variant="head"
+            align="left"
+            style={{ width: column.width, paddingTop: 7, paddingBottom: 12 }}
+            sx={{ backgroundColor: 'background.paper' }}
+          >
+            {column.label}
+          </TableCell>
+        ))}
+      </TableRow>
+    );
+  }
 }
 
-function rowContent(index, row, onChange, crudApartmentFN) {
-  return columns.map((column) => {
-    if (column.dataKey === 'index') {
-      return (
-        <TableCell key={column.dataKey} sx={{ padding: 1, paddingLeft: 2 }}>
-          {index + 1}
-        </TableCell>
-      );
-    }
+function rowContent(index, row, onChange, crudApartmentFN, isSmall) {
+  const columnsMobile = [{ width: '100%', label: '№', dataKey: 'codeid' }];
 
-    if (column.dataKey === 'viewFordopList') {
+  if (isSmall) {
+    return columnsMobile?.map((column, index) => {
       return (
-        <TableCell key={column.dataKey} className="checkBoxPrice" sx={{ padding: '4px 6px', minWidth: 40 }}>
-          <Checkbox
-            sx={{ padding: '4px' }}
-            checked={row.viewFordopList}
-            onClick={(e) => e.stopPropagation()}
-            onChange={() => onChange(row)}
-            inputProps={{ 'aria-label': 'Выбрать правило' }}
-          />
-        </TableCell>
-      );
-    }
+        <TableCell className="mobileListLandlord" key={column?.dataKey}>
+          <div className="everyLandlordCard">
+            <div className="landlordHeader">
+              <p className="name">{`Тариф: ${row?.name ?? ''}`}</p>
+              <button onClick={() => crudApartmentFN(row, 2)}>
+                <EditIcon width="18" height="18" title={''} />
+              </button>
+            </div>
 
-    if (column.dataKey === 'actions') {
-      return (
-        <TableCell key={column.dataKey} align="left" sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
-          <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-            <button onClick={() => crudApartmentFN(row, 2)}>
-              <EditIcon width="18" height="18" title="Редактировать" />
-            </button>
-            <button onClick={() => crudApartmentFN(row, 3)}>
-              <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title="Удалить" />
-            </button>
+            <div className="landlordBody">
+              <div>
+                <p>Цена:</p>
+                <span>{row?.price} сом</span>
+              </div>
+
+              <div>
+                <p>Скидка:</p>
+                <span>{row?.discount} сом</span>
+              </div>
+
+              <div>
+                <p>Количество часов:</p>
+                <span>{row?.duration} ч.</span>
+              </div>
+
+              <div>
+                <p>Количество минут:</p>
+                <span>{row?.durationInMinutes} мин.</span>
+              </div>
+
+              <div>
+                <p>Отображать этот тариф только при продлении брони? :</p>
+                <span>
+                  <Checkbox
+                    icon={<CheckBoxOutlineBlankIcon sx={{ color: '#007BFF' }} />}
+                    checkedIcon={<CheckBoxIcon sx={{ color: '#007BFF' }} />}
+                    checked={row.viewFordopList}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={() => onChange(row)}
+                    inputProps={{ 'aria-label': 'Выбрать правило' }}
+                    sx={{ padding: '4px' }}
+                  />
+                </span>
+              </div>
+            </div>
+
+            <div className="actions_landlord">
+              <button onClick={() => crudApartmentFN(row, 3)}>Удалить</button>
+              <button onClick={() => crudApartmentFN(row, 2)}>Редактировать</button>
+            </div>
           </div>
         </TableCell>
       );
-    }
+    });
+  } else {
+    return columns.map((column) => {
+      if (column?.dataKey === 'index') {
+        return (
+          <TableCell key={column.dataKey} sx={{ padding: 1, paddingLeft: 2 }}>
+            {index + 1}
+          </TableCell>
+        );
+      }
 
-    return (
-      <TableCell key={column.dataKey} sx={{ padding: 1, paddingLeft: 2 }}>
-        {row[column.dataKey]}
-      </TableCell>
-    );
-  });
+      if (column?.dataKey === 'viewFordopList') {
+        return (
+          <TableCell key={column.dataKey} className="checkBoxPrice" sx={{ padding: '4px 6px', minWidth: 40 }}>
+            <Checkbox
+              sx={{ padding: '4px' }}
+              checked={row.viewFordopList}
+              onClick={(e) => e.stopPropagation()}
+              onChange={() => onChange(row)}
+              inputProps={{ 'aria-label': 'Выбрать правило' }}
+            />
+          </TableCell>
+        );
+      }
+
+      if (column?.dataKey === 'actions') {
+        return (
+          <TableCell key={column?.dataKey} align="left" sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+            <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+              <button onClick={() => crudApartmentFN(row, 2)}>
+                <EditIcon width="18" height="18" title="Редактировать" />
+              </button>
+              <button onClick={() => crudApartmentFN(row, 3)}>
+                <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title="Удалить" />
+              </button>
+            </div>
+          </TableCell>
+        );
+      }
+
+      if (column.dataKey === 'actions') {
+        return (
+          <TableCell key={column.dataKey} align="left" sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
+            <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+              <button onClick={() => crudApartmentFN(row, 2)}>
+                <EditIcon width="18" height="18" title="Редактировать" />
+              </button>
+              <button onClick={() => crudApartmentFN(row, 3)}>
+                <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title="Удалить" />
+              </button>
+            </div>
+          </TableCell>
+        );
+      }
+
+      return (
+        <TableCell key={column.dataKey} sx={{ padding: 1, paddingLeft: 2 }}>
+          {row[column.dataKey]}
+        </TableCell>
+      );
+    });
+  }
 }

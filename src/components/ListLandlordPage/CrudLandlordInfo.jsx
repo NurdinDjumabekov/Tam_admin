@@ -23,6 +23,7 @@ import { crudLandLordReq, getAllLandLordReq } from 'store/reducers/usersSlice';
 /////// helpers
 import { listActive } from 'helpers/myLocal';
 import { myAlert } from 'helpers/myAlert';
+import MySelect from 'common/MySelect/MySelect';
 
 //// delete
 const CrudLandlordInfo = (props) => {
@@ -87,17 +88,7 @@ const CrudLandlordInfo = (props) => {
               placeholder={'996*********'}
               type="number"
             />
-            <div className="myInputs">
-              <h5>Статус</h5>
-              <Select
-                options={listActive}
-                className="select"
-                onChange={onChangeWS}
-                value={crudLandlord?.status}
-                menuPortalTarget={document.body}
-                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
-              />
-            </div>
+            <MySelect value={crudLandlord?.status} onChangeWS={onChangeWS} list={listActive} title={'Статус'} name={'status'} />
             <button className="saveData" type="submit">
               <SaveAsIcon sx={{ width: 19, height: 19 }} />
               <p>Сохранить</p>

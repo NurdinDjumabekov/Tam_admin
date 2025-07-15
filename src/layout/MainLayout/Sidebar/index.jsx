@@ -18,8 +18,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const isSmall = useMediaQuery('(max-width:500px)');
 
-  console.log(isSmall, 'isSmall');
-
   const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
