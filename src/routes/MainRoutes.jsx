@@ -26,12 +26,12 @@ const MainRoutes = {
       children: [{ path: 'landlords', element: <ListLandlordPage /> }]
     },
     {
-      path: 'list',
-      children: [{ path: 'users', element: <ListUsersPage /> }]
+      path: 'list', ////////++++++++++++
+      children: [{ path: 'orders', element: <ListOrdersPage /> }]
     },
     {
       path: 'list',
-      children: [{ path: 'orders', element: <ListOrdersPage /> }]
+      children: [{ path: 'users', element: <ListUsersPage /> }]
     },
     {
       path: 'list',

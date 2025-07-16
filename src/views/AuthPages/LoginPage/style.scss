@@ -1,24 +1,13 @@
-// .loginPage {
-//   // > div {
-//   //   height: 100vh;
-
-//   //   > div:last-child {
-//   //     height: 100%;
-
-//   //     > div {
-//   //       height: 100%;
-
-//   //       .actionBtn {
-//   //         background: red;
-//   //         position: fixed;
-//   //         left: 0;
-//   //         bottom: 20px;
-//   //         width: 100%;
-//   //       }
-//   //     }
-//   //   }
-
-//   //   .applicationForAdminPage__inner {
-//   //   }
-//   // }
-// }
+.mainLogin {
+  > div {
+    > div:first-child {
+      padding: 16px 24px !important;
+    }
+  }
+  .inputSend {
+    padding: 8px 0px 0px 0px !important;
+  }
+  .actionBtn {
+    padding: 0 !important;
+  }
+}

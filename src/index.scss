@@ -443,7 +443,7 @@ button {
     }
 
     > div:first-child {
-      padding: 10px 15px !important;
+      padding: 10px 15px;
     }
 
     hr {
@@ -491,6 +491,8 @@ button {
     }
 
     table {
+      padding-bottom: 300px;
+
       thead,
       tbody {
         tr {
@@ -548,7 +550,7 @@ button {
 .standartBtn {
   background: #134591;
   border-radius: 4px;
-  padding: 10px 15px 12px;
+  padding: 11px 15px 12px;
   line-height: 10px;
   font-size: 13px;
   font-weight: 400;

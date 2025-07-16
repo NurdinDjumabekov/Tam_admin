@@ -65,13 +65,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="applicationForAdminPage loginPage">
+    <div className="applicationForAdminPage loginPage mainLogin">
       <MainCard
-        title={
-          <>
-            <TitlesModal title={`Вход в аккаунт`} />
-          </>
-        }
+        title={<TitlesModal title={`Вход в аккаунт`} />}
         sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >

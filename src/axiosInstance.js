@@ -12,21 +12,18 @@ const axiosInstance = axios.create({
   baseURL: apiUrl,
   timeout: 15000
   // headers: {
-  //   user-guid: '2876b32f-ab42-4c73-82b4-78e10e4a7425',
-  // },
+  //   'user-guid': '2876b32f-ab42-4c73-82b4-78e10e4a7425'
+  // }
 });
 
 axiosInstance.interceptors.request.use(
   (config) => {
     const state = store?.getState();
-    const user_guid = '2876b32f-ab42-4c73-82b4-78e10e4a7425';
-    const token = state?.saveDataSlice?.dataSave?.token?.accessToken;
+    const user_guid = state?.saveDataSlice?.dataSave?.guid;
+    const typeUser = state?.saveDataSlice?.dataSave?.typeUser;
 
-    if (token) config.headers.Authorization = `Bearer ${token}`;
-
-    if (user_guid) {
-      config.headers['user-guid'] = user_guid;
-    }
+    config.headers['user-guid'] = user_guid;
+    config.headers['typeUser'] = typeUser;
 
     if (!(config.data instanceof FormData)) {
       config.headers['Content-Type'] = 'application/json';

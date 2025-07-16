@@ -179,7 +179,7 @@ function rowContent(_index, row, navigate, crudData) {
     if (column?.dataKey == 'codeid') {
       return (
         <TableCell onClick={choiceUser} key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 0 }}>
-          {_index + 1}
+          {row?.codeid}
         </TableCell>
       );
     }
@@ -187,7 +187,7 @@ function rowContent(_index, row, navigate, crudData) {
     if (column?.dataKey == 'fullName') {
       return (
         <TableCell onClick={choiceUser} key={column?.dataKey} sx={{ padding: 1, paddingLeft: 2, paddingRight: 2 }}>
-          {`${row.lastName ?? ''} ${row.name ?? ''} ${row.firstName ?? ''}`}
+          {`${row?.lastName ?? ''} ${row?.name ?? ''} ${row?.firstName ?? ''}`}
         </TableCell>
       );
     }

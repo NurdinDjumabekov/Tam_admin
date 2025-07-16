@@ -83,14 +83,14 @@ const CrudOrdersPage = () => {
   };
 
   return (
-    <div className="container tableOrders crudTableOrders crudInfoOrder">
+    <div className="crudTableOrders">
       <MainCard
         title={<Titles title={`Информация о заказе №${everyOrder?.orderNumber}`} />}
-        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 68px)', padding: 0 } }}
+        sx={{ height: '100%', '& > div:nth-of-type(2)': { height: 'calc(100% - 0px)', padding: 0 } }}
         contentSX={{ padding: 0 }}
       >
-        <div className="orderTableWrapper">
-          <table className="orderInfoTable">
+        <div className="crudTableOrders__inner">
+          <table>
             <tbody>
               <tr>
                 <th colSpan={3}>Основная информация</th>
@@ -162,7 +162,7 @@ const CrudOrdersPage = () => {
               <tr>
                 <th colSpan={2}>Оплата и тарифы</th>
                 <th className="titleAction">
-                  <button className="editData" onClick={() => crudPayOrder(everyOrder)}>
+                  <button className="editData addTariff" onClick={() => crudPayOrder(everyOrder)}>
                     <AddIcon width="18" height="18" title={'Продление аренды'} />
                   </button>
                 </th>
@@ -302,95 +302,3 @@ const CrudOrdersPage = () => {
 };
 
 export default CrudOrdersPage;
-
-// <Dialog
-//   fullScreen={fullScreen}
-//   open
-//   onClose={close}
-//   aria-labelledby="dialog-title"
-//   className="menuActionApartment"
-//   PaperProps={{
-//     sx: {
-//       borderRadius: 3,
-//       minWidth: 360,
-//       paddingX: 1,
-//       paddingY: 1
-//     }
-//   }}
-// >
-//   <div className="modalActionApartment">
-//     <div className="header">
-//       <DialogTitle id="dialog-title">Выберите действие</DialogTitle>
-//       <IconButton onClick={close}>
-//         <CloseIcon />
-//       </IconButton>
-//     </div>
-
-//     <Paper elevation={0}>
-//       <List disablePadding>
-//         <ListItemButton onClick={() => handleAction(1)}>
-//           <ListItemIcon>
-//             <EditIcon width="18" height="18" title={''} />
-//           </ListItemIcon>
-//           <ListItemText primary="Информация о квартире" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(2)}>
-//           <ListItemIcon>
-//             <DeleteIcon width="20" height="20" color="rgba(255, 0, 0, 0.56)" title={''} />
-//           </ListItemIcon>
-//           <ListItemText primary="Удалить квартиру" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(3)}>
-//           <ListItemIcon>
-//             <img className="listIcon" src={imgList} alt="*" width={16} height={16} />
-//           </ListItemIcon>
-//           <ListItemText primary="Правила квартиры" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(4)}>
-//           <ListItemIcon>
-//             <img className="listIcon" src={imgListConv} alt="*" width={16} height={16} />
-//           </ListItemIcon>
-//           <ListItemText primary="Удобства квартиры" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(5)}>
-//           <ListItemIcon>
-//             <MapIcon width="18" height="18" title={''} />
-//           </ListItemIcon>
-//           <ListItemText primary="Посмотреть на карте" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(6)}>
-//           <ListItemIcon>
-//             <img className="payIcon" src={imgPay} alt="*" width={16} height={16} />
-//           </ListItemIcon>
-//           <ListItemText primary="Прайс квартиры" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(7)}>
-//           <ListItemIcon>
-//             <img className="payIcon" src={imgGalery} alt="*" width={19} height={19} />
-//           </ListItemIcon>
-//           <ListItemText primary="Фотографии квартиры" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(8)}>
-//           <ListItemIcon>
-//             <img className="videoIcon" src={imgVideo} alt="*" width={19} height={19} />
-//           </ListItemIcon>
-//           <ListItemText primary="Видео квартиры" />
-//         </ListItemButton>
-
-//         <ListItemButton onClick={() => handleAction(9)}>
-//           <ListItemIcon>
-//             <img className="videoIcon" src={imgDoor} alt="*" width={19} height={19} />
-//           </ListItemIcon>
-//           <ListItemText primary="Данные замка" />
-//         </ListItemButton>
-//       </List>
-//     </Paper>
-//   </div>
-// </Dialog>

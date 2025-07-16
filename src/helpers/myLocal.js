@@ -59,6 +59,16 @@ export const listTypeUsers = [
   { value: 'landlord', label: 'Арендодатели' }
 ];
 
+export const listDatesOrders = [
+  { value: '1', label: 'Заказы за сегодня' },
+  { value: '2', label: 'Заказы за последние 3 дня' },
+  { value: '3', label: 'Заказы за последние 5 дней' },
+  { value: '4', label: 'Заказы за неделю' },
+  { value: '5', label: 'Заказы за месяц' },
+  { value: '6', label: 'Заказы за 2 месяца' },
+  { value: '7', label: 'Заказы за 3 месяца' }
+];
+
 export const objRole = {
   admin: 'Админ',
   client: 'Пользователь',

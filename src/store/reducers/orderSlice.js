@@ -12,7 +12,8 @@ const initialState = {
   activeSelectRole: { ...listTypeUsers?.[0] }, // селект ролей
   listOrders: [], // список заказов
   everyOrder: {}, // каждый заказ
-  activeUser: {} // нужен для выбора пользователя при создании
+  activeUser: { value: '', label: 'Все' }, // нужен для выбора пользователя при создании
+  activeSelectDates: { value: '1', label: 'Заказы за сегодня' } // сортирвока заказов по датай селекта (3дня, 7 дней, 2 недели и т.д.)
 };
 
 ////// getListOrdersReq - get cписок заказов
@@ -165,6 +166,9 @@ const orderSlice = createSlice({
     },
     everyOrderFN: (state, action) => {
       state.everyOrder = action?.payload;
+    },
+    activeSelectDatesFN: (state, action) => {
+      state.activeSelectDates = action?.payload;
     }
   },
 
@@ -271,6 +275,6 @@ const orderSlice = createSlice({
   }
 });
 
-export const { listOrdersFN, activeDateDayFN, activeSelectRoleFN, everyOrderFN } = orderSlice.actions;
+export const { listOrdersFN, activeDateDayFN, activeSelectRoleFN, everyOrderFN, activeSelectDatesFN } = orderSlice.actions;
 
 export default orderSlice.reducer;

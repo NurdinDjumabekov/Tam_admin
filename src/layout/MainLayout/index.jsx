@@ -63,6 +63,8 @@ const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
   const dispatch = useDispatch();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const [drawerOpen, setDrawerOpen] = useState(matchUpMd);
+  const isSmall = useMediaQuery('(max-width:500px)');
+
   const location = useLocation();
 
   useEffect(() => {
@@ -93,6 +95,7 @@ const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
     <div className="mainApp">
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
+
         {/* header */}
         <AppBar
           enableColorOnDark
@@ -114,7 +117,11 @@ const MainLayout = ({ view_left_menu = true, no_auth = false }) => {
         </AppBar>
 
         {/* меню слева*/}
-        {!!view_left_menu && <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />}
+        {isSmall ? (
+          <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />
+        ) : (
+          !!view_left_menu && <Sidebar drawerOpen={drawerOpen} drawerToggle={handleLeftDrawerToggle} />
+        )}
 
         {/* main content */}
         <Main
